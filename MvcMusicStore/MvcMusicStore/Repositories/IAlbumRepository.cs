@@ -13,5 +13,6 @@ namespace MvcMusicStore.Repositories
         IEnumerable<Album> GetAllAlbums();
         Album GetAlbum(int albumId);
         void AddAlbum(Album album);
+
     }
 }
