@@ -203,6 +203,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MusicStoreDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\AlbumRepository.cs" />
+    <Compile Include="Repositories\IAlbumRepository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
