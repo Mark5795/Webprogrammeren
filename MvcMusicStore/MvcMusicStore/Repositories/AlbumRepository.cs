@@ -31,5 +31,23 @@ namespace MvcMusicStore.Repositories
             db.Albums.Add(album);
             db.SaveChanges();
         }
+
+        public void RemoveAlbum(int albumId)
+        {
+            Album album = db.Albums.Find(albumId);
+            db.Albums.Remove(album);
+            db.SaveChanges();
+        }
+        
+        public void EditAlbum(Album album)
+        {
+            db.Entry(album).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void Dispose(bool disposing)
+        {
+            db.Dispose();
+        }
     }
 }
