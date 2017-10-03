@@ -7,17 +7,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Whatsup.Models;
+using Whatsup.Repositories;
 
 namespace Whatsup.Controllers
 {
     public class ContactController : Controller
     {
-        private WhatsupContext db = new WhatsupContext();
+        //private WhatsupContext db = new WhatsupContext();
+        private IContactRepository contactRepository = new ContactRepository();
 
         // GET: Contact
         public ActionResult Index()
         {
-            return View(db.Contacts.ToList());
+            IEnumerable<Contact> AllContacts = contactRepository.GetAllContacts();
+            return View(AllContacts);
         }
 
         // GET: Contact/Details/5
@@ -27,7 +30,7 @@ namespace Whatsup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = contactRepository.GetContact((int) id);
             if (contact == null)
             {
                 return HttpNotFound();
@@ -35,11 +38,13 @@ namespace Whatsup.Controllers
             return View(contact);
         }
 
+        [Authorize]
         // GET: Contact/Create
         public ActionResult Create()
         {
             return View();
         }
+        [Authorize]
 
         // POST: Contact/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -50,14 +55,15 @@ namespace Whatsup.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Contacts.Add(contact);
-                db.SaveChanges();
+                contactRepository.AddContact(contact);
                 return RedirectToAction("Index");
             }
 
             return View(contact);
         }
+        [Authorize]
 
+        [Authorize]
         // GET: Contact/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -65,14 +71,16 @@ namespace Whatsup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = contactRepository.GetContact((int)id);
             if (contact == null)
             {
                 return HttpNotFound();
             }
             return View(contact);
         }
+        [Authorize]
 
+        [Authorize]
         // POST: Contact/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -82,13 +90,14 @@ namespace Whatsup.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(contact).State = EntityState.Modified;
-                db.SaveChanges();
+                contactRepository.EditContact(contact);
                 return RedirectToAction("Index");
             }
             return View(contact);
         }
+        [Authorize]
 
+        [Authorize]
         // GET: Contact/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -96,30 +105,31 @@ namespace Whatsup.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Contact contact = db.Contacts.Find(id);
+            Contact contact = contactRepository.GetContact((int)id);
             if (contact == null)
             {
                 return HttpNotFound();
             }
             return View(contact);
         }
+        [Authorize]
 
+        [Authorize]
         // POST: Contact/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Contact contact = db.Contacts.Find(id);
-            db.Contacts.Remove(contact);
-            db.SaveChanges();
+            Contact contact = contactRepository.GetContact((int)id);
             return RedirectToAction("Index");
         }
+        [Authorize]
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                contactRepository.Dispose((bool)disposing);
             }
             base.Dispose(disposing);
         }
