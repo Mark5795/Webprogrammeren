@@ -112,7 +112,6 @@ namespace Whatsup.Controllers
             }
             return View(contact);
         }
-        [Authorize]
 
         [Authorize]
         // POST: Contact/Delete/5
@@ -123,7 +122,6 @@ namespace Whatsup.Controllers
             Contact contact = contactRepository.GetContact((int)id);
             return RedirectToAction("Index");
         }
-        [Authorize]
 
         protected override void Dispose(bool disposing)
         {

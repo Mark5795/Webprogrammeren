@@ -8,17 +8,21 @@ using System.Web;
 using System.Web.Mvc;
 using Whatsup.Models;
 using Whatsup.Repositories;
+using System.Web.Security;
+using System.Data.Sql;
 
 namespace Whatsup.Controllers
 {
     public class AccountController : Controller
     {
+        private IAccountRepository accountRepository = new AccountRepository();
+
         [HttpPost]
-        public ActionResult Login(LoginModel model)
+        public ActionResult Login(Login model)
         {
             if (ModelState.IsValid)
             {
-                Account account = repository.GetAccount(
+                Account account = accountRepository.GetAccount(
                              model.EmailAddress, model.Password);
                 if (account != null)
                 {
@@ -41,9 +45,14 @@ namespace Whatsup.Controllers
         [HttpPost]
         public ActionResult LogOff()
         {
-            FormsAuthenication.SignOut();
+            FormsAuthentication.SignOut();
 
             return RedirectToAction("Login", "Account");
         }
+
+        //Registratie maken hier
+
+
+
     }
 }

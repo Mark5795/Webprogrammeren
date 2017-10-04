@@ -5,14 +5,10 @@ using System.Web;
 
 namespace Whatsup.Models
 {
-    public class Account
+    public class Login
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string MobilNumber { get; set; }
         public string EmailAddress { get; set; }
         public string Password { get; set; }
-
-        public virtual ICollection<Contact> Contacts { get; set; }
     }
 }
