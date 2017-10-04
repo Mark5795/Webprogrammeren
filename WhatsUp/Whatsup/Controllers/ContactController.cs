@@ -38,17 +38,17 @@ namespace Whatsup.Controllers
             return View(contact);
         }
 
-        [Authorize]
         // GET: Contact/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
         }
-        [Authorize]
 
         // POST: Contact/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Mobilenumber")] Contact contact)
@@ -61,10 +61,9 @@ namespace Whatsup.Controllers
 
             return View(contact);
         }
-        [Authorize]
 
-        [Authorize]
         // GET: Contact/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,7 +77,6 @@ namespace Whatsup.Controllers
             }
             return View(contact);
         }
-        [Authorize]
 
         [Authorize]
         // POST: Contact/Edit/5
@@ -95,10 +93,9 @@ namespace Whatsup.Controllers
             }
             return View(contact);
         }
-        [Authorize]
 
-        [Authorize]
         // GET: Contact/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,8 +110,8 @@ namespace Whatsup.Controllers
             return View(contact);
         }
 
-        [Authorize]
         // POST: Contact/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

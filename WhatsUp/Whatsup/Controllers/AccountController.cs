@@ -52,7 +52,11 @@ namespace Whatsup.Controllers
 
         //Registratie maken hier
 
+        [HttpPost]
+        public ActionResult Register(Register model)
+        {
 
-
+            return View(model);
+        }
     }
 }
