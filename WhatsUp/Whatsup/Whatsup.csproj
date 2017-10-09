@@ -148,6 +148,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChatsController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -160,14 +161,6 @@
     <Compile Include="Migrations\201710040833331_InitialCreate1.cs" />
     <Compile Include="Migrations\201710040833331_InitialCreate1.Designer.cs">
       <DependentUpon>201710040833331_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710040856522_InitialCreate2.cs" />
-    <Compile Include="Migrations\201710040856522_InitialCreate2.Designer.cs">
-      <DependentUpon>201710040856522_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710040903505_InitialCreate3.cs" />
-    <Compile Include="Migrations\201710040903505_InitialCreate3.Designer.cs">
-      <DependentUpon>201710040903505_InitialCreate3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201710050941038_changeaccount.cs" />
     <Compile Include="Migrations\201710050941038_changeaccount.Designer.cs">
@@ -236,6 +229,11 @@
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Chats\Create.cshtml" />
+    <Content Include="Views\Chats\Delete.cshtml" />
+    <Content Include="Views\Chats\Details.cshtml" />
+    <Content Include="Views\Chats\Edit.cshtml" />
+    <Content Include="Views\Chats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,12 +259,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710040833331_InitialCreate1.resx">
       <DependentUpon>201710040833331_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710040856522_InitialCreate2.resx">
-      <DependentUpon>201710040856522_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710040903505_InitialCreate3.resx">
-      <DependentUpon>201710040903505_InitialCreate3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710050941038_changeaccount.resx">
       <DependentUpon>201710050941038_changeaccount.cs</DependentUpon>

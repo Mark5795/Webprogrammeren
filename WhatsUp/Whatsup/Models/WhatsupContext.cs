@@ -21,5 +21,7 @@ namespace Whatsup.Models
 
         public System.Data.Entity.DbSet<Contact> Contacts { get; set; }
         public System.Data.Entity.DbSet<Account> Accounts { get; set; }
+
+        public System.Data.Entity.DbSet<Whatsup.Models.Chat> Chats { get; set; }
     }
 }
