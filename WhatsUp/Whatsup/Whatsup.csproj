@@ -169,9 +169,9 @@
     <Compile Include="Migrations\201710040903505_InitialCreate3.Designer.cs">
       <DependentUpon>201710040903505_InitialCreate3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201710040910303_accounts.cs" />
-    <Compile Include="Migrations\201710040910303_accounts.Designer.cs">
-      <DependentUpon>201710040910303_accounts.cs</DependentUpon>
+    <Compile Include="Migrations\201710050941038_changeaccount.cs" />
+    <Compile Include="Migrations\201710050941038_changeaccount.Designer.cs">
+      <DependentUpon>201710050941038_changeaccount.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -268,8 +268,8 @@
     <EmbeddedResource Include="Migrations\201710040903505_InitialCreate3.resx">
       <DependentUpon>201710040903505_InitialCreate3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710040910303_accounts.resx">
-      <DependentUpon>201710040910303_accounts.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710050941038_changeaccount.resx">
+      <DependentUpon>201710050941038_changeaccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
