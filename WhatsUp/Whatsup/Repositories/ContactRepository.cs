@@ -18,6 +18,7 @@ namespace Whatsup.Repositories
             IEnumerable<Contact> contacts = db.Contacts/*.Include(a => a.Contact)*/;
             return contacts;
         }
+
         public Contact GetContact(int contactId)
         {
             Contact contact = db.Contacts.Find(contactId);

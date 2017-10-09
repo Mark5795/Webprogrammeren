@@ -17,6 +17,11 @@ namespace Whatsup.Controllers
     {
         private IAccountRepository accountRepository = new AccountRepository();
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Login(Login model)
         {
@@ -51,6 +56,10 @@ namespace Whatsup.Controllers
         }
 
         //Registratie maken hier
+        public ActionResult Register()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Register(Register model)

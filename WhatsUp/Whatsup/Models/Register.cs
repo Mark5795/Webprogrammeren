@@ -7,5 +7,6 @@ namespace Whatsup.Models
 {
     public class Register
     {
+
     }
 }
