@@ -55,7 +55,6 @@ namespace Whatsup.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        //Registratie maken hier
         public ActionResult Register()
         {
             return View();
