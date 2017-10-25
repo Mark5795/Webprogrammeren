@@ -16,7 +16,7 @@ namespace Whatsup.Controllers
     public class AccountController : Controller
     {
         private IAccountRepository accountRepository = new AccountRepository();
-
+        private IRegisterRepository registerRepository = new RegisterRepository();
         public ActionResult Login()
         {
             return View();
@@ -61,10 +61,13 @@ namespace Whatsup.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Register model)
+        public ActionResult Register(Account account)
         {
-
-            return View(model);
+            if (ModelState.IsValid)
+            {
+                accountRepository.AddAccount(account);
+            }
+            return View(account);
         }
     }
 }

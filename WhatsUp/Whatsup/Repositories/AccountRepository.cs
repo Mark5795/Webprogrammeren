@@ -18,5 +18,11 @@ namespace Whatsup.Repositories
             Account account = db.Accounts.Find(EmailAddress, Password);
             return account;
         }
+
+        public void AddAccount(Account account)
+        {
+            db.Accounts.Add(account);
+            db.SaveChanges();
+        }
     }
 }
