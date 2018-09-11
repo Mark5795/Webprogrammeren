@@ -11,11 +11,18 @@ namespace Whatsup.Repositories
     {
         private WhatsupContext db = new WhatsupContext();
         public IEnumerable<Account> Account { get { return db.Accounts; } }
-        //public IEnumerable<Account> Account { get { return null; } }
 
-        public Account GetAccount(string EmailAddress, string Password)
+        public bool AlreadyRegistered(string EmailAddress)
         {
-            Account account = db.Accounts.Find(EmailAddress, Password);
+            if (db.Accounts.Any(i => i.EmailAddress == EmailAddress))
+                return true;
+            else
+                return false;
+        }
+
+        public Account GetAccount(string EmailAddress)
+        {
+            Account account = db.Accounts.SingleOrDefault(i => i.EmailAddress == EmailAddress);
             return account;
         }
 

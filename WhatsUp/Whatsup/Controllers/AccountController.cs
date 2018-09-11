@@ -28,7 +28,7 @@ namespace Whatsup.Controllers
             if (ModelState.IsValid)
             {
                 Account account = accountRepository.GetAccount(
-                             model.EmailAddress, model.Password);
+                             model.EmailAddress);
                 if (account != null)
                 {
                     FormsAuthentication.SetAuthCookie(account.EmailAddress, false);

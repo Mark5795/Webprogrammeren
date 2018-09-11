@@ -6,12 +6,17 @@ using Whatsup.Models;
 
 namespace Whatsup.Repositories
 {
-    interface IAccountRepository
+    public interface IAccountRepository
     {
         IEnumerable<Account> Account { get; }
 
         //void Login(Account account);
-        Account GetAccount(string EmailAddress, string Password);
         void AddAccount(Account account);
+
+        //bool AlreadyRegistered(string email);
+        //bool ValidCredentials(LoginViewModel model);
+        Account GetAccount(string EmailAddress);
+        //IEnumerable<Account> GetAll();
+        //void AddAccount(Account account);
     }
 }
