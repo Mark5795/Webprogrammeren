@@ -20,6 +20,25 @@ namespace Whatsup.Repositories
                 return false;
         }
 
+        public bool ValidCredentials(Login loginmodel)
+        {
+            if (AlreadyRegistered(loginmodel.EmailAddress))
+            {
+                if (GetAccount(loginmodel.EmailAddress).Password == loginmodel.Password)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Account GetAccount(string EmailAddress)
         {
             Account account = db.Accounts.SingleOrDefault(i => i.EmailAddress == EmailAddress);

@@ -17,34 +17,56 @@ namespace Whatsup.Controllers
     {
         private IAccountRepository accountRepository = new AccountRepository();
         private IRegisterRepository registerRepository = new RegisterRepository();
+
         public ActionResult Login()
         {
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult Login(Login model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        Account account = accountRepository.GetAccount(model.EmailAddress);
+
+        //        if (account != null)
+        //        {
+        //            FormsAuthentication.SetAuthCookie(account.EmailAddress, false);
+
+        //            Session["loggedin_account"] = account;
+
+        //            return RedirectToAction("Index", "Contact");
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("login-error",
+        //                "The user name or password provided is incorrect.");
+        //        }
+        //    }
+
+        //    return View(model);
+        //}
+
         [HttpPost]
-        public ActionResult Login(Login model)
+        public ActionResult Login(Login loginmodel)
         {
             if (ModelState.IsValid)
             {
-                Account account = accountRepository.GetAccount(
-                             model.EmailAddress);
-                if (account != null)
+                if(accountRepository.ValidCredentials(loginmodel))
                 {
-                    FormsAuthentication.SetAuthCookie(account.EmailAddress, false);
-
-                    Session["loggedin_account"] = account;
+                    // om remember me te maken later
+                    //FormsAuthentication.SetAuthCookie(loginmodel.EmailAddress, loginmodel.RememberMe);
 
                     return RedirectToAction("Index", "Contact");
                 }
                 else
                 {
-                    ModelState.AddModelError("login-error",
-                        "The user name or password provided is incorrect.");
+                    ModelState.AddModelError("login-error", "The user name or password provided is incorrect.");
                 }
             }
 
-            return View(model);
+            return View(loginmodel);
         }
 
         [HttpPost]

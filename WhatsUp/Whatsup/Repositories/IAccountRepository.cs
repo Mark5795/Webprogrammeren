@@ -14,7 +14,7 @@ namespace Whatsup.Repositories
         void AddAccount(Account account);
 
         //bool AlreadyRegistered(string email);
-        //bool ValidCredentials(LoginViewModel model);
+        bool ValidCredentials(Login loginmodel);
         Account GetAccount(string EmailAddress);
         //IEnumerable<Account> GetAll();
         //void AddAccount(Account account);
