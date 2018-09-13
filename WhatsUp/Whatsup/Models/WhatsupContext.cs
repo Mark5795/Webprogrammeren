@@ -19,6 +19,6 @@ namespace Whatsup.Models
         {
         }
 
-
+        public System.Data.Entity.DbSet<Whatsup.Models.User> Users { get; set; }
     }
 }
