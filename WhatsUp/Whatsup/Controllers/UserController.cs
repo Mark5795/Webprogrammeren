@@ -48,16 +48,30 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "Email,PasswordHash,PhoneNumber,UserName,")] User user)
-        //public ActionResult Register(User user)
+        //public ActionResult Register([Bind(Include = "Email,PasswordHash,PhoneNumber,UserName,")] User user)
+        //public ActionResult Register([Bind(Include = "Email,Password,PhoneNumber,UserName,")] User user)
+        public ActionResult Register(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
+                if (userRepository.AlreadyRegistered(model.Email))
+                {
+                    ModelState.AddModelError("Email", "This e-mail is already used.");
+                    return View(model);
+                }
+            }
+
+            try
+            {
+                User user = new User(model.Username, model.Email, model.PhoneNumber, model.Password);
                 userRepository.AddUser(user);
                 return RedirectToAction("Index");
             }
-
-            return View(user);
+            catch (Exception e)
+            {
+                ModelState.AddModelError("email", e.ToString());
+                return View(model);
+            }
         }
 
         // GET: User/Edit/5

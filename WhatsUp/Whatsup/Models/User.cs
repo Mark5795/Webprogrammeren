@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Whatsup.Models
 {
-    public class User
+    public partial class User
     {
         public string Id { get; set; }
         public string Email { get; set; }
@@ -20,6 +20,14 @@ namespace Whatsup.Models
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public DateTime DateCreated { get; set; }
+
+        public User(string UserName, string Email, string PhoneNumber, string PasswordHash)
+        {
+            this.UserName = UserName;
+            this.Email = Email;
+            this.PhoneNumber = PhoneNumber;
+            this.PasswordHash = PasswordHash;
+        }
 
         //voor linken naar ander model
         //public virtual ICollection<Contact> Contacts { get; set; }
