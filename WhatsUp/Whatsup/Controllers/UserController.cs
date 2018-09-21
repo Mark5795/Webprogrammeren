@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Whatsup.Models;
 using Whatsup.Repositories;
+using System.Web.Security;
 
 namespace Whatsup.Views
 {
@@ -64,9 +65,10 @@ namespace Whatsup.Views
 
             try
             {
-                User user = new User(model.Username, model.Email, model.PhoneNumber, model.Password);
+                User user = new User(model.Username, model.PhoneNumber, model.Email, model.Password);
                 userRepository.AddUser(user);
-                return RedirectToAction("Index");
+                //return RedirectToAction("Index");
+                return View(model);
             }
             catch (Exception e)
             {

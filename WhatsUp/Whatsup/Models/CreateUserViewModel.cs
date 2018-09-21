@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 namespace Whatsup.Models
@@ -30,5 +31,10 @@ namespace Whatsup.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public byte[] s = Hash.GenerateSalt();
+        public string salt = Convert.ToBase64String(s);
+        public string PasswordHash = Hash.ComputeHMAC_SHA256(Encoding.UTF8.GetBytes("Password"), salt);
+
     }
 }
