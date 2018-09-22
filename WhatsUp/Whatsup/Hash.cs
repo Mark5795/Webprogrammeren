@@ -2,33 +2,58 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 
 namespace Whatsup
 {
     public static class Hash
     {
-        private const int SaltSize = 32;
-
-        public static byte[] GenerateSalt()
+        public static string Encrypt(string clearText)
         {
-            using (var rng = new RNGCryptoServiceProvider())
+            try
             {
-                var randomNumber = new byte[SaltSize];
+                byte[] hashBytes = ComputeHash(clearText);
+                byte[] saltBytes = GetRandomSalt();
+                byte[] saltHash = ComputeHash(saltBytes.ToString());
 
-                rng.GetBytes(randomNumber);
+                byte[] hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
+                for (int i = 0; i < hashBytes.Length; i++)
+                    hashWithSaltBytes[i] = hashBytes[i];
+                for (int i = 0; i < saltBytes.Length; i++)
+                    hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
 
-                return randomNumber;
+                string hashValue = Convert.ToBase64String(hashWithSaltBytes);
 
+                return hashValue;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
-        public static byte[] ComputeHMAC_SHA256(byte[] data, byte[] salt)
+        //random salt generation
+        public static byte[] GetRandomSalt()
         {
-            using (var hmac = new HMACSHA256(salt))
-            {
-                return hmac.ComputeHash(data);
-            }
+            int minSaltSize = 16;
+            int maxSaltSize = 32;
+
+            Random random = new Random();
+            int saltSize = random.Next(minSaltSize, maxSaltSize);
+            byte[] saltBytes = new byte[saltSize];
+            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+            rng.GetNonZeroBytes(saltBytes);
+            return saltBytes;
         }
+        // hashing
+        public static byte[] ComputeHash(string plainText)
+        {
+            byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            HashAlgorithm hash = new SHA256Managed();
+            return hash.ComputeHash(plainTextBytes);
+        }
+
     }
 }
