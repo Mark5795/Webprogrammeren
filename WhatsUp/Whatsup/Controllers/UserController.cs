@@ -65,7 +65,7 @@ namespace Whatsup.Views
 
             try
             {
-                User user = new User(model.Username, model.PhoneNumber, model.Email, model.Password);
+                User user = new User(model.Username, model.PhoneNumber, model.Email, model.PasswordHash);
                 userRepository.AddUser(user);
                 //return RedirectToAction("Index");
                 return View(model);
