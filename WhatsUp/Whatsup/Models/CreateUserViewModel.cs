@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Security.Cryptography;
+using System.Data;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Whatsup.Models
 {
@@ -35,15 +37,12 @@ namespace Whatsup.Models
 
         [Required]
         public string PasswordHash { get { return Hash.Encrypt(Password); } }
-        //public string PasswordHash { get; set; }
 
-        //public CreateUserViewModel()
-        //{
-        //    PasswordHash = Hash.Encrypt(Password);
-        //}
+        //[Required]
+        //public DateTime DateCreated { get { return new DataColumn("Date", typeof(DateTime)); } }
 
-
-
+        [Required]
+        public DateTime DateCreated { get { return DateTime.Now; } }
 
     }
 }

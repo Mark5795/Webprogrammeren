@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Whatsup.Models;
 using Whatsup.Repositories;
 using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace Whatsup.Views
 {
@@ -20,7 +21,8 @@ namespace Whatsup.Views
         // GET: User
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            //return View(db.Users.ToList());
+            return View();
         }
 
         // GET: User/Details/5
@@ -65,14 +67,24 @@ namespace Whatsup.Views
 
             try
             {
-                User user = new User(model.Username, model.PhoneNumber, model.Email, model.PasswordHash);
+                User user = new User(model.Username, model.PhoneNumber, model.Email, model.PasswordHash, model.DateCreated);
                 userRepository.AddUser(user);
-                //return RedirectToAction("Index");
-                return View(model);
+                return RedirectToAction("Index");
             }
-            catch (Exception e)
+            //catch (Exception e)
+            //{
+            //    ModelState.AddModelError("Password", e.ToString());
+            //    return View(model);
+            //}
+            catch (DbEntityValidationException ex)
             {
-                ModelState.AddModelError("email", e.ToString());
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
                 return View(model);
             }
         }

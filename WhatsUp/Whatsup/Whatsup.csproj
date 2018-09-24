@@ -173,6 +173,46 @@
     <Compile Include="Migrations\201809131210403_InitialCreate2.Designer.cs">
       <DependentUpon>201809131210403_InitialCreate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809241445002_moet aanpassen error cod.cs" />
+    <Compile Include="Migrations\201809241445002_moet aanpassen error cod.Designer.cs">
+      <DependentUpon>201809241445002_moet aanpassen error cod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241535295_required weggehaald.cs" />
+    <Compile Include="Migrations\201809241535295_required weggehaald.Designer.cs">
+      <DependentUpon>201809241535295_required weggehaald.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241539194_auto increment toegevoegd.cs" />
+    <Compile Include="Migrations\201809241539194_auto increment toegevoegd.Designer.cs">
+      <DependentUpon>201809241539194_auto increment toegevoegd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241556537_Datetime aangepast om error te verhelpen.cs" />
+    <Compile Include="Migrations\201809241556537_Datetime aangepast om error te verhelpen.Designer.cs">
+      <DependentUpon>201809241556537_Datetime aangepast om error te verhelpen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241600585_Weer weggehaald en in de viewmodel gestopt.cs" />
+    <Compile Include="Migrations\201809241600585_Weer weggehaald en in de viewmodel gestopt.Designer.cs">
+      <DependentUpon>201809241600585_Weer weggehaald en in de viewmodel gestopt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241702457_test.cs" />
+    <Compile Include="Migrations\201809241702457_test.Designer.cs">
+      <DependentUpon>201809241702457_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241706045_id in int verandert.cs" />
+    <Compile Include="Migrations\201809241706045_id in int verandert.Designer.cs">
+      <DependentUpon>201809241706045_id in int verandert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241707519_test1.cs" />
+    <Compile Include="Migrations\201809241707519_test1.Designer.cs">
+      <DependentUpon>201809241707519_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241712389_autoincrement.cs" />
+    <Compile Include="Migrations\201809241712389_autoincrement.Designer.cs">
+      <DependentUpon>201809241712389_autoincrement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809241718243_ID toegevoegd.cs" />
+    <Compile Include="Migrations\201809241718243_ID toegevoegd.Designer.cs">
+      <DependentUpon>201809241718243_ID toegevoegd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhatsupContext.cs" />
@@ -261,6 +301,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809131210403_InitialCreate2.resx">
       <DependentUpon>201809131210403_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241445002_moet aanpassen error cod.resx">
+      <DependentUpon>201809241445002_moet aanpassen error cod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241535295_required weggehaald.resx">
+      <DependentUpon>201809241535295_required weggehaald.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241539194_auto increment toegevoegd.resx">
+      <DependentUpon>201809241539194_auto increment toegevoegd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241556537_Datetime aangepast om error te verhelpen.resx">
+      <DependentUpon>201809241556537_Datetime aangepast om error te verhelpen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241600585_Weer weggehaald en in de viewmodel gestopt.resx">
+      <DependentUpon>201809241600585_Weer weggehaald en in de viewmodel gestopt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241702457_test.resx">
+      <DependentUpon>201809241702457_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241706045_id in int verandert.resx">
+      <DependentUpon>201809241706045_id in int verandert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241707519_test1.resx">
+      <DependentUpon>201809241707519_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241712389_autoincrement.resx">
+      <DependentUpon>201809241712389_autoincrement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809241718243_ID toegevoegd.resx">
+      <DependentUpon>201809241718243_ID toegevoegd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
