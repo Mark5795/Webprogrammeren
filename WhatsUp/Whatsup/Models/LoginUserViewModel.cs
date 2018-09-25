@@ -21,7 +21,7 @@ namespace WhatsUp.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Required]
+        //[Required]
         public string PasswordHash { get { return Hash.VerifyEncrypt(Password, userRepository.GetSalt(Email)); } }
     }
 }

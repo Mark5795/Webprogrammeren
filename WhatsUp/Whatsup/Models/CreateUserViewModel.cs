@@ -41,7 +41,7 @@ namespace Whatsup.Models
 
         public byte[] Salt { get { return Hash.GetRandomSalt(); } }
 
-        [Required]
+        //[Required]
         public string PasswordHash { get { return Hash.VerifyEncrypt(Password, Salt); } }
 
         [Required]
