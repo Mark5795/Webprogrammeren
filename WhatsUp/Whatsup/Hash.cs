@@ -34,6 +34,31 @@ namespace Whatsup
             }
         }
 
+        public static string VerifyEncrypt(string clearText, byte[] Salt)
+        {
+            try
+            {
+                byte[] hashBytes = ComputeHash(clearText);
+                byte[] saltBytes = Salt;
+                byte[] saltHash = ComputeHash(saltBytes.ToString());
+
+                byte[] hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
+                for (int i = 0; i < hashBytes.Length; i++)
+                    hashWithSaltBytes[i] = hashBytes[i];
+                for (int i = 0; i < saltBytes.Length; i++)
+                    hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
+
+                string hashValue = Convert.ToBase64String(hashWithSaltBytes);
+
+                return hashValue;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         //random salt generation
         public static byte[] GetRandomSalt()
         {

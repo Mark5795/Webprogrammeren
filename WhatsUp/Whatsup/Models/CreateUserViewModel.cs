@@ -17,6 +17,7 @@ namespace Whatsup.Models
         public string Username { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
 
@@ -38,8 +39,8 @@ namespace Whatsup.Models
         [Required]
         public string PasswordHash { get { return Hash.Encrypt(Password); } }
 
-        //[Required]
-        //public DateTime DateCreated { get { return new DataColumn("Date", typeof(DateTime)); } }
+        [Required]
+        public byte[] Salt { get { return Hash.GetRandomSalt(); } }
 
         [Required]
         public DateTime DateCreated { get { return DateTime.Now; } }

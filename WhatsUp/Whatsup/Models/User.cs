@@ -18,6 +18,7 @@ namespace Whatsup.Models
         public int EmailConfirmed { get; set; }
         [Required]
         public string PasswordHash { get; set; }
+        public byte[] Salt { get; set; }
         public string SecurityStamp { get; set; }
         [Required]
         public string PhoneNumber { get; set; }
@@ -35,12 +36,13 @@ namespace Whatsup.Models
 
         }
 
-        public User(string UserName, string Email, string PhoneNumber, string PasswordHash, DateTime DateCreated)
+        public User(string UserName, string Email, string PhoneNumber, string PasswordHash, byte[] Salt,DateTime DateCreated)
         {
             this.UserName = UserName;
             this.Email = Email;
             this.PhoneNumber = PhoneNumber;
             this.PasswordHash = PasswordHash;
+            this.Salt = Salt;
             this.DateCreated = DateCreated;
         }
 

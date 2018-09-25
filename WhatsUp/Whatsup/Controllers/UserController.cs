@@ -10,6 +10,7 @@ using Whatsup.Models;
 using Whatsup.Repositories;
 using System.Web.Security;
 using System.Data.Entity.Validation;
+using WhatsUp.Models;
 
 namespace Whatsup.Views
 {
@@ -40,6 +41,34 @@ namespace Whatsup.Views
             return View(user);
         }
 
+        // Login: User
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginUserViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (userRepository.ValidCredentials(model))
+                {
+                    //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+
+                    return RedirectToAction("List", "Chat");
+                }
+                else
+                {
+                    ModelState.AddModelError("Password", "Password is incorrect");
+                    return View(model);
+                }
+            }
+            else
+                return View(model);
+        }
+
         // Register: User
         [HttpGet]
         public ActionResult Register()
@@ -52,8 +81,6 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Register([Bind(Include = "Email,PasswordHash,PhoneNumber,UserName,")] User user)
-        //public ActionResult Register([Bind(Include = "Email,Password,PhoneNumber,UserName,")] User user)
         public ActionResult Register(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
@@ -67,9 +94,9 @@ namespace Whatsup.Views
 
             try
             {
-                User user = new User(model.Username, model.PhoneNumber, model.Email, model.PasswordHash, model.DateCreated);
+                User user = new User(model.Username, model.Email, model.PhoneNumber, model.PasswordHash, model.Salt, model.DateCreated);
                 userRepository.AddUser(user);
-                return RedirectToAction("Index");
+                return RedirectToAction("RegisterSuccesful", "User");
             }
             //catch (Exception e)
             //{
@@ -87,6 +114,11 @@ namespace Whatsup.Views
                 }
                 return View(model);
             }
+        }
+
+        public ActionResult RegisterSuccesful()
+        {
+            return View();
         }
 
         //// GET: User/Edit/5

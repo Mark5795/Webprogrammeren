@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Whatsup.Models;
 using System.Data.Entity;
+using WhatsUp.Models;
+using Whatsup.Models;
 
 namespace Whatsup.Repositories
 {
@@ -20,10 +21,29 @@ namespace Whatsup.Repositories
                 return false;
         }
 
+        public bool ValidCredentials(LoginUserViewModel model)
+        {
+            if (AlreadyRegistered(model.Email))
+            {
+                if (GetUser(model.Email).PasswordHash == model.PasswordHash)
+                        return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         public User GetUser(string Email)
         {
             User user = db.Users.SingleOrDefault(i => i.Email == Email);
             return user;
+        }
+
+        public byte[] GetSalt(string Email)
+        {
+            byte[] Salt = db.Users.SingleOrDefault(i => i.Email == Email).Salt;
+            return Salt;
         }
 
         public void AddUser(User user)

@@ -213,7 +213,24 @@
     <Compile Include="Migrations\201809241718243_ID toegevoegd.Designer.cs">
       <DependentUpon>201809241718243_ID toegevoegd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201809251130120_SaltErbij.cs" />
+    <Compile Include="Migrations\201809251130120_SaltErbij.Designer.cs">
+      <DependentUpon>201809251130120_SaltErbij.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251318032_securitystamp tijdelijk weg.cs" />
+    <Compile Include="Migrations\201809251318032_securitystamp tijdelijk weg.Designer.cs">
+      <DependentUpon>201809251318032_securitystamp tijdelijk weg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251320240_terug.cs" />
+    <Compile Include="Migrations\201809251320240_terug.Designer.cs">
+      <DependentUpon>201809251320240_terug.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809251324177_test2.cs" />
+    <Compile Include="Migrations\201809251324177_test2.Designer.cs">
+      <DependentUpon>201809251324177_test2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhatsupContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -266,6 +283,8 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\RegisterSuccesful.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,6 +350,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809241718243_ID toegevoegd.resx">
       <DependentUpon>201809241718243_ID toegevoegd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251130120_SaltErbij.resx">
+      <DependentUpon>201809251130120_SaltErbij.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251318032_securitystamp tijdelijk weg.resx">
+      <DependentUpon>201809251318032_securitystamp tijdelijk weg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251320240_terug.resx">
+      <DependentUpon>201809251320240_terug.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809251324177_test2.resx">
+      <DependentUpon>201809251324177_test2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
