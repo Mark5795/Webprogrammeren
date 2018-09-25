@@ -225,9 +225,9 @@
     <Compile Include="Migrations\201809251320240_terug.Designer.cs">
       <DependentUpon>201809251320240_terug.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809251324177_test2.cs" />
-    <Compile Include="Migrations\201809251324177_test2.Designer.cs">
-      <DependentUpon>201809251324177_test2.cs</DependentUpon>
+    <Compile Include="Migrations\201809251904003_Testdingenweg.cs" />
+    <Compile Include="Migrations\201809251904003_Testdingenweg.Designer.cs">
+      <DependentUpon>201809251904003_Testdingenweg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
@@ -360,8 +360,8 @@
     <EmbeddedResource Include="Migrations\201809251320240_terug.resx">
       <DependentUpon>201809251320240_terug.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809251324177_test2.resx">
-      <DependentUpon>201809251324177_test2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809251904003_Testdingenweg.resx">
+      <DependentUpon>201809251904003_Testdingenweg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
