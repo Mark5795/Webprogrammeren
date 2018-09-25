@@ -36,11 +36,13 @@ namespace Whatsup.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        public string PasswordHash { get { return Hash.Encrypt(Password); } }
+        //[Required]
+        //public string PasswordHash { get { return Hash.Encrypt(Password); } }
+
+        public byte[] Salt { get { return Hash.GetRandomSalt(); } }
 
         [Required]
-        public byte[] Salt { get { return Hash.GetRandomSalt(); } }
+        public string PasswordHash { get { return Hash.VerifyEncrypt(Password, Salt); } }
 
         [Required]
         public DateTime DateCreated { get { return DateTime.Now; } }

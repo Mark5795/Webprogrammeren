@@ -36,7 +36,7 @@ namespace Whatsup.Models
 
         }
 
-        public User(string UserName, string Email, string PhoneNumber, string PasswordHash, byte[] Salt,DateTime DateCreated)
+        public User(string UserName, string Email, string PhoneNumber, string PasswordHash, byte[] Salt, DateTime DateCreated)
         {
             this.UserName = UserName;
             this.Email = Email;

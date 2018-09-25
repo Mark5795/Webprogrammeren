@@ -70,8 +70,12 @@ namespace Whatsup
             byte[] saltBytes = new byte[saltSize];
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
             rng.GetNonZeroBytes(saltBytes);
+
+            //string Saltfirst = Convert.ToBase64String(saltBytes);
+
             return saltBytes;
         }
+
         // hashing
         public static byte[] ComputeHash(string plainText)
         {
