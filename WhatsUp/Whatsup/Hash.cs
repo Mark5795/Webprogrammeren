@@ -9,32 +9,33 @@ namespace Whatsup
 {
     public static class Hash
     {
-        public static string Encrypt(string clearText)
-        {
-            try
-            {
-                byte[] hashBytes = ComputeHash(clearText);
-                byte[] saltBytes = GetRandomSalt();
-                byte[] saltHash = ComputeHash(saltBytes.ToString());
+        //public static string Encrypt(string clearText)
+        //{
+        //    try
+        //    {
+        //        byte[] hashBytes = ComputeHash(clearText);
+        //        byte[] saltBytes = GetRandomSalt();
+        //        byte[] saltHash = ComputeHash(saltBytes.ToString());
 
-                byte[] hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
-                for (int i = 0; i < hashBytes.Length; i++)
-                    hashWithSaltBytes[i] = hashBytes[i];
-                for (int i = 0; i < saltBytes.Length; i++)
-                    hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
+        //        byte[] hashWithSaltBytes = new byte[hashBytes.Length + saltBytes.Length];
+        //        for (int i = 0; i < hashBytes.Length; i++)
+        //            hashWithSaltBytes[i] = hashBytes[i];
+        //        for (int i = 0; i < saltBytes.Length; i++)
+        //            hashWithSaltBytes[hashBytes.Length + i] = saltBytes[i];
 
-                string hashValue = Convert.ToBase64String(hashWithSaltBytes);
+        //        string hashValue = Convert.ToBase64String(hashWithSaltBytes);
 
-                return hashValue;
-            }
-            catch (Exception)
-            {
+        //        return hashValue;
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
-        }
+        //        throw;
+        //    }
+        //}
 
-        public static string VerifyEncrypt(string clearText, byte[] Salt)
+        //Encypt password with Salt
+        public static string Encrypt(string clearText, byte[] Salt)
         {
             try
             {
@@ -59,7 +60,7 @@ namespace Whatsup
             }
         }
 
-        //random salt generation
+        //Random salt generation
         public static byte[] GetRandomSalt()
         {
             int minSaltSize = 16;
@@ -76,7 +77,7 @@ namespace Whatsup
             return saltBytes;
         }
 
-        // hashing
+        //Hashing
         public static byte[] ComputeHash(string plainText)
         {
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);

@@ -22,6 +22,6 @@ namespace WhatsUp.Models
         public string Password { get; set; }
 
         //[Required]
-        public string PasswordHash { get { return Hash.VerifyEncrypt(Password, userRepository.GetSalt(Email)); } }
+        public string PasswordHash { get { return Hash.Encrypt(Password, userRepository.GetSalt(Email)); } }
     }
 }

@@ -57,7 +57,8 @@ namespace Whatsup.Views
                 {
                     //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
 
-                    return RedirectToAction("List", "Chat");
+                    //return RedirectToAction("List", "Chat");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
