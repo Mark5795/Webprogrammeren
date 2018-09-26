@@ -238,6 +238,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
+    <Compile Include="Models\ProfileUserViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhatsupContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -293,7 +294,8 @@
     <Content Include="Views\User\RegisterSuccesful.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\LogOut.cshtml" />
-    <Content Include="Views\User\Profile.cshtml" />
+    <Content Include="Views\User\ProfileUser.cshtml" />
+    <Content Include="Views\Chat\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

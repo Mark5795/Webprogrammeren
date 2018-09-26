@@ -15,5 +15,6 @@ namespace Whatsup.Repositories
         void AddUser(User user);
         byte[] GetSalt(string Email);
         User GetUser(string Email);
+        DateTime GetDateCreated(string Email);
     }
 }

@@ -124,6 +124,12 @@ namespace Whatsup.Views
             return View();
         }
 
+        [HttpGet]
+        public ActionResult ProfileUser(LoginUserViewModel model)
+        {
+            return View(userRepository.GetUser(model.Email));
+        }
+
         public ActionResult LogOut()
         {
             return View();

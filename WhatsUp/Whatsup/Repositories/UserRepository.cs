@@ -46,6 +46,12 @@ namespace Whatsup.Repositories
             return Salt;
         }
 
+        public DateTime GetDateCreated(string Email)
+        {
+            DateTime DateCreated = db.Users.SingleOrDefault(i => i.Email == Email).DateCreated;
+            return DateCreated;
+        }
+
         public void AddUser(User user)
         {
             db.Users.Add(user);
