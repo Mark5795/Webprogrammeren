@@ -43,7 +43,6 @@ namespace Whatsup.Repositories
         public byte[] GetSalt(string Email)
         {
             byte[] Salt = db.Users.SingleOrDefault(i => i.Email == Email).Salt;
-            //string Saltvalue = Convert.ToBase64String(Salt);
             return Salt;
         }
 

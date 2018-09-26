@@ -55,9 +55,11 @@ namespace Whatsup.Views
             {
                 if (userRepository.ValidCredentials(model))
                 {
-                    //FormsAuthentication.SetAuthCookie(model.Email, model.RememberMe);
+                    FormsAuthentication.SetAuthCookie(model.Email, false);
 
-                    //return RedirectToAction("List", "Chat");
+                    //Remember complete account
+                    Session["loggedin_user"] = model;
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -120,6 +122,20 @@ namespace Whatsup.Views
         public ActionResult RegisterSuccesful()
         {
             return View();
+        }
+
+        public ActionResult LogOut()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult LogOutUser()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
 
         //// GET: User/Edit/5

@@ -24,20 +24,42 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="@Url.Action("Register", "User")">
-                            <span class="glyphicon glyphicon-registration-mark"></span>
-                            Register
-                        </a>
-                    </li>
-                    <li>
-                        <a href="@Url.Action("Login", "User")">
-                            <span class="glyphicon glyphicon-log-in"></span>
-                            Login
-                        </a>
-                    </li>
-                </ul>  
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Profile", "User")">
+                                <span class="glyphicon glyphicon-registration-mark"></span>
+                                Profile
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("LogOut", "User")">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="@Url.Action("Register", "User")">
+                                <span class="glyphicon glyphicon-registration-mark"></span>
+                                Sign up
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="@Url.Action("Login", "User")">
+                                <span class="glyphicon glyphicon-log-in"></span>
+                                Login
+                            </a>
+                        </li>
+                    </ul>
+                }
             </div>
         </div>
     </div>
