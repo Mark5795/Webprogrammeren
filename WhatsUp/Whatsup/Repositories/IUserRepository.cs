@@ -16,5 +16,8 @@ namespace Whatsup.Repositories
         byte[] GetSalt(string Email);
         User GetUser(string Email);
         DateTime GetDateCreated(string Email);
+        User GetProfileUser(int Id);
+        int GetLoggedInUser();
+        ProfileUserViewModel GetProfileUserViewModel();
     }
 }

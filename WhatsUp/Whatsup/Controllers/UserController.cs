@@ -124,11 +124,19 @@ namespace Whatsup.Views
             return View();
         }
 
-        [HttpGet]
-        public ActionResult ProfileUser(LoginUserViewModel model)
+        public ActionResult ProfileUser()
         {
-            return View(userRepository.GetUser(model.Email));
+            ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
+
+            ViewBag.Username = profileUserViewModel.Username;
+            ViewBag.Email = profileUserViewModel.Email;
+            ViewBag.PhoneNumber = profileUserViewModel.PhoneNumber;
+            ViewBag.DateCreated = profileUserViewModel.DateCreated;
+
+            return View(profileUserViewModel);
         }
+
+
 
         public ActionResult LogOut()
         {

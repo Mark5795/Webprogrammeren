@@ -52,6 +52,12 @@ namespace Whatsup.Repositories
             return DateCreated;
         }
 
+        public int GetLoggedInUser() => db.Users.Where(i => i.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
+
+        public User GetProfileUser(int Id) => db.Users.SingleOrDefault(i => i.Id == Id);
+
+        public ProfileUserViewModel GetProfileUserViewModel() => new ProfileUserViewModel(GetProfileUser(GetLoggedInUser()));
+
         public void AddUser(User user)
         {
             db.Users.Add(user);

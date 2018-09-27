@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Whatsup.Repositories;
@@ -9,10 +10,30 @@ namespace Whatsup.Models
     public class ProfileUserViewModel
     {
         private IUserRepository userRepository = new UserRepository();
+
+        public int Id { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
 
-        public DateTime DateCreated { get { return userRepository.GetDateCreated(Email); } }
+        public DateTime DateCreated { get; set; }
+
+        public ProfileUserViewModel() { }
+
+        public ProfileUserViewModel(User user)
+        {
+            Username = user.UserName;
+            Email = user.Email;
+            PhoneNumber = user.PhoneNumber;
+            DateCreated = user.DateCreated;
+        }
+
+        public ProfileUserViewModel(int Id)
+        {
+            this.Id = Id;
+        }
+
+
+
     }
 }
