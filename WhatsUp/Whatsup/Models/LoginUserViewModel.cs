@@ -21,7 +21,13 @@ namespace WhatsUp.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        //[Required]
+
         public string PasswordHash { get { return Hash.Encrypt(Password, userRepository.GetSalt(Email)); } }
+
+        //Get new Salt
+        public byte[] Salt = Hash.GetRandomSalt();
+
+        //Make new hash
+        public string NewHashedPassword { get { return Hash.Encrypt(Password, Salt); } }
     }
 }

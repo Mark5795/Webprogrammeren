@@ -19,5 +19,6 @@ namespace Whatsup.Repositories
         User GetProfileUser(int Id);
         int GetLoggedInUser();
         ProfileUserViewModel GetProfileUserViewModel();
+        void AddNewPassword(LoginUserViewModel model);
     }
 }

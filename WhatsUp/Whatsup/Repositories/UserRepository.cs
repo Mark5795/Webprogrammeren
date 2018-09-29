@@ -58,6 +58,15 @@ namespace Whatsup.Repositories
 
         public ProfileUserViewModel GetProfileUserViewModel() => new ProfileUserViewModel(GetProfileUser(GetLoggedInUser()));
 
+        public void AddNewPassword(LoginUserViewModel model)
+        {
+            var UserToUpdate = GetUser(model.Email);
+
+            UserToUpdate.PasswordHash = model.NewHashedPassword;
+            UserToUpdate.Salt = model.Salt;
+            db.SaveChanges();
+        }
+
         public void AddUser(User user)
         {
             db.Users.Add(user);

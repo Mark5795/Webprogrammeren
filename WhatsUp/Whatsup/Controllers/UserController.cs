@@ -60,6 +60,9 @@ namespace Whatsup.Views
                     //Remember complete account
                     Session["loggedin_user"] = model;
 
+                    //Create a new hashed password and salt and store in db, to push the security level one step higher.
+                    userRepository.AddNewPassword(model);
+
                     return RedirectToAction("Index", "Home");
                 }
                 else
