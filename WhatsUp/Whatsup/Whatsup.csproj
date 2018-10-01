@@ -241,6 +241,10 @@
     <Compile Include="Migrations\201810011151128_Aanvullenmodels.Designer.cs">
       <DependentUpon>201810011151128_Aanvullenmodels.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810011739142_name change.cs" />
+    <Compile Include="Migrations\201810011739142_name change.Designer.cs">
+      <DependentUpon>201810011739142_name change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
@@ -390,6 +394,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810011151128_Aanvullenmodels.resx">
       <DependentUpon>201810011151128_Aanvullenmodels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810011739142_name change.resx">
+      <DependentUpon>201810011739142_name change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,7 +10,7 @@ namespace Whatsup.Controllers
 {
     public class ChatController : Controller
     {
-        private IUserRepository userRepository = new UserRepository();
+        private IChatRepository chatRepository = new ChatRepository();
 
         // GET: Chat
         public ActionResult Chat()
@@ -23,7 +23,7 @@ namespace Whatsup.Controllers
         {
             if (model.Content != null)
             {
-                userRepository.AddNewMessage(model);
+                chatRepository.AddNewMessage(model);
             }
             return View();
         }

@@ -20,5 +20,8 @@ namespace Whatsup.Models
         }
 
         public System.Data.Entity.DbSet<Whatsup.Models.User> Users { get; set; }
+        public System.Data.Entity.DbSet<WhatsUp.Models.Message> Message { get; set; }
+        public System.Data.Entity.DbSet<WhatsUp.Models.Contact> Contact { get; set; }
+        public System.Data.Entity.DbSet<Whatsup.Models.Chat> Chat { get; set; }
     }
 }
