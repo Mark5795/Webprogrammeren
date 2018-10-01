@@ -11,7 +11,7 @@ namespace WhatsUp.Models
     public partial class Message
     {
         public int Id { get; set; }
-        public DateTime CreatedOn { get; set; }
+        public DateTime TimeSend { get; set; }
         [Required]
         public string Content { get; set; }
         public int ChatId { get; set; }
@@ -24,7 +24,7 @@ namespace WhatsUp.Models
 
         public Message(int senderId, int chatId, ChatViewModel model)
         {
-            CreatedOn = DateTime.Now;
+            TimeSend = DateTime.Now;
             Content = model.Content;
             SenderId = senderId;
             ChatId = chatId;
