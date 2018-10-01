@@ -236,8 +236,16 @@
     <Compile Include="Migrations\201809261136538_VoegToeUitModel.Designer.cs">
       <DependentUpon>201809261136538_VoegToeUitModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810011151128_Aanvullenmodels.cs" />
+    <Compile Include="Migrations\201810011151128_Aanvullenmodels.Designer.cs">
+      <DependentUpon>201810011151128_Aanvullenmodels.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\ChatViewModel.cs" />
+    <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ProfileUserViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhatsupContext.cs" />
@@ -376,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809261136538_VoegToeUitModel.resx">
       <DependentUpon>201809261136538_VoegToeUitModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810011151128_Aanvullenmodels.resx">
+      <DependentUpon>201810011151128_Aanvullenmodels.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

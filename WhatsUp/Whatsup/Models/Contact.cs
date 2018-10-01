@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
+using Whatsup.Models;
 
-namespace Whatsup.Models
+namespace WhatsUp.Models
 {
-    public class Contact
+    [Table("Contact")]
+    public partial class Contact
     {
-        public virtual int Id { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string PhoneNumber { get; set; }
-
+        public int Id { get; set; }
+        public string Name { get; set; }
         public int OwnerAccountId { get; set; }
-        public virtual Account OwnerAccount { get; set; }
+        public int ContactAccountId { get; set; }
+
+        public virtual User OwnerAccount { get; set; }
+        public virtual User ContactAccount { get; set; }
     }
 }
