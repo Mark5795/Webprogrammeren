@@ -11,9 +11,9 @@ namespace Whatsup.Repositories
     {
         private WhatsupContext db = new WhatsupContext();
 
-        public void AddNewMessage(ChatViewModel model)
+        public void AddNewMessage(Message message)
         {
-            db.Message.Add(model);
+            db.Message.Add(message);
             db.SaveChanges();
         }
     }

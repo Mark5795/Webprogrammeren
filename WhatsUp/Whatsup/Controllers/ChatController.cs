@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Whatsup.Models;
 using Whatsup.Repositories;
+using WhatsUp.Models;
 
 namespace Whatsup.Controllers
 {
@@ -23,7 +24,8 @@ namespace Whatsup.Controllers
         {
             if (model.Content != null)
             {
-                chatRepository.AddNewMessage(model);
+                Message message = new Message(model.Content);
+                chatRepository.AddNewMessage(message);
             }
             return View();
         }

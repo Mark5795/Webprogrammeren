@@ -10,24 +10,26 @@ namespace WhatsUp.Models
     [Table("Message")]
     public partial class Message
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public DateTime TimeSend { get; set; }
         [Required]
         public string Content { get; set; }
-        public int ChatId { get; set; }
-        public int SenderId { get; set; }
+        //public int ChatId { get; set; }
+        //public int SenderId { get; set; }
 
-        public virtual User Sender { get; set; }
-        public virtual Chat Chat { get; set; }
+        //public virtual User Sender { get; set; }
+        //public virtual Chat Chat { get; set; }
 
         public Message() { }
 
-        public Message(int senderId, int chatId, ChatViewModel model)
+        public Message(string Content)
         {
-            TimeSend = DateTime.Now;
-            Content = model.Content;
-            SenderId = senderId;
-            ChatId = chatId;
+            this.TimeSend = DateTime.Now;
+            this.Content = Content;
+            //this.SenderId = SenderId;
+            //this.ChatId = ChatId;
         }
     }
 }

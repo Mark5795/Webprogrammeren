@@ -9,6 +9,6 @@ namespace Whatsup.Repositories
 {
     public interface IChatRepository
     {
-        void AddNewMessage(ChatViewModel model);
+        void AddNewMessage(Message message);
     }
 }

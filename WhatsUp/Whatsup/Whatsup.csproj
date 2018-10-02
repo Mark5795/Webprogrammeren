@@ -245,6 +245,22 @@
     <Compile Include="Migrations\201810011739142_name change.Designer.cs">
       <DependentUpon>201810011739142_name change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810021043197_idAutogenretedMaken.cs" />
+    <Compile Include="Migrations\201810021043197_idAutogenretedMaken.Designer.cs">
+      <DependentUpon>201810021043197_idAutogenretedMaken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021057186_shorttest.cs" />
+    <Compile Include="Migrations\201810021057186_shorttest.Designer.cs">
+      <DependentUpon>201810021057186_shorttest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021059556_test2.cs" />
+    <Compile Include="Migrations\201810021059556_test2.Designer.cs">
+      <DependentUpon>201810021059556_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810021101238_test21.cs" />
+    <Compile Include="Migrations\201810021101238_test21.Designer.cs">
+      <DependentUpon>201810021101238_test21.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
@@ -397,6 +413,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810011739142_name change.resx">
       <DependentUpon>201810011739142_name change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021043197_idAutogenretedMaken.resx">
+      <DependentUpon>201810021043197_idAutogenretedMaken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021057186_shorttest.resx">
+      <DependentUpon>201810021057186_shorttest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021059556_test2.resx">
+      <DependentUpon>201810021059556_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810021101238_test21.resx">
+      <DependentUpon>201810021101238_test21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
