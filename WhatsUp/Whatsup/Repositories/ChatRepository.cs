@@ -16,5 +16,10 @@ namespace Whatsup.Repositories
             db.Message.Add(message);
             db.SaveChanges();
         }
+
+        //public List<Message> GetAllMessages()
+        //{
+            
+        //}
     }
 }

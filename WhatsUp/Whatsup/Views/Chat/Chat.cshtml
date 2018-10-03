@@ -8,8 +8,7 @@
 
 <section id="content-chat">
 
-
-
+    <p>@Html.DisplayFor(Model => Model.Content) </p>
 
     @using (Html.BeginForm())
     {
@@ -17,6 +16,12 @@
 
         <input type="submit" value="Send" class="btn btn-default" />
     }
+
+</section>
+
+<section id="content-contacts">
+
+    @* List with added contacts *@
 
 </section>
 

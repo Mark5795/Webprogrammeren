@@ -16,6 +16,7 @@ namespace Whatsup.Controllers
         // GET: Chat
         public ActionResult Chat()
         {
+            //ChatViewModel chatViewModel = chatRepository.
             return View();
         }
 

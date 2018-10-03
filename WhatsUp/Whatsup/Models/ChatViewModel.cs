@@ -26,7 +26,7 @@ namespace Whatsup.Models
 
         public ChatViewModel(Message message)
         {
-
+            Content = message.Content;
         }
 
     }
