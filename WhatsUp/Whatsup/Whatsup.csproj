@@ -270,6 +270,10 @@
     <Compile Include="Migrations\201810030818372_UserTableAangepstVoorWatNuNodigIs.Designer.cs">
       <DependentUpon>201810030818372_UserTableAangepstVoorWatNuNodigIs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810251032221_test3.cs" />
+    <Compile Include="Migrations\201810251032221_test3.Designer.cs">
+      <DependentUpon>201810251032221_test3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
@@ -444,6 +448,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810030818372_UserTableAangepstVoorWatNuNodigIs.resx">
       <DependentUpon>201810030818372_UserTableAangepstVoorWatNuNodigIs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810251032221_test3.resx">
+      <DependentUpon>201810251032221_test3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

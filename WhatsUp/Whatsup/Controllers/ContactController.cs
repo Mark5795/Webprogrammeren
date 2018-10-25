@@ -34,7 +34,9 @@ namespace Whatsup.Controllers
                 {
                     Contact contact = new Contact();
                     contact.Name = model.Name;
-                    contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
+                    //contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
+                    contact.ContactAccountId = userRepository.GetUser(model.Email).Id;
+                    contactRepository.AddContact(GetUser().Id, contact);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -44,6 +46,11 @@ namespace Whatsup.Controllers
                 }
             }
             return View(model);
+        }
+
+        private User GetUser()
+        {
+            return userRepository.GetUser(User.Identity.Name);
         }
     }
 }

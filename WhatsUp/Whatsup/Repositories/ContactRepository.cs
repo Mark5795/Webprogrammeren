@@ -19,9 +19,9 @@ namespace Whatsup.Repositories
         //    return user;
         //}
 
-        public void AddContact(int OwnerId, Contact contact)
+        public void AddContact(int OwnerAccountId, Contact contact)
         {
-            db.Users.Single(a => a.Id == OwnerId).Contacts.Add(contact);
+            db.Users.Single(a => a.Id == OwnerAccountId).Contacts.Add(contact);
             db.SaveChanges();
         }
     }
