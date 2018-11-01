@@ -41,9 +41,35 @@ namespace Whatsup.Controllers
                     Contact contact = new Contact();
                     contact.Name = model.Name;
                     //contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
+
                     contact.OwnerAccountId = userRepository.GetLoggedInUser();
                     contact.ContactAccountId = userRepository.GetUser(model.Email).Id;
+
                     contactRepository.AddContact(GetUser().Id, contact);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "There was no user found with this Email!");
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
+        public ActionResult DeleteContact()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteContact(ContactViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                if (userRepository.GetUser(model.Email) != null)
+                {
+                    contactRepository.DeleteContact(model.Email);
                     return RedirectToAction("Index", "Home");
                 }
                 else

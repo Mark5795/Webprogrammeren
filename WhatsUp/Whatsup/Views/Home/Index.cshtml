@@ -7,17 +7,16 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    @foreach( var user in @ViewBag.allUsers ) {
-        <a class="user__item contact-@user.id" href="#" data-contact-id="@user.id" data-contact-name="@user.name">
+    @*foreach (var contact in @ViewBag.AllContacts)
+    {
+        <a class="user__item contact-@contact.Id" href="#" data-contact-id="@contact.Id" data-contact-name="@contact.Name">
             <li>
-                <div class="avatar">
-                    <img src="@Url.Content("~/Content/no_avatar.png")">
-                </div>
-                <span>@user.name</span>
-                <div class="status-bar"></div>
+                <span>@contact.Name</span>
+                <p>last message</p>
             </li>
         </a>
-}
+        }*@
+    }
 else
 {
     <div class="jumbotron">

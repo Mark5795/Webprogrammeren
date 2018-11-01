@@ -24,5 +24,14 @@ namespace Whatsup.Repositories
             db.Users.Single(a => a.Id == OwnerAccountId).Contacts.Add(contact);
             db.SaveChanges();
         }
+
+        public void DeleteContact(string Email)
+        {
+            db.Contact.Single(a => a.Email)
+        }
+        //public Contact GetAllContacts()
+        //{
+        //    db.Contact.Where()
+        //}
     }
 }
