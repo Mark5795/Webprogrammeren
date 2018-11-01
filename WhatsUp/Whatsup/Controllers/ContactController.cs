@@ -14,11 +14,17 @@ using WhatsUp.Models;
 
 namespace Whatsup.Controllers
 {
+    [Authorize]
     public class ContactController : Controller
     {
+
         private IUserRepository userRepository = new UserRepository();
         private IContactRepository contactRepository = new ContactRepository();
 
+        public ActionResult Contact()
+        {
+            return View();
+        }
 
         public ActionResult AddContact()
         {
@@ -35,6 +41,7 @@ namespace Whatsup.Controllers
                     Contact contact = new Contact();
                     contact.Name = model.Name;
                     //contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
+                    contact.OwnerAccountId = userRepository.GetLoggedInUser();
                     contact.ContactAccountId = userRepository.GetUser(model.Email).Id;
                     contactRepository.AddContact(GetUser().Id, contact);
                     return RedirectToAction("Index", "Home");

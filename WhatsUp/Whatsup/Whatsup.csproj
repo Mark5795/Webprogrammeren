@@ -274,6 +274,26 @@
     <Compile Include="Migrations\201810251032221_test3.Designer.cs">
       <DependentUpon>201810251032221_test3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810311131295_undoTest.cs" />
+    <Compile Include="Migrations\201810311131295_undoTest.Designer.cs">
+      <DependentUpon>201810311131295_undoTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810311139593_test31.cs" />
+    <Compile Include="Migrations\201810311139593_test31.Designer.cs">
+      <DependentUpon>201810311139593_test31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810311143191_test4.cs" />
+    <Compile Include="Migrations\201810311143191_test4.Designer.cs">
+      <DependentUpon>201810311143191_test4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811011131310_undo test2.cs" />
+    <Compile Include="Migrations\201811011131310_undo test2.Designer.cs">
+      <DependentUpon>201811011131310_undo test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811011317519_contact test.cs" />
+    <Compile Include="Migrations\201811011317519_contact test.Designer.cs">
+      <DependentUpon>201811011317519_contact test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
@@ -344,6 +364,7 @@
     <Content Include="Views\User\ProfileUser.cshtml" />
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\Contact\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -451,6 +472,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810251032221_test3.resx">
       <DependentUpon>201810251032221_test3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311131295_undoTest.resx">
+      <DependentUpon>201810311131295_undoTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311139593_test31.resx">
+      <DependentUpon>201810311139593_test31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810311143191_test4.resx">
+      <DependentUpon>201810311143191_test4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811011131310_undo test2.resx">
+      <DependentUpon>201811011131310_undo test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811011317519_contact test.resx">
+      <DependentUpon>201811011317519_contact test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

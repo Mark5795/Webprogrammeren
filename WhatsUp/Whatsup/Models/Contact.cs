@@ -14,7 +14,6 @@ namespace WhatsUp.Models
         public string Name { get; set; }
         public int OwnerAccountId { get; set; }
         public int ContactAccountId { get; set; }
-        public int test { get; set; }
 
         public virtual User OwnerAccount { get; set; }
         public virtual User ContactAccount { get; set; }
