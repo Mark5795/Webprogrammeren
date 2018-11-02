@@ -23,7 +23,8 @@ namespace Whatsup.Controllers
 
         public ActionResult Contact()
         {
-            return View();
+            IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
+            return View(contactList);
         }
 
         public ActionResult AddContact()
@@ -68,7 +69,7 @@ namespace Whatsup.Controllers
         {
 
             //contactRepository.DeleteContact(GetUser().Id);
-            contactRepository.DeleteContact(GetContactAccoundID().Id);
+            //contactRepository.DeleteContact(GetContactAccoundID().Id);
             return View(model);
         }
 
@@ -77,9 +78,9 @@ namespace Whatsup.Controllers
             return userRepository.GetUser(User.Identity.Name);
         }
 
-        private Contact GetContactAccoundID()
-        {
-            return contactRepository.GetContactAccoundID();
-        }
+        //private Contact GetContactAccoundID()
+        //{
+        //    return contactRepository.GetContactAccoundID();
+        //}
     }
 }

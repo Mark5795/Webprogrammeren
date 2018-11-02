@@ -1,22 +1,24 @@
-﻿
+﻿@model IEnumerable<Whatsup.Models.ContactViewModel>
+
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contacts";
 }
 
 <h2>Contact</h2>
 
+<section id="Contact">
+    @foreach (var item in Model)
+    {
+        <div class="btn btn-default">
+            @Html.DisplayTextFor(modelItem => item.Email)
+        </div>
+        <p></p>
+    }
+</section>
+
 <div class="btn btn-default">
     @Html.ActionLink("Add Contact", "AddContact", "Contact")
 </div>
-
-<div class="btn btn-default">
-    @Html.ActionLink("Edit Contact", "EditContact", "Contact")
-</div>
-
-<div class="btn btn-default">
-    @Html.ActionLink("Delete Contact", "DeleteContact", "Contact")
-</div>
-
 
 <div>
     @Html.ActionLink("Back to Home", "Index", "Home")
