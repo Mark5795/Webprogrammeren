@@ -25,13 +25,41 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void DeleteContact(string Email)
+        public void DeleteContact(int ContactAccountId)
         {
-            db.Contact.Single(a => a.Email)
+            Contact contact = db.Contact.Find(ContactAccountId);
+            db.Contact.Remove(contact);
+            db.SaveChanges();
         }
-        //public Contact GetAllContacts()
+
+        public IEnumerable<ContactViewModel> GetAllContacts(int OwnerAccountId)
+        {
+            List<ContactViewModel> contactViewModels = new List<ContactViewModel>();
+            List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == OwnerAccountId).Contacts.ToList();
+
+            for (int i = 0; i < contacts.Count; i++)
+                contactViewModels.Add(new ContactViewModel(contacts[i], i));
+
+            return contactViewModels;
+        }
+
+        //public void GetContactAccoundID(int )
         //{
-        //    db.Contact.Where()
+
         //}
+
+        //public IList<SelectContactViewModel> GetAllContacts(int OwnerAccountId)
+        //{
+        //    List<SelectContactViewModel> selectContactViewModel = new List<SelectContactViewModel>();
+        //    List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == OwnerAccountId).Contacts.ToList();
+
+        //    for (int i = 0; i < contacts.Count; i++)
+        //    {
+        //        selectContactViewModel.Add(new SelectContactViewModel(contacts[i], i));
+        //    }
+
+        //    return selectContactViewModel;
+        //}
+
     }
 }

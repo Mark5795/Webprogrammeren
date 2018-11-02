@@ -7,13 +7,13 @@ namespace Whatsup.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class contacttest : IMigrationMetadata
+    public sealed partial class nicknm : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(contacttest));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(nicknm));
         
         string IMigrationMetadata.Id
         {
-            get { return "201811011317519_contact test"; }
+            get { return "201811021440038_nicknm"; }
         }
         
         string IMigrationMetadata.Source

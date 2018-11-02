@@ -9,8 +9,9 @@ namespace Whatsup.Models
 {
     public class ContactViewModel
     {
-        
-        public string Name { get; set; }
+        public int Index { get; set; }
+
+        public string NickName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
@@ -18,16 +19,21 @@ namespace Whatsup.Models
 
         public ContactViewModel() { }
 
-        public ContactViewModel(string Name, string Email)
+        public ContactViewModel(string NickName, string Email)
         {
-            this.Name = Name;
+            this.NickName = NickName;
             this.Email = Email;
         }
 
         public ContactViewModel(Contact contact)
         {
-            Name = contact.Name;
+            NickName = contact.NickName;
             Email = contact.ContactAccount.Email;
+        }
+
+        public ContactViewModel(Contact contact, int index) : this(contact)
+        {
+            Index = index;
         }
     }
 }

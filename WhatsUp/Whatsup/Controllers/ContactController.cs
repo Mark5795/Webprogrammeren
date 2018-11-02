@@ -39,7 +39,7 @@ namespace Whatsup.Controllers
                 if (userRepository.GetUser(model.Email) != null)
                 {
                     Contact contact = new Contact();
-                    contact.Name = model.Name;
+                    contact.NickName = model.NickName;
                     //contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
 
                     contact.OwnerAccountId = userRepository.GetLoggedInUser();
@@ -59,31 +59,27 @@ namespace Whatsup.Controllers
 
         public ActionResult DeleteContact()
         {
-            return View();
+            IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
+            return View(contactList);
         }
 
         [HttpPost]
         public ActionResult DeleteContact(ContactViewModel model)
         {
-            if (ModelState.IsValid)
-            {
-                if (userRepository.GetUser(model.Email) != null)
-                {
-                    contactRepository.DeleteContact(model.Email);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("Email", "There was no user found with this Email!");
-                    return View(model);
-                }
-            }
+
+            //contactRepository.DeleteContact(GetUser().Id);
+            contactRepository.DeleteContact(GetContactAccoundID().Id);
             return View(model);
         }
 
         private User GetUser()
         {
             return userRepository.GetUser(User.Identity.Name);
+        }
+
+        private Contact GetContactAccoundID()
+        {
+            return contactRepository.GetContactAccoundID();
         }
     }
 }

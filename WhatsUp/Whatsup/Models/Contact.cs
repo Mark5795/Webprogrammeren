@@ -11,7 +11,7 @@ namespace WhatsUp.Models
     public partial class Contact
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string NickName { get; set; }
         public int OwnerAccountId { get; set; }
         public int ContactAccountId { get; set; }
 
