@@ -13,11 +13,13 @@ namespace Whatsup.Repositories
 
         private WhatsupContext db = new WhatsupContext();
 
-        //public User GetContact(string Username)
-        //{
-        //    User user = db.Users.SingleOrDefault(i => i.UserName == Username);
-        //    return user;
-        //}
+        public User GetContact(string Email)
+        {
+            User user = db.Users.SingleOrDefault(i => i.Email == Email);
+            return user;
+        }
+
+        //public ContactViewModel GetContactUserViewModel() => new ContactViewModel(GetContact());
 
         public void AddContact(int OwnerAccountId, Contact contact)
         {

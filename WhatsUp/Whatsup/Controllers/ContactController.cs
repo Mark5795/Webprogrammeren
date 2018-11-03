@@ -27,6 +27,13 @@ namespace Whatsup.Controllers
             return View(contactList);
         }
 
+        public ActionResult ContactProfile(string Email)
+        {
+            Contact contact = contactRepository.GetContact(Email);
+            ContactViewModel contactViewModel = new ContactViewModel(Email);
+            return View(contactViewModel);
+        }
+
         public ActionResult AddContact()
         {
             return View();

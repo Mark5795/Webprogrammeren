@@ -290,9 +290,9 @@
     <Compile Include="Migrations\201811011131310_undo test2.Designer.cs">
       <DependentUpon>201811011131310_undo test2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811011317519_contact test.cs" />
-    <Compile Include="Migrations\201811011317519_contact test.Designer.cs">
-      <DependentUpon>201811011317519_contact test.cs</DependentUpon>
+    <Compile Include="Migrations\201811021440038_nicknm.cs" />
+    <Compile Include="Migrations\201811021440038_nicknm.Designer.cs">
+      <DependentUpon>201811021440038_nicknm.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
@@ -302,6 +302,7 @@
     <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\ProfileUserViewModel.cs" />
+    <Compile Include="Models\SelectContactViewModel.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WhatsupContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -365,6 +366,8 @@
     <Content Include="Views\Chat\Chat.cshtml" />
     <Content Include="Views\Contact\AddContact.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
+    <Content Include="Views\Contact\DeleteContact.cshtml" />
+    <Content Include="Views\Contact\ContactProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -485,8 +488,8 @@
     <EmbeddedResource Include="Migrations\201811011131310_undo test2.resx">
       <DependentUpon>201811011131310_undo test2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811011317519_contact test.resx">
-      <DependentUpon>201811011317519_contact test.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811021440038_nicknm.resx">
+      <DependentUpon>201811021440038_nicknm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
