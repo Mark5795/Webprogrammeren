@@ -13,11 +13,22 @@ namespace Whatsup.Repositories
 
         private WhatsupContext db = new WhatsupContext();
 
-        public User GetContact(string Email)
+        //public User GetContact(string Email)
+        //{
+        //    User user = db.Users.SingleOrDefault(i => i.Email == Email);
+        //    return user;
+        //}
+
+        public Contact GetContact(int OwnerAccountId, int Index)
         {
-            User user = db.Users.SingleOrDefault(i => i.Email == Email);
-            return user;
+            return db.Users.Single(a => a.Id == OwnerAccountId).Contacts.ToList()[Index];
         }
+
+        public Contact GetContactFromContactAccountId(int ContactAccountId)
+        {
+            return db.Contact.SingleOrDefault(a => a.ContactAccountId == ContactAccountId);
+        }
+
 
         //public ContactViewModel GetContactUserViewModel() => new ContactViewModel(GetContact());
 
@@ -27,9 +38,17 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void DeleteContact(int ContactAccountId)
+        public void EditContact(int OwnerAccountId, ContactViewModel model)
         {
-            Contact contact = db.Contact.Find(ContactAccountId);
+            Contact editContact = GetContact(OwnerAccountId, model.Index);
+            editContact.ContactAccountId = db.Users.SingleOrDefault(a => a.Email == model.Email).Id;
+            editContact.NickName = model.NickName;
+            db.SaveChanges();
+        }
+
+        public void DeleteContact(int ContactAccountId, int Index)
+        {
+            Contact contact = db.Users.Single(a => a.Id == ContactAccountId).Contacts.ToList()[Index];
             db.Contact.Remove(contact);
             db.SaveChanges();
         }

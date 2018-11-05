@@ -9,9 +9,11 @@
 <section id="Contact">
     @foreach (var item in Model)
     {
-        <div class="btn btn-default">
-            @Html.DisplayTextFor(modelItem => item.Email)
-        </div>
+    <div class="btn btn-default">
+        @Html.ActionLink(item.Email, "ContactProfile", new { index = item.Index })
+
+        @*@Html.DisplayTextFor(modelItem => item.Email)*@
+    </div>
         <p></p>
     }
 </section>

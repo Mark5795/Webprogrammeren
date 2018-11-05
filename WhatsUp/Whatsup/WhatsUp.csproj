@@ -368,6 +368,7 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Contact\DeleteContact.cshtml" />
     <Content Include="Views\Contact\ContactProfile.cshtml" />
+    <Content Include="Views\Contact\EditContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

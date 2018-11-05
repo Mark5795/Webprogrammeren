@@ -27,10 +27,12 @@ namespace Whatsup.Controllers
             return View(contactList);
         }
 
-        public ActionResult ContactProfile(string Email)
+        [HttpGet]
+        public ActionResult ContactProfile(int Index)
         {
-            Contact contact = contactRepository.GetContact(Email);
-            ContactViewModel contactViewModel = new ContactViewModel(Email);
+            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+            ViewBag.Email = contactViewModel.Email;
             return View(contactViewModel);
         }
 
@@ -48,13 +50,11 @@ namespace Whatsup.Controllers
                 {
                     Contact contact = new Contact();
                     contact.NickName = model.NickName;
-                    //contactRepository.AddContact(userRepository.GetLoggedInUser(), contact);
-
                     contact.OwnerAccountId = userRepository.GetLoggedInUser();
                     contact.ContactAccountId = userRepository.GetUser(model.Email).Id;
 
                     contactRepository.AddContact(GetUser().Id, contact);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Contact", "Contact");
                 }
                 else
                 {
@@ -65,29 +65,55 @@ namespace Whatsup.Controllers
             return View(model);
         }
 
-        public ActionResult DeleteContact()
+        [HttpGet]
+        public ActionResult EditContact(int Index)
         {
-            IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
-            return View(contactList);
+            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+            ViewBag.Email = contactViewModel.Email;
+            return View(contactViewModel);
         }
 
         [HttpPost]
-        public ActionResult DeleteContact(ContactViewModel model)
+        public ActionResult EditContact(ContactViewModel model)
         {
-
-            //contactRepository.DeleteContact(GetUser().Id);
-            //contactRepository.DeleteContact(GetContactAccoundID().Id);
+            if (ModelState.IsValid)
+            {
+                if (userRepository.GetUser(model.Email) != null)
+                {
+                    contactRepository.EditContact(GetUser().Id, model);
+                    return RedirectToAction("Contact", "Contact");
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "There was no user found with this Email!");
+                    return View(model);
+                }
+            }
             return View(model);
+        }
+
+
+        [HttpGet]
+        public ActionResult DeleteContact(int Index)
+        {
+            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+            ViewBag.Email = contactViewModel.Email;
+            return View(contactViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteContact(ContactViewModel model, int Index)
+        {
+            contactRepository.DeleteContact(GetUser().Id, Index);
+            ModelState.AddModelError("Email", "Contact is deleted");
+            return RedirectToAction("Contact", "Contact");
         }
 
         private User GetUser()
         {
             return userRepository.GetUser(User.Identity.Name);
         }
-
-        //private Contact GetContactAccoundID()
-        //{
-        //    return contactRepository.GetContactAccoundID();
-        //}
     }
 }
