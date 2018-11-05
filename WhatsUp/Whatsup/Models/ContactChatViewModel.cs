@@ -9,7 +9,7 @@ namespace Whatsup.Models
 {
     public class ContactChatViewModel
     {
-        public ContactViewModel ContactViewModel { get; set; }
+        public IEnumerable<ContactViewModel> ContactViewModel { get; set; }
 
         public ChatViewModel ChatViewModel { get; set; }
 

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Whatsup.Models.ContactViewModel>
+﻿@*@model Whatsup.Models.ContactChatViewModel*@
+@model IEnumerable<Whatsup.Models.ContactViewModel>
 
 @{
 
@@ -19,7 +20,7 @@
 
     <section class="Chat">
         @*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
-        @{ Html.RenderPartial("Chat", Model.ChatViewModel);}
+        @*@{Html.RenderPartial("Chat", Model);}*@
     </section>
 
 }

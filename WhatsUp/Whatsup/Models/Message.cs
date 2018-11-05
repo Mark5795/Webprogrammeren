@@ -13,7 +13,7 @@ namespace WhatsUp.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime TimeSend { get; set; }
+        public DateTime CreatedOn{ get; set; }
         [Required]
         public string Content { get; set; }
         public int ChatId { get; set; }
@@ -26,7 +26,7 @@ namespace WhatsUp.Models
 
         public Message(string Content)
         {
-            this.TimeSend = DateTime.Now;
+            this.CreatedOn = DateTime.Now;
             this.Content = Content;
             this.SenderId = SenderId;
             this.ChatId = ChatId;

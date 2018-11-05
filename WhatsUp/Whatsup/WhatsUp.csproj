@@ -294,13 +294,19 @@
     <Compile Include="Migrations\201811021440038_nicknm.Designer.cs">
       <DependentUpon>201811021440038_nicknm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811051900285_change.cs" />
+    <Compile Include="Migrations\201811051900285_change.Designer.cs">
+      <DependentUpon>201811051900285_change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactChatViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MessageViewModel.cs" />
     <Compile Include="Models\ProfileUserViewModel.cs" />
     <Compile Include="Models\SelectContactViewModel.cs" />
     <Compile Include="Models\User.cs" />
@@ -491,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811021440038_nicknm.resx">
       <DependentUpon>201811021440038_nicknm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811051900285_change.resx">
+      <DependentUpon>201811051900285_change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
