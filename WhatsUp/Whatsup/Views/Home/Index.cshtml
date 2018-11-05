@@ -1,22 +1,29 @@
-﻿@{
+﻿@model IEnumerable<Whatsup.Models.ContactViewModel>
 
-    ViewBag.Title = "";
+@{
+
+    ViewBag.Title = "Chats";
 }
-
-
 
 @if (User.Identity.IsAuthenticated)
 {
-    @*foreach (var contact in @ViewBag.AllContacts)
-    {
-        <a class="user__item contact-@contact.Id" href="#" data-contact-id="@contact.Id" data-contact-name="@contact.Name">
-            <li>
-                <span>@contact.Name</span>
-                <p>last message</p>
-            </li>
-        </a>
-        }*@
-    }
+    <section id="Contact">
+        @foreach (var item in Model)
+        {
+            <div class="btn btn-default">
+                @Html.ActionLink(item.Email, "Chat", new { index = item.Index })
+            </div>
+            <p></p>
+        }
+    </section>
+
+    <section class="Chat">
+        @*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
+        @{ Html.RenderPartial("Chat", Model.ChatViewModel);}
+    </section>
+
+}
+
 else
 {
     <div class="jumbotron">
@@ -24,4 +31,8 @@ else
         <p class="lead">WhatsUp is an online chat service. You can add your friends or talk in groupchats.</p>
         <p><a href="@Url.Action("Register", "User")" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
     </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

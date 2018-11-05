@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Whatsup.Models;
 using Whatsup.Repositories;
 
 namespace Whatsup.Controllers
@@ -11,10 +12,15 @@ namespace Whatsup.Controllers
     public class HomeController : Controller
     {
         private IContactRepository contactRepository = new ContactRepository();
+        private IUserRepository userRepository = new UserRepository();
 
         public ActionResult Index()
         {
-            //ViewBag.AllContacts = contactRepository.GetAllContacts();
+            if (GetUser() != null)
+            {
+                IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
+                return View(contactList);
+            }
             return View();
         }
 
@@ -25,11 +31,9 @@ namespace Whatsup.Controllers
             return View();
         }
 
-        //public ActionResult Contact()
-        //{
-        //    ViewBag.Message = "Your contact page.";
-
-        //    return View();
-        //}
+        private User GetUser()
+        {
+            return userRepository.GetUser(User.Identity.Name);
+        }
     }
 }

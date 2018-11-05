@@ -298,6 +298,7 @@
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\ContactChatViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Models\Message.cs" />
@@ -368,6 +369,7 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Contact\DeleteContact.cshtml" />
     <Content Include="Views\Contact\ContactProfile.cshtml" />
+    <Content Include="Views\Contact\EditContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
