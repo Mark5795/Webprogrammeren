@@ -8,15 +8,21 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <section id="Contact">
-        @foreach (var item in Model)
-        {
-            <div class="btn btn-default">
-                @Html.ActionLink(item.Email, "Chat", new { index = item.Index })
-            </div>
-            <p></p>
-        }
-    </section>
+<section id="Contact">
+    <div class="btn btn-default">
+        @Html.ActionLink("New Chat", "ChatContact", "Chat")
+    </div>
+    <p></p>
+
+    @*Dit staat nog verkeerd moet alleen toen met wie er een chat is*@
+    @foreach (var item in Model)
+    {
+        <div class="btn btn-default">
+            @Html.ActionLink(item.Email, "Chat", new { index = item.Index })
+        </div>
+        <p></p>
+    }
+</section>
 
     <section class="Chat">
         @*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@

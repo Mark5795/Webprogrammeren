@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Whatsup.Models.ContactViewModel>
+
+@{
+    ViewBag.Title = "ChatContact";
+}
+
+<div class="btn btn-default">
+    @Html.ActionLink("New GroupChat", "NewGroupChat", "Chat")
+</div>
+<p></p>
+<div class="btn btn-default">
+    @Html.ActionLink("Add Contact", "AddContact", "Contact")
+</div>
+
+<h2>Contacts to chat</h2>
+
+<section id="Contact">
+
+
+    @foreach (var item in Model)
+    {
+        <div class="btn btn-default">
+            @Html.ActionLink(item.NickName, "Chat", new { index = item.Index })
+        </div>
+        <p></p>
+    }
+    </section>
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

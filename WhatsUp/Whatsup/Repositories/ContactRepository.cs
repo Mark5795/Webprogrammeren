@@ -13,12 +13,6 @@ namespace Whatsup.Repositories
 
         private WhatsupContext db = new WhatsupContext();
 
-        //public User GetContact(string Email)
-        //{
-        //    User user = db.Users.SingleOrDefault(i => i.Email == Email);
-        //    return user;
-        //}
-
         public Contact GetContact(int OwnerAccountId, int Index)
         {
             return db.Users.Single(a => a.Id == OwnerAccountId).Contacts.ToList()[Index];
@@ -28,9 +22,6 @@ namespace Whatsup.Repositories
         {
             return db.Contact.SingleOrDefault(a => a.ContactAccountId == ContactAccountId);
         }
-
-
-        //public ContactViewModel GetContactUserViewModel() => new ContactViewModel(GetContact());
 
         public void AddContact(int OwnerAccountId, Contact contact)
         {
@@ -63,24 +54,5 @@ namespace Whatsup.Repositories
 
             return contactViewModels;
         }
-
-        //public void GetContactAccoundID(int )
-        //{
-
-        //}
-
-        //public IList<SelectContactViewModel> GetAllContacts(int OwnerAccountId)
-        //{
-        //    List<SelectContactViewModel> selectContactViewModel = new List<SelectContactViewModel>();
-        //    List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == OwnerAccountId).Contacts.ToList();
-
-        //    for (int i = 0; i < contacts.Count; i++)
-        //    {
-        //        selectContactViewModel.Add(new SelectContactViewModel(contacts[i], i));
-        //    }
-
-        //    return selectContactViewModel;
-        //}
-
     }
 }

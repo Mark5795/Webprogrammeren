@@ -11,7 +11,13 @@ namespace Whatsup.Repositories
     {
         private WhatsupContext db = new WhatsupContext();
 
-        public void AddNewMessage(Message message)
+        public void AddChat(int CreatorId, Chat chat)
+        {
+            db.Users.Single(a => a.Id == CreatorId).Chats.Add(chat);
+            db.SaveChanges();
+        }
+
+        public void AddMessage(Message message)
         {
             db.Message.Add(message);
             db.SaveChanges();

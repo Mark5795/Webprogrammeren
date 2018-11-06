@@ -4,7 +4,7 @@
     ViewBag.Title = "Chat";
 }
 
-<h2>Chat</h2>
+<h2>@ViewBag.Nickname</h2>
 
 <section id="content-chat">
 
@@ -19,11 +19,13 @@
 
 </section>
 
-<section id="content-contacts">
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
 
-    @* List with added contacts *@
-
-</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 
 
