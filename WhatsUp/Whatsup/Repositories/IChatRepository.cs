@@ -9,7 +9,7 @@ namespace Whatsup.Repositories
 {
     public interface IChatRepository
     {
-        void AddMessage(Message message);
+        void AddMessage(int SenderId, Message message);
         void AddChat(int CreatorId, Chat chat);
     }
 }

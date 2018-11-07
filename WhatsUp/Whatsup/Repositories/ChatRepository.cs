@@ -17,15 +17,22 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void AddMessage(Message message)
+        public void AddMessage(int SenderId,Message message)
         {
-            db.Message.Add(message);
-            db.SaveChanges();
+            //db.Message.Add(message);
+            //db.Users.Single(a => a.Id == SenderId).Chats.Add(message);
+            //db.SaveChanges();
         }
 
-        //public List<Message> GetAllMessages()
-        //{
-            
-        //}
+        public IEnumerable<ContactViewModel> GetAllChats(int CreatorId)
+        {
+            List<ChatViewModel> chatViewModels = new List<ChatViewModel>();
+            List<Chat> chats = db.Users.SingleOrDefault(a => a.Id == CreatorId).Chats.ToList();
+
+            for (int i = 0; i < chats.Count; i++)
+                chatViewModels.Add(new ChatViewModel(chats[i], i));
+
+            return chatViewModels;
+        }
     }
 }

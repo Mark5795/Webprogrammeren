@@ -17,9 +17,14 @@ namespace Whatsup.Models
 
         public ChatViewModel() { }
 
-        public ChatViewModel(Message message)
+        public ChatViewModel(Chat chat)
         {
-            Content = message.Content;
+
+        }
+
+        public ChatViewModel(Chat chat, int index) : this(chat)
+        {
+            Index = index;
         }
 
     }

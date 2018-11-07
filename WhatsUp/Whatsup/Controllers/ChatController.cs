@@ -39,8 +39,7 @@ namespace Whatsup.Controllers
                 
 
                 Message message = new Message(model.Content);
-
-                chatRepository.AddMessage(message);
+                chatRepository.AddMessage(GetUser().Id, message);
                 return View();
             }
             return View();
