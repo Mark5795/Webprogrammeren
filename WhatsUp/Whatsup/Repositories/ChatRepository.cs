@@ -27,11 +27,20 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void AddMessage(int SenderId,Message message)
+        public void AddMessage(int SenderId, ChatViewModel model)
         {
-            //db.Message.Add(message);
-            //db.Users.Single(a => a.Id == SenderId).Chats.Add(message);
-            //db.SaveChanges();
+            Chat chat = GetChatByContactIndex(SenderId, model.Index);
+
+            Message message = new Message(SenderId, chat.Id, model);
+
+            chat.Messages.Add(message);
+            db.SaveChanges();
+        }
+
+        public Chat GetChatByContactIndex(int contactOwnerId, int contactIndex)
+        {
+            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
+            return chatList[contactIndex];
         }
 
         public IEnumerable<ChatListViewModel> GetAllChats(int CreatorId)

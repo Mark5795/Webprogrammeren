@@ -42,11 +42,12 @@ namespace Whatsup.Controllers
                     chat.Name = contactRepository.GetContact(GetUser().Id, Index).NickName;
                     chatRepository.AddChat(GetUser().Id, chat);
                 }
-                else
+                else if(ModelState.IsValid)
                 {
-                    Message message = new Message(model.Content);
-                    chatRepository.AddMessage(GetUser().Id, message);
-                    return View();
+                    chatRepository.AddMessage(GetUser().Id, model);
+                        //    Message message = new Message(model.Content);
+                        //chatRepository.AddMessage(GetUser().Id, message);
+                        //return View();
                 }
             }
             return View();
@@ -57,17 +58,6 @@ namespace Whatsup.Controllers
             IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
             return View(contactList);
         }
-
-        //[HttpPost]
-        //public ActionResult ChatContact(ChatViewModel model)
-        //{
-        //    Chat chat = new Chat();
-        //    chat.Group = false;
-        //    chat.CreatorId = GetUser().Id;
-        //    chat.CreatedOn = DateTime.Now;
-        //    chatRepository.AddChat(GetUser().Id, chat);
-        //    return View();
-        //}
 
         private User GetUser()
         {
