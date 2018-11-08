@@ -27,21 +27,27 @@ namespace Whatsup.Controllers
         }
 
         [HttpPost]
-        public ActionResult Chat(ChatViewModel model)
+        public ActionResult Chat(ChatViewModel model, int Index)
         {
             if (model.Content != null)
             {
-                Chat chat = new Chat();
-                chat.Group = false;
-                chat.CreatorId = GetUser().Id;
-                chat.CreatedOn = DateTime.Now;
-                chat.Name = GetUser().Email;
-                chatRepository.AddChat(GetUser().Id, chat);
-                
+                //Check if there is a chat already
+                if (chatRepository.GetChat(contactRepository.GetContact(GetUser().Id, Index).NickName) == null)
+                {
+                    Chat chat = new Chat();
+                    chat.Group = false;
+                    chat.CreatorId = GetUser().Id;
+                    chat.CreatedOn = DateTime.Now;
 
-                Message message = new Message(model.Content);
-                chatRepository.AddMessage(GetUser().Id, message);
-                return View();
+                    chat.Name = contactRepository.GetContact(GetUser().Id, Index).NickName;
+                    chatRepository.AddChat(GetUser().Id, chat);
+                }
+                else
+                {
+                    Message message = new Message(model.Content);
+                    chatRepository.AddMessage(GetUser().Id, message);
+                    return View();
+                }
             }
             return View();
         }

@@ -9,6 +9,7 @@ namespace Whatsup.Repositories
 {
     public interface IChatRepository
     {
+        Chat GetChat(string Name);
         void AddMessage(int SenderId, Message message);
         void AddChat(int CreatorId, Chat chat);
         IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);

@@ -16,6 +16,7 @@ namespace Whatsup.Controllers
         private IUserRepository userRepository = new UserRepository();
         private IChatRepository chatRepository = new ChatRepository();
 
+        // Get list of chats
         public ActionResult Index()
         {
             if (GetUser() != null)

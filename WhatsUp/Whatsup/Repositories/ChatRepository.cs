@@ -11,6 +11,16 @@ namespace Whatsup.Repositories
     {
         private WhatsupContext db = new WhatsupContext();
 
+        public Chat GetChat(string Name)
+        {
+            if (db.Chat.SingleOrDefault(a => a.Name == Name) != null)
+            {
+                return db.Chat.Single(a => a.Name == Name);
+            }
+            return null;
+        }
+
+
         public void AddChat(int CreatorId, Chat chat)
         {
             db.Users.Single(a => a.Id == CreatorId).Chats.Add(chat);
