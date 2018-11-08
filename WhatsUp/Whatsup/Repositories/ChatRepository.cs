@@ -24,15 +24,15 @@ namespace Whatsup.Repositories
             //db.SaveChanges();
         }
 
-        public IEnumerable<ContactViewModel> GetAllChats(int CreatorId)
+        public IEnumerable<ChatListViewModel> GetAllChats(int CreatorId)
         {
-            List<ChatViewModel> chatViewModels = new List<ChatViewModel>();
-            List<Chat> chats = db.Users.SingleOrDefault(a => a.Id == CreatorId).Chats.ToList();
+            List<ChatListViewModel> chatListViewModels = new List<ChatListViewModel>();
+            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == CreatorId).Chats.ToList();
 
-            for (int i = 0; i < chats.Count; i++)
-                chatViewModels.Add(new ChatViewModel(chats[i], i));
+            for (int i = 0; i < chatList.Count; i++)
+                chatListViewModels.Add(new ChatListViewModel(chatList[i], i));
 
-            return chatViewModels;
+            return chatListViewModels;
         }
     }
 }

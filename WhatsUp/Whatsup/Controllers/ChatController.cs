@@ -35,6 +35,7 @@ namespace Whatsup.Controllers
                 chat.Group = false;
                 chat.CreatorId = GetUser().Id;
                 chat.CreatedOn = DateTime.Now;
+                chat.Name = GetUser().Email;
                 chatRepository.AddChat(GetUser().Id, chat);
                 
 

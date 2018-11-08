@@ -300,6 +300,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\ChatListViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactChatViewModel.cs" />

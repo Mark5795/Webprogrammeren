@@ -1,5 +1,4 @@
-﻿@*@model Whatsup.Models.ContactChatViewModel*@
-@model IEnumerable<Whatsup.Models.ContactViewModel>
+﻿@model IEnumerable<WhatsUp.Models.ChatListViewModel>
 
 @{
 
@@ -14,11 +13,10 @@
     </div>
     <p></p>
 
-    @*Dit staat nog verkeerd moet alleen toen met wie er een chat is*@
     @foreach (var item in Model)
     {
         <div class="btn btn-default">
-            @Html.ActionLink(item.Email, "Chat", new { index = item.Index })
+            @Html.ActionLink(item.Name, "Chat", new { index = item.Index })
         </div>
         <p></p>
     }

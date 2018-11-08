@@ -11,5 +11,6 @@ namespace Whatsup.Repositories
     {
         void AddMessage(int SenderId, Message message);
         void AddChat(int CreatorId, Chat chat);
+        IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);
     }
 }

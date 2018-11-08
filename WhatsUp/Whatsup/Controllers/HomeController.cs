@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Whatsup.Models;
 using Whatsup.Repositories;
+using WhatsUp.Models;
 
 namespace Whatsup.Controllers
 {
@@ -13,13 +14,14 @@ namespace Whatsup.Controllers
     {
         private IContactRepository contactRepository = new ContactRepository();
         private IUserRepository userRepository = new UserRepository();
+        private IChatRepository chatRepository = new ChatRepository();
 
         public ActionResult Index()
         {
             if (GetUser() != null)
             {
-                IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
-                return View(contactList);
+                IEnumerable<ChatListViewModel> chatList = chatRepository.GetAllChats(GetUser().Id);
+                return View(chatList);
             }
             return View();
         }
