@@ -300,6 +300,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Chat.cs" />
+    <Compile Include="Models\ChatListViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
     <Compile Include="Models\ContactChatViewModel.cs" />
@@ -360,10 +361,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\DeleteUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\RegisterSuccesful.cshtml" />
     <Content Include="Views\User\Login.cshtml" />

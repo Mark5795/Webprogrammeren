@@ -195,8 +195,16 @@ namespace Whatsup.Views
         [HttpPost]
         public ActionResult DeleteUser(string email)
         {
-
-            return RedirectToAction("Index", "Home");
+            if (ModelState.IsValid)
+            {
+                if (userRepository.AlreadyRegistered(email))
+                {
+                    userRepository.DeleteUser(email);
+                    LogOutUser();
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            return RedirectToAction("ProfileUser", "User");
         }
 
 

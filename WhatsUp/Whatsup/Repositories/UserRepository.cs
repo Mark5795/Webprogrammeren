@@ -72,5 +72,12 @@ namespace Whatsup.Repositories
             db.Users.Add(user);
             db.SaveChanges();
         }
+
+        public void DeleteUser(string Email)
+        {
+            User user = db.Users.Single(a => a.Email == Email);
+            db.Users.Remove(user);
+            db.SaveChanges();
+        }
     }
 }
