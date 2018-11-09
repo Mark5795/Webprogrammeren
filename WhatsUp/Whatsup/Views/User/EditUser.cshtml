@@ -1,4 +1,4 @@
-﻿@model Whatsup.Models.User
+﻿@model Whatsup.Models.ProfileUserViewModel
 
 @{
     ViewBag.Title = "Edit";
@@ -34,10 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -49,9 +49,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Back to Profile", "ProfileUser", "User")
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

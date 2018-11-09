@@ -20,6 +20,7 @@ namespace Whatsup.Repositories
         int GetLoggedInUser();
         ProfileUserViewModel GetProfileUserViewModel();
         void AddNewPassword(LoginUserViewModel model);
+        void EditUser(ProfileUserViewModel model);
         void DeleteUser(string Email);
     }
 }

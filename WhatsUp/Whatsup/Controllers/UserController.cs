@@ -158,16 +158,14 @@ namespace Whatsup.Views
         // GET: User/Edit
         public ActionResult EditUser()
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //User user = db.Users.Find(id);
-            //if (user == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View();
+            ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
+
+            ViewBag.Username = profileUserViewModel.Username;
+            ViewBag.Email = profileUserViewModel.Email;
+            ViewBag.PhoneNumber = profileUserViewModel.PhoneNumber;
+            ViewBag.DateCreated = profileUserViewModel.DateCreated;
+
+            return View(profileUserViewModel);
         }
 
         // POST: User/Edit
@@ -175,15 +173,14 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,DateCreated")] User user)
+        public ActionResult EditUser([Bind(Include = "Email,PhoneNumber,UserName")] ProfileUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                userRepository.EditUser(model);
+                return RedirectToAction("ProfileUser", "User");
             }
-            return View(user);
+            return RedirectToAction("ProfileUser", "User");
         }
 
         // GET: User/Delete
