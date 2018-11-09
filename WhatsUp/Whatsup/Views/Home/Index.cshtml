@@ -16,7 +16,7 @@
     @foreach (var item in Model)
     {
         <div class="btn btn-default">
-            @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index })
+            @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
         </div>
         <p></p>
     }

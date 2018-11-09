@@ -7,8 +7,19 @@
 
 <h2>Profile</h2>
 
-<p>@ViewBag.Username</p>
-<p>@ViewBag.Email</p>
-<p>@ViewBag.PhoneNumber</p>
-<p>@ViewBag.DateCreated</p>
+<p>Username: @ViewBag.Username</p>
+<p>Email: @ViewBag.Email</p>
+<p>PhoneNumber: @ViewBag.PhoneNumber</p>
+<p>Account created: @ViewBag.DateCreated</p>
 
+<div class="btn btn-default">
+    @Html.ActionLink("Edit Contact", "EditUser", "User")
+</div>
+
+<div class="btn btn-default">
+    @Html.ActionLink("Delete Account", "DeleteUser", "User")
+</div>
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>

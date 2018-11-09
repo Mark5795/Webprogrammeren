@@ -16,24 +16,12 @@ namespace Whatsup.Models
 
         public ChatViewModel() { }
 
-        public ChatViewModel(int userId, int index, IDictionary<int, string> usernames, ICollection<Message> messageList, string name)
+        public ChatViewModel(int index, string name, string content)
         {
-            List<MessageViewModel> messages = new List<MessageViewModel>();
-
+            Content = content;
             Index = index;
-            Reader = messages;
             Name = name;
         }
-
-        //public ChatViewModel(Chat chat)
-        //{
-
-        //}
-
-        //public ChatViewModel(Chat chat, int index) : this(chat)
-        //{
-        //    Index = index;
-        //}
 
     }
 }
