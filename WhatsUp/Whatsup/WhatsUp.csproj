@@ -299,6 +299,7 @@
       <DependentUpon>201811051900285_change.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddGroupViewModel.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatListViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
@@ -375,6 +376,7 @@
     <Content Include="Views\Contact\ContactProfile.cshtml" />
     <Content Include="Views\Contact\EditContact.cshtml" />
     <Content Include="Views\Chat\ChatContact.cshtml" />
+    <Content Include="Views\Chat\NewGroupChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
