@@ -13,5 +13,6 @@ namespace Whatsup.Repositories
         void AddMessage(int SenderId, ChatViewModel message);
         void AddChat(int CreatorId, Chat chat);
         IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);
+        void GroupchatName(int CreatorId, AddGroupViewModel model);
     }
 }

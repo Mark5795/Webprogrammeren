@@ -53,6 +53,26 @@ namespace Whatsup.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult NewGroupChat()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult NewGroupChat(AddGroupViewModel model)
+        {
+            if (model.Name != null)
+            {
+                //Check if there is a chat already
+                if (ModelState.IsValid)
+                {
+                    chatRepository.GroupchatName(GetUser().Id, model);
+                }
+            }
+            return View();
+        }
+
         public ActionResult ChatContact()
         {
             IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
