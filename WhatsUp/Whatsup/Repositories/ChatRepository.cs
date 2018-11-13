@@ -21,10 +21,37 @@ namespace Whatsup.Repositories
         }
 
 
-        public void AddChat(int CreatorId, Chat chat)
+        //public void AddChat(int CreatorId, Chat chat)
+        //{
+        //    db.Users.Single(a => a.Id == CreatorId).Chats.Add(chat);
+        //    db.SaveChanges();
+        //}
+
+        public ChatListViewModel AddChat(int creatorId, int contactIndex, string name)
         {
-            db.Users.Single(a => a.Id == CreatorId).Chats.Add(chat);
+            Chat chat = new Chat();
+
+            chat.CreatorId = creatorId;
+            chat.Members = new List<User>();
+
+            chat.Members.Add(GetContactUserByIndex(creatorId, contactIndex));
+
+            chat.Members.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
+            chat.CreatedOn = DateTime.Now;
+            chat.Name = name;
+
+            db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Add(chat);
             db.SaveChanges();
+
+            return new ChatListViewModel(chat, db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Count - 1);
+        }
+
+        private User GetContactUserByIndex(int ownerId, int index)
+        {
+            int contactId = db.Users.SingleOrDefault(a => a.Id == ownerId).Contacts.ToList()[index].ContactAccountId;
+            User user = db.Users.SingleOrDefault(a => a.Id == contactId);
+
+            return user;
         }
 
         public void AddMessage(int SenderId, ChatViewModel model)
@@ -43,10 +70,10 @@ namespace Whatsup.Repositories
             return chatList[contactIndex];
         }
 
-        public IEnumerable<ChatListViewModel> GetAllChats(int CreatorId)
+        public IEnumerable<ChatListViewModel> GetAllChats(int Id)
         {
             List<ChatListViewModel> chatListViewModels = new List<ChatListViewModel>();
-            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == CreatorId).Chats.ToList();
+            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == Id).Chats.ToList();
 
             for (int i = 0; i < chatList.Count; i++)
                 chatListViewModels.Add(new ChatListViewModel(chatList[i], i));

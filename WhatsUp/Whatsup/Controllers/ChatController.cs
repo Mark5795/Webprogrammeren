@@ -34,13 +34,13 @@ namespace Whatsup.Controllers
                 //Check if there is a chat already
                 if (chatRepository.GetChat(contactRepository.GetContact(GetUser().Id, Index).NickName) == null)
                 {
-                    Chat chat = new Chat();
-                    chat.Group = false;
-                    chat.CreatorId = GetUser().Id;
-                    chat.CreatedOn = DateTime.Now;
+                    //Chat chat = new Chat();
+                    //chat.Group = false;
+                    //chat.CreatorId = GetUser().Id;
+                    //chat.CreatedOn = DateTime.Now;
 
-                    chat.Name = contactRepository.GetContact(GetUser().Id, Index).NickName;
-                    chatRepository.AddChat(GetUser().Id, chat);
+                    string Name = contactRepository.GetContact(GetUser().Id, Index).NickName;
+                    chatRepository.AddChat(GetUser().Id, Index, Name);
                 }
                 else if(ModelState.IsValid)
                 {
