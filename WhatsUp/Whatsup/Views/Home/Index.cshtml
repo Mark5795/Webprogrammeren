@@ -8,17 +8,16 @@
 @if (User.Identity.IsAuthenticated)
 {
 <section id="Contact">
-    <div class="btn btn-default">
+    <div class="btn btn-default" id="listButton">
         @Html.ActionLink("New Chat", "ChatContact", "Chat")
     </div>
-    <p></p>
+    <hr />
 
     @foreach (var item in Model)
     {
-        <div class="btn btn-default">
+        <div class="btn btn-default" id="listButton">
             @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
         </div>
-        <p></p>
     }
 </section>
 

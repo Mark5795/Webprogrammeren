@@ -5,26 +5,29 @@
 }
 
 <h2>Contacts</h2>
+<hr />
+
+<div class="btn btn-default" id="listButton">
+    @Html.ActionLink("Add Contact", "AddContact", "Contact")
+</div>
+<hr />
 
 <section id="Contact">
 
 
     @foreach (var item in Model)
     {
-        <div class="btn btn-default">
-            @Html.ActionLink(item.Email, "ContactProfile", new { index = item.Index })
+        <div class="btn btn-default" id="listButton">
+            @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index })
         </div>
         <p></p>
     }
 </section>
 
-<div class="btn btn-default">
-    @Html.ActionLink("Add Contact", "AddContact", "Contact")
-</div>
-
+@*<hr />
 <div>
     @Html.ActionLink("Back to Home", "Index", "Home")
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

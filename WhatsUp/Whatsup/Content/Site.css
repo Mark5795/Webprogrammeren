@@ -3,6 +3,12 @@
     padding-bottom: 20px;
 }
 
+#listButton {
+    display: block;
+    width: 12em;
+    margin-top: 1em;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -43,3 +49,4 @@ textarea {
     height: 4em;
     margin-left: 2em;
 }
+

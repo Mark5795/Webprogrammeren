@@ -83,7 +83,7 @@ namespace Whatsup.Repositories
 
         public void GroupchatName(int CreatorId, AddGroupViewModel model)
         {
-            db.Users.Single(a => a.Id == CreatorId).Chats.Add(model);
+            //db.Users.Single(a => a.Id == CreatorId).Chats.Add(model);
             db.SaveChanges();
         }
     }
