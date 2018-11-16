@@ -10,7 +10,7 @@ namespace WhatsUp.Models
     [Table("Message")]
     public partial class Message
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime CreatedOn{ get; set; }
@@ -24,10 +24,10 @@ namespace WhatsUp.Models
 
         public Message() { }
 
-        public Message(int chatId, int senderId,  ChatViewModel model)
+        public Message(int chatId, int senderId, ChatViewModel model)
         {
             this.CreatedOn = DateTime.Now;
-            this.Content = Content;
+            this.Content = model.Content;
             this.SenderId = SenderId;
             this.ChatId = ChatId;
         }

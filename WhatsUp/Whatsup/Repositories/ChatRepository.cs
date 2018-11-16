@@ -54,11 +54,11 @@ namespace Whatsup.Repositories
             return user;
         }
 
-        public void AddMessage(int SenderId, ChatViewModel model)
+        public void AddMessage(int memberId, ChatViewModel model)
         {
-            Chat chat = GetChatByContactIndex(SenderId, model.Index);
-
-            Message message = new Message(SenderId, chat.Id, model);
+            Chat chat = GetChatByContactIndex(memberId, model.Index);
+            List<Chat> chatList = GetChatsByMember(memberId);
+            Message message = new Message(memberId, chat.Id, model);
 
             chat.Messages.Add(message);
             db.SaveChanges();
@@ -68,6 +68,11 @@ namespace Whatsup.Repositories
         {
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
             return chatList[contactIndex];
+        }
+
+        private List<Chat> GetChatsByMember(int id)
+        {
+            return db.Users.SingleOrDefault(a => a.Id == id).Chats.ToList();
         }
 
         public IEnumerable<ChatListViewModel> GetAllChats(int Id)

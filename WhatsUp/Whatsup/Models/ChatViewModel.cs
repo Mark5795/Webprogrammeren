@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Whatsup.Repositories;
@@ -13,15 +14,32 @@ namespace Whatsup.Models
         public int Index { get; set; }
         public string Content { get; set; }
         public List<MessageViewModel> Reader { get; set; }
+        public IDictionary<int, string> Usernames { get; set; }
 
         public ChatViewModel() { }
 
-        public ChatViewModel(int index, string name, string content)
+        public ChatViewModel(int userId, int index, IDictionary<int, string> usernames, ICollection<Message> messageList, string name)
         {
-            Content = content;
+            List<MessageViewModel> messages = new List<MessageViewModel>();
+            Usernames = new Dictionary<int, string>();
+
+            try
+            {
+                AddUserNamesToMessageViewModels(userId, usernames, messageList, ref messages);
+            }
+            catch (ArgumentNullException e) { } // Empty chat
+
             Index = index;
+            Reader = messages;
             Name = name;
         }
 
+        private void AddUserNamesToMessageViewModels(int userId, IDictionary<int, string> usernames, ICollection<Message> messageList, ref List<MessageViewModel> messages)
+        {
+            foreach (Message message in messageList)
+            {
+                messages.Add(new MessageViewModel(userId, usernames[message.SenderId], message));
+            }
+        }
     }
 }
