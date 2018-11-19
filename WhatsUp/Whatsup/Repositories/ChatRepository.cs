@@ -20,13 +20,6 @@ namespace Whatsup.Repositories
             return null;
         }
 
-
-        //public void AddChat(int CreatorId, Chat chat)
-        //{
-        //    db.Users.Single(a => a.Id == CreatorId).Chats.Add(chat);
-        //    db.SaveChanges();
-        //}
-
         public ChatListViewModel AddChat(int creatorId, int contactIndex, string name)
         {
             Chat chat = new Chat();
@@ -67,7 +60,21 @@ namespace Whatsup.Repositories
         public Chat GetChatByContactIndex(int contactOwnerId, int contactIndex)
         {
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
-            return chatList[contactIndex];
+            if (chatList != null)
+            {
+                return chatList[contactIndex];
+            }
+            return null;
+        }
+
+        public bool CheckChatExist(int contactOwnerId, int contactIndex)
+        {
+            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
+            if (chatList != null)
+            {
+                return true;
+            }
+            return false;
         }
 
         private List<Chat> GetChatsByMember(int id)
@@ -90,6 +97,27 @@ namespace Whatsup.Repositories
         {
             //db.Users.Single(a => a.Id == CreatorId).Chats.Add(model);
             db.SaveChanges();
+        }
+
+        public IDictionary<int, string> GetChatMemberContactNames(int userId, int chatId)
+        {
+            Dictionary<int, string> memberNames = new Dictionary<int, string>();
+            List<User> chatMembers = db.Chat.SingleOrDefault(c => c.Id == chatId).Members.ToList();
+            List<Contact> contacts = db.Contact.Where(c => c.OwnerAccountId == userId).ToList();
+
+            foreach (User member in chatMembers)
+            {
+                if (userId == member.Id)
+                {
+                    memberNames.Add(member.Id, "you");
+                }
+                else if (contacts.Any(c => c.ContactAccountId == member.Id))
+                    memberNames.Add(member.Id, contacts.SingleOrDefault(c => c.ContactAccountId == member.Id).NickName);
+                else
+                    memberNames.Add(member.Id, member.Email);
+            }
+
+            return memberNames;
         }
     }
 }
