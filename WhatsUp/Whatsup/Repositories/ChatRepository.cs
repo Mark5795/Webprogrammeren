@@ -119,14 +119,10 @@ namespace Whatsup.Repositories
 
             return memberNames;
         }
-        public Chat GetChatByIndexAndName(string Name, int Index)
-        {
-            return db.Chat.Single(a => a.Name == Name)[Index];
-        }
 
-        public void DeleteChat(int Index, string Name)
+        public void DeleteChat(string Name, int Id)
         {
-            Chat chat = db.Chat.Single(a => a.Name == Name);
+            Chat chat = db.Chat.Single(c => (c.Name == Name) &&  (c.Id == Id));
             db.Chat.Remove(chat);
             db.SaveChanges();
         }
