@@ -242,6 +242,7 @@
     <Content Include="Views\Chat\ChatContact.cshtml" />
     <Content Include="Views\Chat\CreateChat.cshtml" />
     <Content Include="Views\Chat\AddGroupChat.cshtml" />
+    <Content Include="Views\Chat\DeleteChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

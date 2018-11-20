@@ -56,7 +56,8 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult AddGroupChat()
         {
-            return View();
+            IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
+            return View(contactList);
         }
 
         [HttpPost]
@@ -93,6 +94,27 @@ namespace Whatsup.Controllers
             else
                 return RedirectToAction("Chat", new { index = chatRepository.GetChatByContactIndex(GetUser().Id, contactIndex) });
         }
+
+        [HttpGet]
+        public ActionResult DeleteChat(int Index)
+        {
+            //Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+            //ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+            //ViewBag.Email = contactViewModel.Email;
+            //return View(contactViewModel);
+            ChatViewModel chatViewModel = new ChatViewModel();
+            ViewBag.Name = chatViewModel.Name;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DeleteChat(ChatViewModel model, int Index)
+        {
+            chatRepository.DeleteChat(GetUser().Id, Index);
+            ModelState.AddModelError("Email", "Contact is deleted");
+            return RedirectToAction("Index", "Home");
+        }
+
 
         [HttpGet]
         public ActionResult AddChat(int contactIndex, string name)

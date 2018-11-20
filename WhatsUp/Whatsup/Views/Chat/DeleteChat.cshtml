@@ -1,0 +1,17 @@
+﻿@model Whatsup.Models.ChatViewModel
+
+@{
+    ViewBag.Title = "Delete Chat";
+}
+
+<h2>Delete Chat</h2>
+
+<h3>Are you sure you want to delete this chat?</h3>
+<p>Viewbag.Name</p>
+<div>
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" />
+        </div>
+</div>
+
+@Html.ActionLink("Back to Profile", "ProfileUser", "User")
