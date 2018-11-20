@@ -98,20 +98,16 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult DeleteChat(int Index)
         {
-            //Contact contact = contactRepository.GetContact(GetUser().Id, Index);
-            //ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            //ViewBag.Email = contactViewModel.Email;
-            //return View(contactViewModel);
-            ChatViewModel chatViewModel = new ChatViewModel();
-            ViewBag.Name = chatViewModel.Name;
+            Chat chat = chatRepository.Getchat(GetUser().Id, Index);
+            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+            ViewBag.Email = contactViewModel.Email;
             return View();
         }
 
         [HttpPost]
-        public ActionResult DeleteChat(ChatViewModel model, int Index)
+        public ActionResult DeleteChat(int Index, string Name)
         {
-            chatRepository.DeleteChat(GetUser().Id, Index);
-            ModelState.AddModelError("Email", "Contact is deleted");
+            chatRepository.DeleteChat(Index, Name);
             return RedirectToAction("Index", "Home");
         }
 

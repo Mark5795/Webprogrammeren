@@ -18,5 +18,6 @@ namespace Whatsup.Repositories
         IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);
         void GroupchatName(int CreatorId, AddGroupViewModel model);
         IDictionary<int, string> GetChatMemberContactNames(int userId, int chatId);
+        void DeleteChat(int Index, string Name);
     }
 }

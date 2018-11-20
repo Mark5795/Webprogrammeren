@@ -119,5 +119,16 @@ namespace Whatsup.Repositories
 
             return memberNames;
         }
+        public Chat GetChatByIndexAndName(string Name, int Index)
+        {
+            return db.Chat.Single(a => a.Name == Name)[Index];
+        }
+
+        public void DeleteChat(int Index, string Name)
+        {
+            Chat chat = db.Chat.Single(a => a.Name == Name);
+            db.Chat.Remove(chat);
+            db.SaveChanges();
+        }
     }
 }

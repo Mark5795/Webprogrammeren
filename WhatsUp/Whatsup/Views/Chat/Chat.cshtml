@@ -32,7 +32,8 @@
 </section>
 
 <div class="btn btn-default">
-    @Html.ActionLink("Delete Chat", "DeleteChat", "Chat")
+    @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+
 </div>
 
 <div>
