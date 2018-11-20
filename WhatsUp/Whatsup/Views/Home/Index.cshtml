@@ -15,9 +15,10 @@
 
     @foreach (var item in Model)
     {
-        <div class="btn btn-default" id="listButton">
-            @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
-        </div>
+    <div class="btn btn-default" id="listButton">
+        @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
+        @Html.DisplayFor(modelItem => item.LastMessage)
+    </div>
     }
 </section>
 

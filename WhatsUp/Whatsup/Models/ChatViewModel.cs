@@ -28,6 +28,11 @@ namespace Whatsup.Models
             //    AddUserNamesToMessageViewModels(userId, usernames, messageList, ref messages);
             //}
             //catch (ArgumentNullException e) { } // Empty chat
+            try
+            {
+                AddUserNamesToMessageViewModels(messageList, ref messages);
+            }
+            catch (ArgumentNullException e) { } // Empty chat
 
             Index = index;
             Reader = messages;
@@ -41,5 +46,13 @@ namespace Whatsup.Models
         //        messages.Add(new MessageViewModel(userId, usernames[message.SenderId], message));
         //    }
         //}
+
+        private void AddUserNamesToMessageViewModels(ICollection<Message> messageList, ref List<MessageViewModel> messages)
+        {
+            foreach (Message message in messageList)
+            {
+                messages.Add(new MessageViewModel(message));
+            }
+        }
     }
 }

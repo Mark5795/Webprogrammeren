@@ -240,8 +240,8 @@
     <Content Include="Views\Contact\ContactProfile.cshtml" />
     <Content Include="Views\Contact\EditContact.cshtml" />
     <Content Include="Views\Chat\ChatContact.cshtml" />
-    <Content Include="Views\Chat\NewGroupChat.cshtml" />
     <Content Include="Views\Chat\CreateChat.cshtml" />
+    <Content Include="Views\Chat\AddGroupChat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

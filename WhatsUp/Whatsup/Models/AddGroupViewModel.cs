@@ -8,13 +8,13 @@ namespace Whatsup.Models
 {
     public class AddGroupViewModel
     {
-        public string Name { get; set; }
+        public string GroupName { get; set; }
 
         public AddGroupViewModel() { }
 
-        public AddGroupViewModel(string name)
+        public AddGroupViewModel(string GroupName)
         {
-            Name = Name;
+            this.GroupName = GroupName;
         }
     }
 }

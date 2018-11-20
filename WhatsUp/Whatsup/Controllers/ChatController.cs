@@ -16,16 +16,6 @@ namespace Whatsup.Controllers
         private IChatRepository chatRepository = new ChatRepository();
         private IContactRepository contactRepository = new ContactRepository();
 
-        //[HttpGet]
-        //public ActionResult Chat(int Index)
-        //{
-        //    Contact contact = contactRepository.GetContact(GetUser().Id, Index);
-        //    ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-        //    ViewBag.Email = contactViewModel.Email;
-        //    ViewBag.Nickname = contactViewModel.NickName;
-        //    return View();
-        //}
-
         [HttpGet]
         public ActionResult Chat(int index)
         {
@@ -33,10 +23,6 @@ namespace Whatsup.Controllers
             {
                 Chat chat = chatRepository.GetChatByContactIndex(GetUser().Id, index);
                 List<Message> messages = new List<Message>();
-
-                //if (!complete && chat.Messages.Count > 10)
-                //    messages = chat.Messages.Reverse().Take(10).Reverse().ToList();
-                //else
                 messages = chat.Messages.ToList();
 
                 ChatViewModel model = new ChatViewModel(GetUser().Id,
@@ -68,20 +54,19 @@ namespace Whatsup.Controllers
 
 
         [HttpGet]
-        public ActionResult NewGroupChat()
+        public ActionResult AddGroupChat()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult NewGroupChat(AddGroupViewModel model)
+        public ActionResult AddGroupChat(AddGroupViewModel model)
         {
-            if (model.Name != null)
+            if (model.GroupName != null)
             {
-                //Check if there is a chat already
                 if (ModelState.IsValid)
                 {
-                    chatRepository.GroupchatName(GetUser().Id, model);
+                    //return AddChat(model.GroupName;
                 }
             }
             return View();
