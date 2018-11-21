@@ -43,10 +43,7 @@ textarea {
 }
 
 /*Chat view*/
-.text-area {
-    float: left;
-    width: 18em;
-    height: 4em;
-    margin-left: 2em;
+.grid-container {
+    display: grid;
 }
 

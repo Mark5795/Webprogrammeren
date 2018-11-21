@@ -24,7 +24,7 @@ namespace WhatsUp.Models
 
         public Message() { }
 
-        public Message(int ChatId, int SenderId, ChatViewModel model)
+        public Message(int SenderId, int ChatId, ChatViewModel model)
         {
             this.CreatedOn = DateTime.Now;
             this.Content = model.Content;

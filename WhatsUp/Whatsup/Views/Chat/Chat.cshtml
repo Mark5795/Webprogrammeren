@@ -6,43 +6,39 @@
 
 <h2>@ViewBag.Nickname</h2>
 
-<section id="content-messages">
-    @for (int i = 0; i < Model.Reader.Count; i++)
-    {
-        <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
-            <section class="content">
-                @Html.Raw(Model.Reader[i].Content)
+<section class="grid-container">
+    <section class="grid-item">
+        @for (int i = 0; i < Model.Reader.Count; i++)
+        {
+            <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
+                <section class="content">
+                    @Html.Raw(Model.Reader[i].Content)
+                </section>
+                <section class="info">
+                    @Html.Raw(Model.Reader[i].SenderName)
+                </section>
             </section>
-            <section class="info">
-                @Html.Raw(Model.Reader[i].SenderName)
-            </section>
-        </section>
-    }
-</section>
+        }
+    </section>
 
-<section id="content-write">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Index)
-        @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your message" } })
-        @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-        <input type="submit" value="Send" class="btn btn-default" />
-    }
+    <section class="grid-item">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Index)
+            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your message" } })
+            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+            <input type="submit" value="Send" class="btn btn-default" />
+        }
+    </section>
 </section>
 
 <div class="btn btn-default">
     @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
-
 </div>
 
 <div>
     @Html.ActionLink("Back to Home", "Index", "Home")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
-
 
 
