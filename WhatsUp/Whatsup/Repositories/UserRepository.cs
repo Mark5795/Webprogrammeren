@@ -40,6 +40,12 @@ namespace Whatsup.Repositories
             return user;
         }
 
+        public User GetUserById(int Id)
+        {
+            User user = db.Users.SingleOrDefault(i => i.Id == Id);
+            return user;
+        }
+
         public byte[] GetSalt(string Email)
         {
             byte[] Salt = db.Users.SingleOrDefault(i => i.Email == Email).Salt;
@@ -82,9 +88,9 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void DeleteUser(string Email)
+        public void DeleteUser(int UserId)
         {
-            User user = db.Users.Single(a => a.Email == Email);
+            User user = db.Users.Single(a => a.Id == UserId);
             db.Users.Remove(user);
             db.SaveChanges();
         }

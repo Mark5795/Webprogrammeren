@@ -6,6 +6,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using Whatsup;
 using Whatsup.Repositories;
+using Whatsup.Models;
 
 namespace WhatsUp.Models
 {
@@ -29,5 +30,15 @@ namespace WhatsUp.Models
 
         //Make new hash
         public string NewHashedPassword { get { return Hash.Encrypt(Password, Salt); } }
+
+        public LoginUserViewModel()
+        {
+
+        }
+
+        public LoginUserViewModel(User user)
+        {
+            Email = user.Email;
+        }
     }
 }

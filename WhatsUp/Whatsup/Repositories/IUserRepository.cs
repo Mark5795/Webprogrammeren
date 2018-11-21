@@ -15,12 +15,13 @@ namespace Whatsup.Repositories
         void AddUser(User user);
         byte[] GetSalt(string Email);
         User GetUser(string Email);
+        User GetUserById(int Id);
         DateTime GetDateCreated(string Email);
         User GetProfileUser(int Id);
         int GetLoggedInUser();
         ProfileUserViewModel GetProfileUserViewModel();
         void AddNewPassword(LoginUserViewModel model);
         void EditUser(ProfileUserViewModel model);
-        void DeleteUser(string Email);
+        void DeleteUser(int UserId);
     }
 }

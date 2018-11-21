@@ -186,24 +186,37 @@ namespace Whatsup.Views
         // GET: User/Delete
         public ActionResult DeleteUser()
         {
-            return View();
+            User user = userRepository.GetUserById(GetUser().Id);
+            LoginUserViewModel loginUserViewModel = new LoginUserViewModel(user);
+            return View(loginUserViewModel);
         }
 
         [HttpPost]
-        public ActionResult DeleteUser(string email)
+        public ActionResult DeleteUser(LoginUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                if (userRepository.AlreadyRegistered(email))
+                if (userRepository.ValidCredentials(model))
                 {
-                    userRepository.DeleteUser(email);
+                    userRepository.DeleteUser(GetUser().Id);
                     LogOutUser();
+
                     return RedirectToAction("Index", "Home");
                 }
+                else
+                {
+                    ModelState.AddModelError("Password", "Password is incorrect");
+                    return View(model);
+                }
             }
-            return RedirectToAction("ProfileUser", "User");
+            else
+                return View(model);
         }
 
+        private User GetUser()
+        {
+            return userRepository.GetUser(User.Identity.Name);
+        }
 
     }
 }
