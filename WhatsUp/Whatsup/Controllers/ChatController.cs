@@ -25,13 +25,7 @@ namespace Whatsup.Controllers
                 List<Message> messages = new List<Message>();
                 messages = chat.Messages.ToList();
 
-                ChatViewModel model = new ChatViewModel(GetUser().Id,
-                    index,
-                    chatRepository.GetChatMemberContactNames(GetUser().Id, chatRepository.GetChatByContactIndex(GetUser().Id, index).Id),
-                    messages,
-                    chat.Group ? "Group chat:" + chat.Name : "Chat: " + chat.Name
-                    );
-
+                ChatViewModel model = new ChatViewModel(GetUser().Id, index, chatRepository.GetChatMemberContactNames(GetUser().Id, chatRepository.GetChatByContactIndex(GetUser().Id, index).Id), messages, chat.Group ? "Group chat:" + chat.Name : "Chat: " + chat.Name);
                 return View(model);
             }
             else
@@ -67,6 +61,16 @@ namespace Whatsup.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    List<int> recipients = new List<int>();
+
+                    foreach (SelectableContactViewModel item in model.Contacts)
+                    {
+                        if (item.Selected)
+                        {
+                            recipients.Add(item.Index);
+                        }
+                    }
+                    return CreateChat(recipients, model.Name);
                     //return AddChat(model.GroupName;
                 }
             }
@@ -86,21 +90,25 @@ namespace Whatsup.Controllers
             if (chatRepository.CheckChatExist(GetUser().Id, contactIndex))
             {
                 Contact contact = contactRepository.GetContact(GetUser().Id, contactIndex);
-                //List<int> recipients = new List<int>();
-                //recipients.Add(contactIndex);
-
                 return AddChat(contactIndex, contact.NickName);
             }
             else
+            {
                 return RedirectToAction("Chat", new { index = chatRepository.GetChatByContactIndex(GetUser().Id, contactIndex) });
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CreateGroupChat(List<int> contactIndices, string name)
+        {
+            ChatListViewModel model = chatRepository.AddGroupChat(GetUser().Id, contactIndices, name);
+
         }
 
         [HttpGet]
         public ActionResult DeleteChat(int Index)
         {
             Chat chat = chatRepository.GetChatByContactIndex(GetUser().Id, Index);
-
-
             return View(chat);
         }
 
@@ -116,7 +124,6 @@ namespace Whatsup.Controllers
         public ActionResult AddChat(int contactIndex, string name)
         {
             ChatListViewModel model = chatRepository.AddChat(GetUser().Id, contactIndex, name);
-
             return RedirectToAction("Chat", new { index = model.Index});
         }
 

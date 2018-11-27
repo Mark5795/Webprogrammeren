@@ -39,6 +39,27 @@ namespace Whatsup.Repositories
             return new ChatListViewModel(chat, db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Count - 1);
         }
 
+        public ChatListViewModel AddGroupChat(int creatorId, List<int> contactIndices, string name)
+        {
+            Chat chat = new Chat();
+            chat.CreatorId = creatorId;
+            chat.Members = new List<User>();
+
+            foreach (int contactIndex in contactIndices)
+            {
+                chat.Members.Add(GetContactUserByIndex(creatorId, contactIndex));
+            }
+            
+            chat.Members.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
+            chat.CreatedOn = DateTime.Now;
+            chat.Name = name;
+
+            db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Add(chat);
+            db.SaveChanges();
+
+            return new ChatListViewModel(chat, db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Count - 1);
+        }
+
         private User GetContactUserByIndex(int ownerId, int index)
         {
             int contactId = db.Users.SingleOrDefault(a => a.Id == ownerId).Contacts.ToList()[index].ContactAccountId;
