@@ -100,7 +100,7 @@ namespace Whatsup.Views
 
             try
             {
-                User user = new User(model.Username, model.Email, model.PhoneNumber, model.PasswordHash, model.Salt, model.DateCreated);
+                User user = new User(model.Username, model.Email, model.PasswordHash, model.Salt, model.DateCreated);
                 userRepository.AddUser(user);
                 return RedirectToAction("RegisterSuccesful", "User");
             }

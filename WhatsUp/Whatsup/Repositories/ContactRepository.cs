@@ -54,5 +54,16 @@ namespace Whatsup.Repositories
 
             return contactViewModels;
         }
+
+        public IList<ChooseContactViewModel> GetChooseContactViewModels(int ownerId)
+        {
+            List<ChooseContactViewModel> chooseContactViewModels = new List<ChooseContactViewModel>();
+            List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == ownerId).Contacts.ToList();
+
+            for (int i = 0; i < contacts.Count; i++)
+                chooseContactViewModels.Add(new ChooseContactViewModel(contacts[i], i));
+
+            return chooseContactViewModels;
+        }
     }
 }

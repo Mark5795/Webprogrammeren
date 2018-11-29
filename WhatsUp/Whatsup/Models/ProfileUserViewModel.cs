@@ -24,7 +24,6 @@ namespace Whatsup.Models
         {
             Username = user.UserName;
             Email = user.Email;
-            PhoneNumber = user.PhoneNumber;
             DateCreated = user.DateCreated;
         }
 

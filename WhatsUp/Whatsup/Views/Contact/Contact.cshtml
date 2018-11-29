@@ -7,9 +7,9 @@
 <h2>Contacts</h2>
 <hr />
 
-<div class="btn btn-default" id="listButton">
+<section class="btn btn-default" id="listButton">
     @Html.ActionLink("Add Contact", "AddContact", "Contact")
-</div>
+</section>
 <hr />
 
 <section id="Contact">
@@ -17,18 +17,14 @@
 
     @foreach (var item in Model)
     {
-        <div class="btn btn-default" id="listButton">
+        <section class="btn btn-default" id="listButton">
             @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index })
-        </div>
+        </section>
         <p></p>
     }
 </section>
 
-@*<hr />
-<div>
+<section class="back-link">
     @Html.ActionLink("Back to Home", "Index", "Home")
-</div>*@
+</section>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

@@ -83,7 +83,6 @@ namespace Whatsup.Repositories
         {
             User editUser = GetProfileUser(GetLoggedInUser());
             editUser.Email = model.Email;
-            editUser.PhoneNumber = model.PhoneNumber;
             editUser.UserName = model.Username;
             db.SaveChanges();
         }

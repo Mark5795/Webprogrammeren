@@ -8,13 +8,15 @@ namespace Whatsup.Models
 {
     public class AddGroupViewModel
     {
-        public string GroupName { get; set; }
+        public IList<ChooseContactViewModel> Contacts { get; set; }
+        public string Name { get; set; }
 
         public AddGroupViewModel() { }
 
-        public AddGroupViewModel(string GroupName)
+        public AddGroupViewModel(IList<ChooseContactViewModel> contact, string name)
         {
-            this.GroupName = GroupName;
+            Contacts = contact;
+            Name = Name;
         }
     }
 }

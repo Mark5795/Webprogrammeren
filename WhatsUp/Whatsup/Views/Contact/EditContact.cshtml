@@ -13,31 +13,27 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
+    <section class="form-group">
         @Html.LabelFor(model => model.NickName, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <section class="col-md-10">
             @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.NickName, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        </section>
+    </section>
 
-    <div class="form-group">
+    <section class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
+        <section class="col-md-10">
             @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        </section>
+    </section>
 
     <input type="submit" value="Edit" class="btn btn-default" />
 }
 
 
-<div>
-    @Html.ActionLink("Back to Home", "Index", "Home")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<section class="back-link">
+    @Html.ActionLink("Back to Contact", "Contact", "Contact")
+</section>
 

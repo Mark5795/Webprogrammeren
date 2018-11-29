@@ -39,13 +39,13 @@ namespace Whatsup.Repositories
             return new ChatListViewModel(chat, db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Count - 1);
         }
 
-        public ChatListViewModel AddGroupChat(int creatorId, List<int> contactIndices, string name)
+        public ChatListViewModel AddGroupChat(int creatorId, List<int> addedContacts, string name)
         {
             Chat chat = new Chat();
             chat.CreatorId = creatorId;
             chat.Members = new List<User>();
 
-            foreach (int contactIndex in contactIndices)
+            foreach (int contactIndex in addedContacts)
             {
                 chat.Members.Add(GetContactUserByIndex(creatorId, contactIndex));
             }

@@ -25,7 +25,8 @@ namespace Whatsup.Controllers
                 List<Message> messages = new List<Message>();
                 messages = chat.Messages.ToList();
 
-                ChatViewModel model = new ChatViewModel(GetUser().Id, index, chatRepository.GetChatMemberContactNames(GetUser().Id, chatRepository.GetChatByContactIndex(GetUser().Id, index).Id), messages, chat.Group ? "Group chat:" + chat.Name : "Chat: " + chat.Name);
+                ChatViewModel model = new ChatViewModel(GetUser().Id, index, chatRepository.GetChatMemberContactNames(GetUser().Id,
+                    chatRepository.GetChatByContactIndex(GetUser().Id, index).Id), messages, chat.Group ? chat.Name : chat.Name);
                 return View(model);
             }
             else
@@ -36,7 +37,7 @@ namespace Whatsup.Controllers
         }
 
         [HttpPost]
-        public ActionResult Chat(ChatViewModel model, int Index, List<int> contactIndices, string name)
+        public ActionResult Chat(ChatViewModel model, int Index)
         {
             if (ModelState.IsValid)
             {
@@ -50,31 +51,24 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult AddGroupChat()
         {
-            IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
-            return View(contactList);
+            AddGroupViewModel model = new AddGroupViewModel();
+            model.Contacts = contactRepository.GetChooseContactViewModels(GetUser().Id);
+
+            return View(model);
         }
 
         [HttpPost]
         public ActionResult AddGroupChat(AddGroupViewModel model)
         {
-            if (model.GroupName != null)
+            List<int> addedContacts = new List<int>();
+            foreach (ChooseContactViewModel item in model.Contacts)
             {
-                if (ModelState.IsValid)
+                if (item.Chosen)
                 {
-                    List<int> recipients = new List<int>();
-
-                    foreach (SelectableContactViewModel item in model.Contacts)
-                    {
-                        if (item.Selected)
-                        {
-                            recipients.Add(item.Index);
-                        }
-                    }
-                    return CreateChat(recipients, model.Name);
-                    //return AddChat(model.GroupName;
+                    addedContacts.Add(item.Index);
                 }
             }
-            return View();
+            return CreateGroupChat(addedContacts, model.Name);
         }
 
         [HttpGet]
@@ -99,10 +93,10 @@ namespace Whatsup.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateGroupChat(List<int> contactIndices, string name)
+        public ActionResult CreateGroupChat(List<int> addedContacts, string name)
         {
-            ChatListViewModel model = chatRepository.AddGroupChat(GetUser().Id, contactIndices, name);
-
+            ChatListViewModel model = chatRepository.AddGroupChat(GetUser().Id, addedContacts, name);
+            return RedirectToAction("Chat", new { index = model.Index });
         }
 
         [HttpGet]

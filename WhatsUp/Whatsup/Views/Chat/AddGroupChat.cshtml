@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Whatsup.Models.ContactViewModel>
+﻿@model Whatsup.Models.AddGroupViewModel
 
 @{
     ViewBag.Title = "AddGroupChat";
@@ -6,20 +6,49 @@
 
 <h2>New group chat</h2>
 
-<div class="form-horizontal">
-    <h4>Add group participants</h4>
-    <hr />
-    @*Een lijst maken met contacten die al in de chat zitten*@
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
+    <div class="form-horizontal">
+        <hr />
+        <h4>Fill in the group name</h4>
 
-    <hr />
-    <section id="Contact">
-        @foreach (var item in Model)
-        {
-            <div class="btn btn-default">
-                @Html.ActionLink(item.NickName, "CreateChat", new { contactIndex = item.Index })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-            <p></p>
-        }
+        </div>
+
+        <hr />
+        <h4>Add group participants</h4>
+        <div class="form-group">
+            @if (Model.Contacts != null)
+            {
+                for (int i = 0; i < Model.Contacts.Count; i++)
+                {
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.CheckBoxFor(model => model.Contacts[i].Chosen)
+                            @Html.DisplayFor(model => model.Contacts[i].NickName)
+                            @Html.HiddenFor(model => model.Contacts[i].NickName)
+                            @Html.HiddenFor(model => model.Contacts[i].Index)
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <section class="back-link">
+        @Html.ActionLink("Back to New Chat", "ChatContact", "chat")
     </section>
-</div>
+}

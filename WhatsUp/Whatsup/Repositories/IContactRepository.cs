@@ -16,6 +16,6 @@ namespace Whatsup.Repositories
         void EditContact(int OwnerAccountId, ContactViewModel model);
         void DeleteContact(int ContactAccountId, int Index);
         IEnumerable<ContactViewModel> GetAllContacts(int OwnerAccountId);
-        //IList<SelectContactViewModel> GetAllContacts(int OwnerAccountId);
+        IList<ChooseContactViewModel> GetChooseContactViewModels(int ownerId);
     }
 }

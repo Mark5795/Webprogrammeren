@@ -9,17 +9,16 @@
 
 <p>Username: @ViewBag.Username</p>
 <p>Email: @ViewBag.Email</p>
-<p>PhoneNumber: @ViewBag.PhoneNumber</p>
 <p>Account created: @ViewBag.DateCreated</p>
 
-<div class="btn btn-default">
+<section class="btn btn-default">
     @Html.ActionLink("Edit Account", "EditUser", "User")
-</div>
+</section>
 
-<div class="btn btn-default">
+<section class="btn btn-default">
     @Html.ActionLink("Delete Account", "DeleteUser", "User")
-</div>
+</section>
 
-<div>
+<section class="back-link">
     @Html.ActionLink("Back to Home", "Index", "Home")
-</div>
+</section>

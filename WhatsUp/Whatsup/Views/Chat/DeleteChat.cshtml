@@ -8,13 +8,17 @@
 
 <h3>Delete chat with @Html.DisplayFor(model => model.Name)?</h3>
 
-<div>
+<section>
     @using (Html.BeginForm())
     {
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Name)
         <input type="submit" value="Delete" class="btn btn-default" />
     }
-</div>
+</section>
 
-@Html.ActionLink("Back to Chats", "Chat", "Chat")
+
+
+<section class="back-link">
+    @Html.ActionLink("Back to Chats", "Chat", "Chat")
+</section>

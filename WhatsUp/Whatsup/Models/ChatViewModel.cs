@@ -23,35 +23,23 @@ namespace Whatsup.Models
             List<MessageViewModel> messages = new List<MessageViewModel>();
             Usernames = new Dictionary<int, string>();
 
-            //try
-            //{
-            //    AddUserNamesToMessageViewModels(userId, usernames, messageList, ref messages);
-            //}
-            //catch (ArgumentNullException e) { } // Empty chat
             try
             {
-                AddUserNamesToMessageViewModels(messageList, ref messages);
+                AddUserNamesToMessageViewModels(userId, usernames, messageList, ref messages);
             }
             catch (ArgumentNullException e) { } // Empty chat
 
             Index = index;
             Reader = messages;
             Name = name;
+            Usernames = usernames;
         }
 
-        //private void AddUserNamesToMessageViewModels(int userId, IDictionary<int, string> usernames, ICollection<Message> messageList, ref List<MessageViewModel> messages)
-        //{
-        //    foreach (Message message in messageList)
-        //    {
-        //        messages.Add(new MessageViewModel(userId, usernames[message.SenderId], message));
-        //    }
-        //}
-
-        private void AddUserNamesToMessageViewModels(ICollection<Message> messageList, ref List<MessageViewModel> messages)
+        private void AddUserNamesToMessageViewModels(int userId, IDictionary<int, string> usernames, ICollection<Message> messageList, ref List<MessageViewModel> messages)
         {
             foreach (Message message in messageList)
             {
-                messages.Add(new MessageViewModel(message));
+                messages.Add(new MessageViewModel(userId, usernames[message.SenderId], message));
             }
         }
     }

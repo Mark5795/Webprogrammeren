@@ -1,44 +1,85 @@
 ﻿@model Whatsup.Models.ChatViewModel
 
 @{
-    ViewBag.Title = "Chat";
+    ViewBag.Title = Model.Name;
 }
-
-<h2>@ViewBag.Nickname</h2>
 
 <section class="grid-container">
     <section class="grid-item">
+        <h2 class="chatname">@Html.Label(Model.Name)</h2>
+
+        @if (Model.Usernames.Count > 2)
+        {
+        <section class="usernames">
+            @foreach (var Item in Model.Usernames.Reverse())
+            {
+                if (Item.Value == "you")
+                {
+                    @Html.Label(Item.Value, new { @class = "username" })
+                }
+                else
+                {
+                    @Html.Label(Item.Value + ",", new { @class = "username" })
+                }
+            }
+        </section>
+        }
+
+        <section class="dropdown">
+            <button class="btn btn-default" id="options-button">Options</button>
+            <section class="dropdown-content">
+                <section class="btn btn-default" id="dropdown-links">
+                    @Html.ActionLink("Edit Chat Name", "EditChat", new { index = Model.Index })
+                </section>
+                <section class="btn btn-default" id="dropdown-links">
+                    @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+                </section>
+            </section>
+
+            <h2>@ViewBag.Nickname</h2>
+
+        </section>
+    </section>
+
+    <section class="grid-item" id="contect-section">
         @for (int i = 0; i < Model.Reader.Count; i++)
         {
-            <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
-                <section class="content">
-                    @Html.Raw(Model.Reader[i].Content)
-                </section>
+        <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
+            <section class="content">
+                @Html.Raw(Model.Reader[i].Content)
+            </section>
+            @if (Model.Usernames.Count > 2)
+            {
                 <section class="info">
                     @Html.Raw(Model.Reader[i].SenderName)
                 </section>
-            </section>
+            }
+        </section>
         }
     </section>
 
-    <section class="grid-item">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model => model.Index)
-            @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your message" } })
-            @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-            <input type="submit" value="Send" class="btn btn-default" />
-        }
+    <section class="grid-item" id="write-section">
+        <section @*class="input-group"*@>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Index)
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @id = "input-message", @placeholder = "Type a message" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
+                <section @*class="input-group-btn"*@>
+                    <input type="submit" value="Send" class="btn btn-default" id="input-button" />
+                </section>
+            }
+        </section>
     </section>
 </section>
 
-<div class="btn btn-default">
-    @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
-</div>
-
-<div>
+<section class="back-link">
     @Html.ActionLink("Back to Home", "Index", "Home")
-</div>
+</section>
 
+<script>
+    var element = document.getElementById("contect-section");
+    element.scrollTop = element.scrollHeight;
+ </script>
 

@@ -8,17 +8,24 @@
 @if (User.Identity.IsAuthenticated)
 {
 <section id="Contact">
-    <div class="btn btn-default" id="listButton">
+    <section class="btn btn-default" id="top-button">
         @Html.ActionLink("New Chat", "ChatContact", "Chat")
-    </div>
+    </section>
     <hr />
 
-    @foreach (var item in Model)
+    @if (Model.Count() == 0)
     {
-    <div class="btn btn-default" id="listButton">
-        @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
-        @Html.DisplayFor(modelItem => item.LastMessage)
-    </div>
+        <p>You have no chats, go to "New Chat" to create a chat!</p>
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <section class="btn btn-default" id="listButton">
+                @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
+                <p>@Html.DisplayFor(modelItem => item.LastMessage)</p>
+            </section>
+        }
     }
 </section>
 
@@ -26,14 +33,13 @@
         @*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
         @*@{Html.RenderPartial("Chat", Model);}*@
     </section>
-
 }
 
 else
 {
-    <div class="jumbotron">
+    <section class="jumbotron">
         <h1>WhatsUp</h1>
         <p class="lead">WhatsUp is an online chat service. You can add your friends or talk in groupchats.</p>
         <p><a href="@Url.Action("Register", "User")" class="btn btn-primary btn-lg">Sign up &raquo;</a></p>
-    </div>
+    </section>
 }
