@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Whatsup.Models
 {
-    public class CreateUserViewModel
+    public class AddUserViewModel
     {
         [Required]
         [Display(Name = "Name")]

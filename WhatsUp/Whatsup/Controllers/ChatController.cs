@@ -79,12 +79,12 @@ namespace Whatsup.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateChat(int contactIndex)
+        public ActionResult AddChat(int contactIndex)
         {
             if (chatRepository.CheckChatExist(GetUser().Id, contactIndex))
             {
                 Contact contact = contactRepository.GetContact(GetUser().Id, contactIndex);
-                return AddChat(contactIndex, contact.NickName);
+                return AddNewChat(contactIndex, contact.NickName);
             }
             else
             {
@@ -115,7 +115,7 @@ namespace Whatsup.Controllers
 
 
         [HttpGet]
-        public ActionResult AddChat(int contactIndex, string name)
+        public ActionResult AddNewChat(int contactIndex, string name)
         {
             ChatListViewModel model = chatRepository.AddChat(GetUser().Id, contactIndex, name);
             return RedirectToAction("Chat", new { index = model.Index});

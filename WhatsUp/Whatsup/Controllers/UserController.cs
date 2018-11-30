@@ -22,24 +22,8 @@ namespace Whatsup.Views
         // GET: User
         public ActionResult Index()
         {
-            //return View(db.Users.ToList());
             return View();
         }
-
-        //// GET: User/Details/5
-        //public ActionResult Details(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    User user = db.Users.Find(id);
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    return View(user);
-        //}
 
         // Login: User
         [HttpGet]
@@ -87,7 +71,7 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(CreateUserViewModel model)
+        public ActionResult Register(AddUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +86,7 @@ namespace Whatsup.Views
             {
                 User user = new User(model.Username, model.Email, model.PasswordHash, model.Salt, model.DateCreated);
                 userRepository.AddUser(user);
-                return RedirectToAction("RegisterSuccesful", "User");
+                return RedirectToAction("Login", "User");
             }
             //catch (Exception e)
             //{
@@ -130,16 +114,10 @@ namespace Whatsup.Views
         public ActionResult ProfileUser()
         {
             ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
-
-            ViewBag.Username = profileUserViewModel.Username;
             ViewBag.Email = profileUserViewModel.Email;
-            ViewBag.PhoneNumber = profileUserViewModel.PhoneNumber;
-            ViewBag.DateCreated = profileUserViewModel.DateCreated;
 
             return View(profileUserViewModel);
         }
-
-
 
         public ActionResult LogOut()
         {
@@ -162,7 +140,6 @@ namespace Whatsup.Views
 
             ViewBag.Username = profileUserViewModel.Username;
             ViewBag.Email = profileUserViewModel.Email;
-            ViewBag.PhoneNumber = profileUserViewModel.PhoneNumber;
             ViewBag.DateCreated = profileUserViewModel.DateCreated;
 
             return View(profileUserViewModel);

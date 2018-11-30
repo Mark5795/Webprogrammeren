@@ -141,6 +141,39 @@ namespace Whatsup.Repositories
             return memberNames;
         }
 
+        public void GetChatMemberContactName(int contactOwnerId)
+        {
+            try
+            {
+                foreach (Chat chat in GetChatsByMember(contactOwnerId))
+                {
+                    if (chat.Members.ToList()[0].Id == contactOwnerId)
+                    {
+                        chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[1].Id).NickName;
+                    }
+                    else if (chat.Members.ToList()[1].Id == contactOwnerId)
+                    {
+                        chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[0].Id).NickName;
+                    }
+                }
+                db.SaveChanges();
+            }
+            catch { }
+        }
+
+        public IEnumerable<ChatListViewModel> GetChatListViewModelsByMember(int id)
+        {
+            List<ChatListViewModel> chats = new List<ChatListViewModel>();
+            List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == id).Chats.ToList();
+
+            for (int index = 0; index < chatList.Count; index++)
+            {
+                chats.Add(new ChatListViewModel(chatList[index], index));
+            }
+
+            return chats;
+        }
+
         public void DeleteChat(string Name, int Id)
         {
             Chat chat = db.Chat.Single(c => (c.Name == Name) &&  (c.Id == Id));

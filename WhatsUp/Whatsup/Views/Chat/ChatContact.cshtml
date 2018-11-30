@@ -25,7 +25,7 @@
         foreach (var item in Model)
         {
             <div class="btn btn-default">
-                @Html.ActionLink(item.NickName, "CreateChat", new { contactIndex = item.Index })
+                @Html.ActionLink(item.NickName, "AddChat", new { contactIndex = item.Index })
             </div>
             <p></p>
         }

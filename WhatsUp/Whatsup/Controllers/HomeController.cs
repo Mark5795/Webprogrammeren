@@ -12,7 +12,6 @@ namespace Whatsup.Controllers
     [RequireHttps]
     public class HomeController : Controller
     {
-        private IContactRepository contactRepository = new ContactRepository();
         private IUserRepository userRepository = new UserRepository();
         private IChatRepository chatRepository = new ChatRepository();
 
@@ -21,7 +20,9 @@ namespace Whatsup.Controllers
         {
             if (GetUser() != null)
             {
-                IEnumerable<ChatListViewModel> chatList = chatRepository.GetAllChats(GetUser().Id);
+                //to get the right chatnames
+                chatRepository.GetChatMemberContactName(GetUser().Id);
+                IEnumerable<ChatListViewModel> chatList = chatRepository.GetChatListViewModelsByMember(GetUser().Id);
                 return View(chatList);
             }
             return View();

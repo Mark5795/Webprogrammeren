@@ -189,7 +189,7 @@
     <Compile Include="Repositories\IContactRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Models\CreateUserViewModel.cs" />
+    <Compile Include="Models\AddUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -243,7 +243,7 @@
     <Content Include="Views\Contact\ContactProfile.cshtml" />
     <Content Include="Views\Contact\EditContact.cshtml" />
     <Content Include="Views\Chat\ChatContact.cshtml" />
-    <Content Include="Views\Chat\CreateChat.cshtml" />
+    <Content Include="Views\Chat\AddChat.cshtml" />
     <Content Include="Views\Chat\AddGroupChat.cshtml" />
     <Content Include="Views\Chat\DeleteChat.cshtml" />
     <Content Include="Views\Chat\EditChat.cshtml" />

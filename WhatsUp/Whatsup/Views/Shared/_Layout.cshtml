@@ -18,14 +18,15 @@
                 </button>
                 @Html.ActionLink("WhatsUp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Chats", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Contacts", "Contact", "Contact")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                </ul>
-                @if (User.Identity.IsAuthenticated)
-                {
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Chats", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Contacts", "Contact", "Contact")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="@Url.Action("ProfileUser", "User")">
@@ -41,9 +42,15 @@
                             </a>
                         </li>
                     </ul>
-                }
-                else
-                {
+                </div>
+            }
+            else
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Chats", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="@Url.Action("Register", "User")">
@@ -59,10 +66,10 @@
                             </a>
                         </li>
                     </ul>
-                }
+                    </div>
+                    }
+                </div>
             </div>
-        </div>
-    </div>
     <div class="container body-content">
         @RenderBody()
         @*<hr />*@

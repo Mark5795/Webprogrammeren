@@ -1,14 +1,14 @@
-﻿@*@model Whatsup.Models.User*@
-@model WhatsUp.Models.LoginUserViewModel
+﻿@model WhatsUp.Models.LoginUserViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Account";
 }
 
-<h2>Delete</h2>
+<h3>Are you sure you want to delete your account?</h3>
+<hr />
+<h4>Type your password for verification.</h4>
 
-<h3>Are you sure you want to delete this?</h3>
-<section>
+<section class="form-horizontal">
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
@@ -23,8 +23,10 @@
             </section>
         </section>
 
-        <section class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
+        <section class="form-group">
+            <section class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </section>
         </section>
     }
 </section>

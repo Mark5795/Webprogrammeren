@@ -3,11 +3,16 @@
     ViewBag.Title = "LogOut";
 }
 
-<h2>Log out</h2>
+<h3>Log out</h3>
+<hr />
 
 <h4>Are you sure you want to log out?</h4>
 
-<p><a href="@Url.Action("LogOutUser", "User")" class="btn btn-primary btn-lg">Logout &raquo;</a></p>
+<section class="logout-button">
+    <p><a href="@Url.Action("LogOutUser", "User")" class="btn btn-primary btn-lg">Logout &raquo;</a></p>
+</section>
 
-
+<section class="back-link">
+    @Html.ActionLink("Back to Chats", "Chat", "Chat")
+</section>
 

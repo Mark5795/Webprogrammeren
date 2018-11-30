@@ -11,7 +11,6 @@ namespace Whatsup.Repositories
     {
         Chat GetChat(string Name);
         void AddMessage(int SenderId, ChatViewModel message);
-        //void AddChat(int CreatorId, Chat chat);
         Chat GetChatByContactIndex(int contactOwnerId, int contactIndex);
         bool CheckChatExist(int contactOwnerId, int contactIndex);
         ChatListViewModel AddChat(int creatorId, int contactIndex, string name);
@@ -19,6 +18,8 @@ namespace Whatsup.Repositories
         IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);
         void GroupchatName(int CreatorId, AddGroupViewModel model);
         IDictionary<int, string> GetChatMemberContactNames(int userId, int chatId);
+        IEnumerable<ChatListViewModel> GetChatListViewModelsByMember(int id);
+        void GetChatMemberContactName(int contactOwnerId);
         void DeleteChat(string Name, int Id);
     }
 }
