@@ -8,9 +8,8 @@
 @if (User.Identity.IsAuthenticated)
 {
 <section id="Contact">
-    <section class="btn btn-default" id="top-button">
-        @Html.ActionLink("New Chat", "ChatContact", "Chat")
-    </section>
+    @*<section class="btn btn-default" id="top-button">*@
+        @Html.ActionLink("New Chat", "ChatContact", "Chat", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
     <hr />
 
     @if (Model.Count() == 0)

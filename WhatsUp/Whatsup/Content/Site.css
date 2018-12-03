@@ -3,8 +3,8 @@
     padding-bottom: 20px;
 }
 
-#top-button{
-    margin-top: 2em;
+#top-button {
+    margin-top: 1em;
 }
 
 .back-link {
@@ -30,12 +30,12 @@
 
 .listButton2 {
     display: inline-block;
-    height: 4em;
+    height: 3.5em;
     width: 18em;
     padding-left: 0.5em;
     padding-top: 0.5em;
     margin-bottom: 0;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: normal;
     line-height: 1.428571429;
     text-align: left;
@@ -50,6 +50,7 @@
     user-select: none;
     background-color: #ffffff;
     border-color: #cccccc;
+    text-decoration-line: none;
 }
 
 .under-text {
@@ -57,12 +58,32 @@
     margin-left: 1em;
 }
 
-#ContactListButton {
-    display: block;
-    width: 15em;
-    height: 4em;
-    margin-top: 1em;
-    text-align: left;
+.ContactListButton:hover {
+    background-color: #428BCA;
+    color: white;
+    text-decoration-line: none;
+}
+
+.ContactListButton {
+    display: inline-block;
+    height: 2.5em;
+    width: 10em;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 2.428571;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ffffff;
+    border-color: #cccccc;
+    text-decoration-line: none;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -126,7 +147,8 @@ textarea {
 }
 
 .message {
-    width: 20em;
+    min-width: 10em;
+    max-width: 40em;
     line-height: 1.5em;
     padding: 1em;
     background: white;
@@ -140,6 +162,12 @@ textarea {
     color: black;
 }
 
+.content-time {
+    display: inline-block;
+    float: right;
+    margin-bottom: -10px;
+}
+
 .info {
     font-size: 0.75em;
     font-style: italic;
@@ -149,7 +177,7 @@ textarea {
     float: right;
     /*margin-left: 1em;*/
     margin-left: calc(100% - 21em);
-    border-bottom-left-radius: 0px;
+    /*border-bottom-left-radius: 0px;*/
     border: 1px solid #abafbb;
     background-color: #ff6666;
 }

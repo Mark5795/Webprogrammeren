@@ -4,13 +4,9 @@
     ViewBag.Title = "ChatContact";
 }
 
-<div class="btn btn-default">
-    @Html.ActionLink("New GroupChat", "AddGroupChat", "Chat")
-</div>
-<p></p>
-<div class="btn btn-default">
-    @Html.ActionLink("Add Contact", "AddContact", "Contact")
-</div>
+@Html.ActionLink("Add Contact", "AddContact", "Contact", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
+@Html.ActionLink("New GroupChat", "AddGroupChat", "Chat", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
+
 <hr />
 
 <h2>Contacts to chat</h2>
@@ -24,13 +20,10 @@
     {
         foreach (var item in Model)
         {
-            <div class="btn btn-default">
-                @Html.ActionLink(item.NickName, "AddChat", new { contactIndex = item.Index })
-            </div>
+            @Html.ActionLink(item.NickName, "AddChat", new { contactIndex = item.Index }, new { @class = "ContactListButton" })
             <p></p>
         }
     }
-
 
 </section>
 

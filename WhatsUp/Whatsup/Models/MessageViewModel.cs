@@ -18,7 +18,8 @@ namespace WhatsUp.Models
 
         public MessageViewModel(Message message)
         {
-            SentOn = message.CreatedOn.ToLongDateString();
+            //SentOn = message.CreatedOn.ToLongDateString();
+            SentOn = message.CreatedOn.ToShortTimeString();
             Content = message.Content;
         }
 

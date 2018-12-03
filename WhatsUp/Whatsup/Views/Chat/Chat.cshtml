@@ -46,7 +46,9 @@
         {
         <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
             <section class="content">
-                @Html.Raw(Model.Reader[i].Content)
+                @*@Html.Raw(Model.Reader[i].Content)*@
+                <p>@Model.Reader[i].Content</p>
+                <p class="content-time">@Model.Reader[i].SentOn</p>
             </section>
             @if (Model.Usernames.Count > 2)
             {
