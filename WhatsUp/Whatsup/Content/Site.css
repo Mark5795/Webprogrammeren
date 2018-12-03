@@ -22,6 +22,49 @@
     text-align: left;
 }
 
+.listButton2:hover {
+    background-color: #428BCA;
+    color: white;
+    text-decoration-line: none;
+}
+
+.listButton2 {
+    display: inline-block;
+    height: 4em;
+    width: 18em;
+    padding-left: 0.5em;
+    padding-top: 0.5em;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ffffff;
+    border-color: #cccccc;
+}
+
+.under-text {
+    margin-top: -2em;
+    margin-left: 1em;
+}
+
+#ContactListButton {
+    display: block;
+    width: 15em;
+    height: 4em;
+    margin-top: 1em;
+    text-align: left;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

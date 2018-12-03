@@ -81,14 +81,14 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult AddChat(int contactIndex)
         {
-            if (chatRepository.CheckChatExist(GetUser().Id, contactIndex))
+            if (!chatRepository.CheckIfChatExists(GetUser().Id, contactIndex))
             {
                 Contact contact = contactRepository.GetContact(GetUser().Id, contactIndex);
                 return AddNewChat(contactIndex, contact.NickName);
             }
             else
             {
-                return RedirectToAction("Chat", new { index = chatRepository.GetChatByContactIndex(GetUser().Id, contactIndex) });
+                return RedirectToAction("Chat", new { index = chatRepository.GetChatIndexByContactOwnerId(GetUser().Id, contactIndex)});
             }
         }
 

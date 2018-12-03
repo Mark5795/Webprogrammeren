@@ -21,18 +21,23 @@
     {
         foreach (var item in Model)
         {
-            <section class="btn btn-default" id="listButton">
-                @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, null)
-                <p>@Html.DisplayFor(modelItem => item.LastMessage)</p>
-            </section>
+            @Html.ActionLink(item.Name, "Chat", "Chat", new { index = item.Index }, new { @class = "listButton2" })
+            if (item.LastMessage.Length < 30)
+            {
+                <p class="under-text">@Html.DisplayFor(modelItem => item.LastMessage)</p>
+            }
+            else
+            {
+                <p class="under-text">@Html.DisplayFor(modelItem => item.LastMessage).ToString().Substring(0, Math.Min(item.LastMessage.Length, 22))....</p>
+            }
         }
     }
 </section>
 
-    <section class="Chat">
-        @*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
-        @*@{Html.RenderPartial("Chat", Model);}*@
-    </section>
+<section class="Chat">
+@*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
+@*@{Html.RenderPartial("Chat", Model);}*@
+        </section>
 }
 
 else

@@ -7,7 +7,7 @@
 <h2>Contacts</h2>
 <hr />
 
-<section class="btn btn-default" id="listButton">
+<section class="btn btn-default">
     @Html.ActionLink("Add Contact", "AddContact", "Contact")
 </section>
 <hr />
@@ -17,9 +17,7 @@
 
     @foreach (var item in Model)
     {
-        <section class="btn btn-default" id="listButton">
-            @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index })
-        </section>
+        @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index }, new { @class = "btn btn-default" })
         <p></p>
     }
 </section>

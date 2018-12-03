@@ -88,6 +88,82 @@ namespace Whatsup.Repositories
             return null;
         }
 
+        //public Chat GetChatById(int Id)
+        //{
+        //    Chat chatList = db.Chat.SingleOrDefault(a => a.Id == Id);
+        //    if (chatList != null)
+        //    {
+        //        return chatList;
+        //    }
+        //    return null;
+        //}
+
+        public int GetChatIndexByContactOwnerId(int contactOwnerId, int contactIndex)
+        {
+            bool member1 = false, member2 = false;
+            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            User contact = GetContactUserByIndex(contactOwnerId, contactIndex);
+
+            for (int i = 0; i < chatList.Count; i++)
+            {
+                if (chatList[i].Members.Count == 2)
+                {
+                    foreach (User user in chatList[i].Members)
+                    {
+                        if (user.Id == contactOwnerId)
+                            member1 = true;
+                        else if (user.Id == contact.Id)
+                            member2 = true;
+                    }
+
+                    if (member1 && member2)
+                    {
+                        return i;
+                    }
+                    else
+                    {
+                        member1 = false;
+                        member2 = false;
+                    }
+                }
+            }
+
+            throw new InvalidOperationException("No chat index could be found");
+        }
+
+        public bool CheckIfChatExists(int contactOwnerId, int contactIndex)
+        {
+            bool member1 = false, member2 = false;
+            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            User contact = GetContactUserByIndex(contactOwnerId, contactIndex);
+
+            for (int i = 0; i < chatList.Count; i++)
+            {
+                if (chatList[i].Members.Count == 2)
+                {
+                    foreach (User user in chatList[i].Members)
+                    {
+                        if (user.Id == contactOwnerId)
+                            member1 = true;
+                        else if (user.Id == contact.Id)
+                            member2 = true;
+                    }
+
+                    if (member1 && member2)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        member1 = false;
+                        member2 = false;
+                    }
+                }
+            }
+
+            return false;
+        }
+
         public bool CheckChatExist(int contactOwnerId, int contactIndex)
         {
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
