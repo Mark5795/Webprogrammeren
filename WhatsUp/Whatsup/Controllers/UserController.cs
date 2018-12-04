@@ -165,6 +165,7 @@ namespace Whatsup.Views
                 if (userRepository.ValidCredentials(model))
                 {
                     userRepository.DeleteUser(GetUser().Id);
+
                     LogOutUser();
 
                     return RedirectToAction("Index", "Home");

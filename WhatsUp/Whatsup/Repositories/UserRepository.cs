@@ -16,9 +16,13 @@ namespace Whatsup.Repositories
         public bool AlreadyRegistered(string Email)
         {
             if (db.Users.Any(i => i.Email == Email))
+            {
                 return true;
+            }                
             else
+            {
                 return false;
+            }                
         }
 
         public bool ValidCredentials(LoginUserViewModel model)
@@ -26,12 +30,18 @@ namespace Whatsup.Repositories
             if (AlreadyRegistered(model.Email))
             {
                 if (GetUser(model.Email).PasswordHash == model.PasswordHash)
-                        return true;
+                {
+                    return true;
+                }                        
                 else
+                {
                     return false;
+                }                    
             }
             else
+            {
                 return false;
+            }               
         }
 
         public User GetUser(string Email)
@@ -89,9 +99,10 @@ namespace Whatsup.Repositories
 
         public void DeleteUser(int UserId)
         {
-            User user = db.Users.Single(a => a.Id == UserId);
-            db.Users.Remove(user);
-            db.SaveChanges();
+                User user = db.Users.Single(a => a.Id == UserId);
+                Chat chat = db.Chat.(a => a.Id == UserId);
+                db.Users.Remove(user);
+                db.SaveChanges();
         }
     }
 }

@@ -37,8 +37,8 @@ namespace Whatsup.Models
                 .Map(ca =>
                 {
                     ca.MapLeftKey("ChatId");
-                    ca.MapRightKey("MemberId");
-                    ca.ToTable("ChatMember");
+                    ca.MapRightKey("ParticipantsId");
+                    ca.ToTable("ChatParticipants");
                 });
         }
     }

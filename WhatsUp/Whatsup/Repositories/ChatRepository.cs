@@ -88,16 +88,6 @@ namespace Whatsup.Repositories
             return null;
         }
 
-        //public Chat GetChatById(int Id)
-        //{
-        //    Chat chatList = db.Chat.SingleOrDefault(a => a.Id == Id);
-        //    if (chatList != null)
-        //    {
-        //        return chatList;
-        //    }
-        //    return null;
-        //}
-
         public int GetChatIndexByContactOwnerId(int contactOwnerId, int contactIndex)
         {
             bool member1 = false, member2 = false;

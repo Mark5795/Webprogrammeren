@@ -158,17 +158,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hash.cs" />
-    <Compile Include="Migrations\201811151223124_opnieuw.cs" />
-    <Compile Include="Migrations\201811151223124_opnieuw.Designer.cs">
-      <DependentUpon>201811151223124_opnieuw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201811291246231_deletePhonenumber.cs" />
-    <Compile Include="Migrations\201811291246231_deletePhonenumber.Designer.cs">
-      <DependentUpon>201811291246231_deletePhonenumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812041453522_Cleain.cs" />
-    <Compile Include="Migrations\201812041453522_Cleain.Designer.cs">
-      <DependentUpon>201812041453522_Cleain.cs</DependentUpon>
+    <Compile Include="Migrations\201812041912058_Opnieuw.cs" />
+    <Compile Include="Migrations\201812041912058_Opnieuw.Designer.cs">
+      <DependentUpon>201812041912058_Opnieuw.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddGroupViewModel.cs" />
@@ -269,14 +261,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811151223124_opnieuw.resx">
-      <DependentUpon>201811151223124_opnieuw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811291246231_deletePhonenumber.resx">
-      <DependentUpon>201811291246231_deletePhonenumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812041453522_Cleain.resx">
-      <DependentUpon>201812041453522_Cleain.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812041912058_Opnieuw.resx">
+      <DependentUpon>201812041912058_Opnieuw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
