@@ -19,7 +19,7 @@ namespace Whatsup.Models
 
         public virtual User Creator { get; set; }
         public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<User> Members { get; set; }
+        public virtual ICollection<User> Participants { get; set; }
 
         public Chat() { }
     }

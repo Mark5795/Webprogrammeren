@@ -19,11 +19,17 @@ namespace WhatsUp.Models
         {
             Name = chat.Name;
             if (chat.Messages == null)
+            {
                 LastMessage = "No messages";
+            }
             else if (chat.Messages.Count == 0)
+            {
                 LastMessage = "No messages";
+            }                
             else
+            {
                 LastMessage = chat.Messages.Last().Content;
+            }                
         }
 
         public ChatListViewModel(Chat chat, int index) : this(chat)

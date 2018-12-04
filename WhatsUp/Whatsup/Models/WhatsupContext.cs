@@ -32,7 +32,7 @@ namespace Whatsup.Models
                 .WithRequired(c => c.OwnerAccount);
 
             modelBuilder.Entity<Chat>()
-                .HasMany<User>(c => c.Members)
+                .HasMany<User>(c => c.Participants)
                 .WithMany(a => a.Chats)
                 .Map(ca =>
                 {

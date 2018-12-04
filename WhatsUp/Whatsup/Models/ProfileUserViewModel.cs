@@ -30,8 +30,5 @@ namespace Whatsup.Models
         {
             this.Id = Id;
         }
-
-
-
     }
 }

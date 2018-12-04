@@ -10,7 +10,6 @@ namespace WhatsUp.Models
     [Table("Message")]
     public partial class Message
     {
-        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public DateTime CreatedOn{ get; set; }

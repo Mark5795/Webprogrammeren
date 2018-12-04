@@ -71,7 +71,7 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(AddUserViewModel model)
+        public ActionResult Register([Bind(Include = "Email,UserName,Password")] AddUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -88,20 +88,9 @@ namespace Whatsup.Views
                 userRepository.AddUser(user);
                 return RedirectToAction("Login", "User");
             }
-            //catch (Exception e)
-            //{
-            //    ModelState.AddModelError("Password", e.ToString());
-            //    return View(model);
-            //}
-            catch (DbEntityValidationException ex)
+            catch (Exception e)
             {
-                foreach (var entityValidationErrors in ex.EntityValidationErrors)
-                {
-                    foreach (var validationError in entityValidationErrors.ValidationErrors)
-                    {
-                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
-                    }
-                }
+                //ModelState.AddModelError("Password", e.ToString());
                 return View(model);
             }
         }
@@ -150,7 +139,7 @@ namespace Whatsup.Views
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditUser([Bind(Include = "Email,PhoneNumber,UserName")] ProfileUserViewModel model)
+        public ActionResult EditUser([Bind(Include = "Email,UserName")] ProfileUserViewModel model)
         {
             if (ModelState.IsValid)
             {

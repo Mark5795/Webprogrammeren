@@ -11,6 +11,7 @@ namespace Whatsup.Models
     {
         public int Index { get; set; }
 
+        [Required]
         public string NickName { get; set; }
 
         [Required]

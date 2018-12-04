@@ -166,13 +166,16 @@
     <Compile Include="Migrations\201811291246231_deletePhonenumber.Designer.cs">
       <DependentUpon>201811291246231_deletePhonenumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812041453522_Cleain.cs" />
+    <Compile Include="Migrations\201812041453522_Cleain.Designer.cs">
+      <DependentUpon>201812041453522_Cleain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddGroupViewModel.cs" />
     <Compile Include="Models\Chat.cs" />
     <Compile Include="Models\ChatListViewModel.cs" />
     <Compile Include="Models\ChatViewModel.cs" />
     <Compile Include="Models\Contact.cs" />
-    <Compile Include="Models\ContactChatViewModel.cs" />
     <Compile Include="Models\ContactViewModel.cs" />
     <Compile Include="Models\LoginUserViewModel.cs" />
     <Compile Include="Models\Message.cs" />
@@ -249,7 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -272,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811291246231_deletePhonenumber.resx">
       <DependentUpon>201811291246231_deletePhonenumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812041453522_Cleain.resx">
+      <DependentUpon>201812041453522_Cleain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

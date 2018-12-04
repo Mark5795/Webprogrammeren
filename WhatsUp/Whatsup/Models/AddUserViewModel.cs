@@ -22,10 +22,6 @@ namespace Whatsup.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Mobile Number")]
-        public string PhoneNumber { get; set; }
-
-        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }

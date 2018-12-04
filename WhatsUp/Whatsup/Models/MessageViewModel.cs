@@ -18,7 +18,6 @@ namespace WhatsUp.Models
 
         public MessageViewModel(Message message)
         {
-            //SentOn = message.CreatedOn.ToLongDateString();
             SentOn = message.CreatedOn.ToShortTimeString();
             Content = message.Content;
         }
@@ -26,7 +25,9 @@ namespace WhatsUp.Models
         public MessageViewModel(int userId, string name, Message message) : this(message)
         {
             if (userId == message.SenderId)
+            {
                 IsSender = true;
+            }
             SenderName = name;
         }
     }

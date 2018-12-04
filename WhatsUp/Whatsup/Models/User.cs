@@ -17,15 +17,9 @@ namespace Whatsup.Models
 
         [Required]
         public string Email { get; set; }
-        //public int EmailConfirmed { get; set; }
         [Required]
         public string PasswordHash { get; set; }
         public byte[] Salt { get; set; }
-        //public string SecurityStamp { get; set; }
-        //public int TwoFactorEnabled { get; set; }
-        //public DateTime LockoutEndDateUtc { get; set; }
-        //public int LockoutEnabled { get; set; }
-        //public int AccessFailedCount { get; set; }
         [Required]
         public string UserName { get; set; }
         public DateTime DateCreated { get; set; }
@@ -39,13 +33,8 @@ namespace Whatsup.Models
         {
             this.UserName = UserName;
             this.Email = Email;
-            //this.EmailConfirmed = 0;
             this.PasswordHash = PasswordHash;
             this.Salt = Salt;
-            //this.SecurityStamp = "0";
-            //this.PhoneNumberConfirmed = 0;
-            //this.TwoFactorEnabled = 0;
-            //this.LockoutEnabled = 0;
             this.DateCreated = DateCreated;
         }
 

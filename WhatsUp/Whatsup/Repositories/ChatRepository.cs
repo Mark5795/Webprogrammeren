@@ -25,11 +25,11 @@ namespace Whatsup.Repositories
             Chat chat = new Chat();
 
             chat.CreatorId = creatorId;
-            chat.Members = new List<User>();
+            chat.Participants = new List<User>();
 
-            chat.Members.Add(GetContactUserByIndex(creatorId, contactIndex));
+            chat.Participants.Add(GetContactUserByIndex(creatorId, contactIndex));
 
-            chat.Members.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
+            chat.Participants.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
             chat.CreatedOn = DateTime.Now;
             chat.Name = name;
 
@@ -43,14 +43,14 @@ namespace Whatsup.Repositories
         {
             Chat chat = new Chat();
             chat.CreatorId = creatorId;
-            chat.Members = new List<User>();
+            chat.Participants = new List<User>();
 
             foreach (int contactIndex in addedContacts)
             {
-                chat.Members.Add(GetContactUserByIndex(creatorId, contactIndex));
+                chat.Participants.Add(GetContactUserByIndex(creatorId, contactIndex));
             }
             
-            chat.Members.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
+            chat.Participants.Add(db.Users.SingleOrDefault(a => a.Id == creatorId));
             chat.CreatedOn = DateTime.Now;
             chat.Name = name;
 
@@ -106,9 +106,9 @@ namespace Whatsup.Repositories
 
             for (int i = 0; i < chatList.Count; i++)
             {
-                if (chatList[i].Members.Count == 2)
+                if (chatList[i].Participants.Count == 2)
                 {
-                    foreach (User user in chatList[i].Members)
+                    foreach (User user in chatList[i].Participants)
                     {
                         if (user.Id == contactOwnerId)
                             member1 = true;
@@ -139,9 +139,9 @@ namespace Whatsup.Repositories
 
             for (int i = 0; i < chatList.Count; i++)
             {
-                if (chatList[i].Members.Count == 2)
+                if (chatList[i].Participants.Count == 2)
                 {
-                    foreach (User user in chatList[i].Members)
+                    foreach (User user in chatList[i].Participants)
                     {
                         if (user.Id == contactOwnerId)
                             member1 = true;
@@ -199,7 +199,7 @@ namespace Whatsup.Repositories
         public IDictionary<int, string> GetChatMemberContactNames(int userId, int chatId)
         {
             Dictionary<int, string> memberNames = new Dictionary<int, string>();
-            List<User> chatMembers = db.Chat.SingleOrDefault(c => c.Id == chatId).Members.ToList();
+            List<User> chatMembers = db.Chat.SingleOrDefault(c => c.Id == chatId).Participants.ToList();
             List<Contact> contacts = db.Contact.Where(c => c.OwnerAccountId == userId).ToList();
 
             foreach (User member in chatMembers)
@@ -223,15 +223,15 @@ namespace Whatsup.Repositories
             {
                 foreach (Chat chat in GetChatsByMember(contactOwnerId))
                 {
-                    if (chat.Members.Count() == 2)
+                    if (chat.Participants.Count() == 2)
                     {
-                        if (chat.Members.ToList()[0].Id == contactOwnerId)
+                        if (chat.Participants.ToList()[0].Id == contactOwnerId)
                         {
-                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[1].Id).NickName;
+                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Participants.ToList()[1].Id).NickName;
                         }
-                        else if (chat.Members.ToList()[1].Id == contactOwnerId)
+                        else if (chat.Participants.ToList()[1].Id == contactOwnerId)
                         {
-                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[0].Id).NickName;
+                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Participants.ToList()[0].Id).NickName;
                         }
                     }
                 }
