@@ -88,7 +88,7 @@ namespace Whatsup.Controllers
             }
             else
             {
-                return RedirectToAction("Chat", new { index = chatRepository.GetChatIndexByContactOwnerId(GetUser().Id, contactIndex)});
+                return RedirectToAction("Chat", new { index = chatRepository.GetChatIndexByContactOwnerId(GetUser().Id, contactIndex) });
             }
         }
 

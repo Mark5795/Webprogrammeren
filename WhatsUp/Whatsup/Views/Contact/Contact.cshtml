@@ -4,21 +4,18 @@
     ViewBag.Title = "Contacts";
 }
 
-<h2>Contacts</h2>
-<hr />
-
-<section class="btn btn-default">
-    @Html.ActionLink("Add Contact", "AddContact", "Contact")
+<section class="top-button">
+    @Html.ActionLink("Add Contact", "AddContact", "Contact", null, new { @class = "btn btn-primary btn-lg" })
 </section>
+
+<h2>Contacts</h2>
+
 <hr />
 
 <section id="Contact">
-
-
     @foreach (var item in Model)
     {
-        @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index }, new { @class = "btn btn-default" })
-        <p></p>
+        @Html.ActionLink(item.NickName, "ContactProfile", new { index = item.Index }, new { @class = "ContactListButton" })
     }
 </section>
 

@@ -6,19 +6,26 @@
 
 <h2>Are you sure you want to delete this Contact?</h2>
 
-<section id="DeleteContact">
-    <p>@ViewBag.Email</p>
+<hr />
 
+<section class="form-horizontal">
+    <section class="form-group">
+        <section class="col-md-offset-1 col-md-10" ">
+            <p><b>Name:</b> @Model.NickName</p>
+            <p><b>Email:</b> @Model.Email</p>
+        </section>
+    </section>
 </section>
-@using (Html.BeginForm())
-{
-    <input type="submit" value="Yes" class="btn btn-default" />
-}
 
+@Html.ActionLink("No", "ContactProfile", new { index = Model.Index }, new { @class = "btn btn-primary btn-lg" })
 
-<section class="btn btn-default">
-    @Html.ActionLink("No", "ContactProfile", new { index = Model.Index })
+<section class="delete-yes-button">
+    @using (Html.BeginForm())
+    {
+        <input type="submit" value="Yes" class="btn btn-default btn-lg" />
+    }
 </section>
+
 
 <section class="back-link">
     @Html.ActionLink("Back to Contact", "Contact", "Contact")

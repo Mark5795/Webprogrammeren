@@ -4,49 +4,60 @@
     ViewBag.Title = "AddGroupChat";
 }
 
-<h2>New group chat</h2>
+<h3>New group chat</h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <hr />
-        <h4>Fill in the group name</h4>
+<section class="form-horizontal">
+    <hr />
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <h4>Fill in the group name</h4>
 
-        <hr />
-        <h4>Add group participants</h4>
-        <div class="form-group">
-            @if (Model.Contacts != null)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <section class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <section class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </section>
+    </section>
+
+    <hr />
+    <h4>Add group participants</h4>
+
+    <section class="form-group">
+        @if (Model.Contacts != null)
+        {
+            for (int i = 0; i < Model.Contacts.Count; i++)
             {
-                for (int i = 0; i < Model.Contacts.Count; i++)
-                {
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            @Html.CheckBoxFor(model => model.Contacts[i].Chosen)
+                <section class="col-md-10">
+                    <section class="participantsListButton">
+                        @Html.CheckBoxFor(model => model.Contacts[i].Chosen, new { @class = "participantsListButton-checkbox" })
+                        <section class="participantsListButton-text">
                             @Html.DisplayFor(model => model.Contacts[i].NickName)
-                            @Html.HiddenFor(model => model.Contacts[i].NickName)
-                            @Html.HiddenFor(model => model.Contacts[i].Index)
-                        </div>
-                    </div>
-                }
+                        </section>
+                    </section>
+                    @Html.HiddenFor(model => model.Contacts[i].NickName)
+                    @Html.HiddenFor(model => model.Contacts[i].Index)
+                    <p></p>
+                </section>
             }
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+        }
+        else
+        {
+            <p>You have no contacts, go to "Add Contact" to add contacts!</p>
+        }
+    </section>
+
+    <hr />
+    <section class="form-group">
+        <section class="col-md-10">
+            <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+        </section>
+    </section>
+</section>
 
     <section class="back-link">
         @Html.ActionLink("Back to New Chat", "ChatContact", "chat")

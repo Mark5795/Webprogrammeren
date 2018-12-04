@@ -223,13 +223,16 @@ namespace Whatsup.Repositories
             {
                 foreach (Chat chat in GetChatsByMember(contactOwnerId))
                 {
-                    if (chat.Members.ToList()[0].Id == contactOwnerId)
+                    if (chat.Members.Count() == 2)
                     {
-                        chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[1].Id).NickName;
-                    }
-                    else if (chat.Members.ToList()[1].Id == contactOwnerId)
-                    {
-                        chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[0].Id).NickName;
+                        if (chat.Members.ToList()[0].Id == contactOwnerId)
+                        {
+                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[1].Id).NickName;
+                        }
+                        else if (chat.Members.ToList()[1].Id == contactOwnerId)
+                        {
+                            chat.Name = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Contacts.SingleOrDefault(c => c.ContactAccountId == chat.Members.ToList()[0].Id).NickName;
+                        }
                     }
                 }
                 db.SaveChanges();

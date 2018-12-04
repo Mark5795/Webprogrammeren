@@ -7,12 +7,15 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-<section id="Contact">
-    @*<section class="btn btn-default" id="top-button">*@
-        @Html.ActionLink("New Chat", "ChatContact", "Chat", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
+    <section class="top-button">
+        @Html.ActionLink("New Chat", "ChatContact", "Chat", null, new { @class = "btn btn-primary btn-lg" })
+    </section>
+
+    <h2>Chats</h2>
+
     <hr />
 
-    @if (Model.Count() == 0)
+    if (Model.Count() == 0)
     {
         <p>You have no chats, go to "New Chat" to create a chat!</p>
     }
@@ -27,16 +30,10 @@
             }
             else
             {
-                <p class="under-text">@Html.DisplayFor(modelItem => item.LastMessage).ToString().Substring(0, Math.Min(item.LastMessage.Length, 22))....</p>
+                <p class="under-text">@Html.DisplayFor(modelItem => item.LastMessage).ToString().Substring(0, Math.Min(item.LastMessage.Length, 45))....</p>
             }
         }
     }
-</section>
-
-<section class="Chat">
-@*@RenderPage("~/Views/Chat/Chat.cshtml", Whatsup.Models.ChatViewModel)*@
-@*@{Html.RenderPartial("Chat", Model);}*@
-        </section>
 }
 
 else

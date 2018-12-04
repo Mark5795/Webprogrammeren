@@ -10,23 +10,23 @@
 
         @if (Model.Usernames.Count > 2)
         {
-        <section class="usernames">
-            @foreach (var Item in Model.Usernames.Reverse())
-            {
-                if (Item.Value == "you")
+            <section class="usernames">
+                @foreach (var Item in Model.Usernames.Reverse())
                 {
-                    @Html.Label(Item.Value, new { @class = "username" })
+                    if (Item.Value == "you")
+                    {
+                        @Html.Label(Item.Value, new { @class = "username" })
+                    }
+                    else
+                    {
+                        @Html.Label(Item.Value + ",", new { @class = "username" })
+                    }
                 }
-                else
-                {
-                    @Html.Label(Item.Value + ",", new { @class = "username" })
-                }
-            }
-        </section>
+            </section>
         }
 
         <section class="dropdown">
-            <button class="btn btn-default" id="options-button">Options</button>
+            <button class="btn btn-primary btn-lg" id="options-button">Options</button>
             <section class="dropdown-content">
                 <section class="btn btn-default" id="dropdown-links">
                     @Html.ActionLink("Edit Chat Name", "EditChat", new { index = Model.Index })
@@ -46,7 +46,6 @@
         {
         <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
             <section class="content">
-                @*@Html.Raw(Model.Reader[i].Content)*@
                 <p>@Model.Reader[i].Content</p>
                 <p class="content-time">@Model.Reader[i].SentOn</p>
             </section>
@@ -61,18 +60,14 @@
     </section>
 
     <section class="grid-item" id="write-section">
-        <section @*class="input-group"*@>
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Index)
                 @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @id = "input-message", @placeholder = "Type a message" } })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
-                <section @*class="input-group-btn"*@>
                     <input type="submit" value="Send" class="btn btn-default" id="input-button" />
-                </section>
             }
-        </section>
     </section>
 </section>
 

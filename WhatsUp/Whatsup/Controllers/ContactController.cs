@@ -32,7 +32,6 @@ namespace Whatsup.Controllers
         {
             Contact contact = contactRepository.GetContact(GetUser().Id, Index);
             ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            ViewBag.Email = contactViewModel.Email;
             return View(contactViewModel);
         }
 
@@ -70,7 +69,6 @@ namespace Whatsup.Controllers
         {
             Contact contact = contactRepository.GetContact(GetUser().Id, Index);
             ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            ViewBag.Email = contactViewModel.Email;
             return View(contactViewModel);
         }
 

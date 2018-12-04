@@ -4,35 +4,41 @@
     ViewBag.Title = "AddContact";
 }
 
-<h2>Add Contact</h2>
+<h3>Add Contact</h3>
 
-<section id="AddNewContact">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<section class="form-horizontal">
+    <hr />
 
-    @using (Html.BeginForm())
-    {
-        //Against cross-site request forgery.
-        @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-        <section class="form-group">
-            @Html.LabelFor(model => model.NickName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <section class="col-md-10">
-                @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NickName, "", new { @class = "text-danger" })
-            </section>
-        </section>
-
+    <section class="form-group">
         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        <section class="col-md-10">
+            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </section>
+    </section>
 
-        <input type="submit" value="Add" class="btn btn-default" />
-    }
+    <section class="form-group">
+        @Html.LabelFor(model => model.NickName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <section class="col-md-10">
+            @Html.EditorFor(model => model.NickName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NickName, "", new { @class = "text-danger" })
+        </section>
+    </section>
 
+    <section class="form-group">
+        <section class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Add" class="btn btn-primary btn-lg" />
+        </section>
+    </section>
 </section>
+}
 
-<section class="back-link">
-    @Html.ActionLink("Back to New Chat", "ChatContact", "chat")
-</section>
+        <section class="back-link">
+            @Html.ActionLink("Back to New Chat", "ChatContact", "chat")
+        </section>
 

@@ -243,7 +243,6 @@
     <Content Include="Views\Contact\ContactProfile.cshtml" />
     <Content Include="Views\Contact\EditContact.cshtml" />
     <Content Include="Views\Chat\ChatContact.cshtml" />
-    <Content Include="Views\Chat\AddChat.cshtml" />
     <Content Include="Views\Chat\AddGroupChat.cshtml" />
     <Content Include="Views\Chat\DeleteChat.cshtml" />
     <Content Include="Views\Chat\EditChat.cshtml" />

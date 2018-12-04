@@ -4,7 +4,13 @@
     ViewBag.Title = "Profile";
 }
 
-<h3>Profile</h3>
+<section class="top-button">
+    @Html.ActionLink("Edit Account", "EditUser", "User", new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Delete Account", "DeleteUser", "User", new { @class = "btn btn-primary btn-lg" })
+</section>
+
+<h2>Profile</h2>
+
 <hr />
 
 <section class="form-horizontal">
@@ -14,17 +20,6 @@
             <p><b>Name:</b> @Model.Username</p>
             <p><b>Email:</b> @Model.Email</p>
             <p><b>Account created:</b> @Model.DateCreated.ToString()</p>
-        </section>
-    </section>
-
-    <section class="form-group">
-        <section class="col-md-10">
-            <section class="btn btn-default">
-                @Html.ActionLink("Edit Account", "EditUser", "User")
-            </section>
-            <section class="btn btn-default">
-                @Html.ActionLink("Delete Account", "DeleteUser", "User")
-            </section>
         </section>
     </section>
 </section>

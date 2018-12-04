@@ -3,8 +3,14 @@
     padding-bottom: 20px;
 }
 
-#top-button {
+.top-button {
     margin-top: 1em;
+    float: right;
+}
+
+.delete-yes-button {
+    margin-top: -45px;
+    margin-left: 22em;
 }
 
 .back-link {
@@ -65,7 +71,8 @@
 }
 
 .ContactListButton {
-    display: inline-block;
+    display: block;
+    margin-top: 10px;
     height: 2.5em;
     width: 10em;
     font-size: 22px;
@@ -200,6 +207,8 @@ textarea {
 }
 
 #options-button {
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
 
 .usernames {
@@ -237,6 +246,7 @@ textarea {
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    margin-top: -10px;
 }
 
 #dropdown-links{
@@ -266,10 +276,55 @@ textarea {
     background-color: whitesmoke;
 }
 
+/*AddGroupchat*/
+.participantsListButton {
+    display: inline-block;
+    height: 2.5em;
+    width: 10em;
+    font-size: 22px;
+    font-weight: normal;
+    line-height: 2.428571;
+    /*text-align: center;*/
+    white-space: nowrap;
+    vertical-align: middle;
+    /*cursor: pointer;*/
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ffffff;
+    border-color: #cccccc;
+    text-decoration-line: none;
+    margin-left: 9em;
+}
+
+.participantsListButton-text {
+    padding-left: 15px;
+}
+
+.participantsListButton-checkbox:hover {
+    cursor: pointer
+}
+
+.participantsListButton-checkbox {
+    width: 55px;
+    height: 45px;
+    float: right;
+}
+
 /*logout*/
 .logout-button
 {
     margin-top:2em;
+}
+
+/*about*/
+
+.about-text {
+    margin: 1px;
+    font-size: 18px;
 }
 
 /*Footer*/

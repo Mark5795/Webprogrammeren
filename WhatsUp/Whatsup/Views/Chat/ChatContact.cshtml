@@ -4,12 +4,14 @@
     ViewBag.Title = "ChatContact";
 }
 
-@Html.ActionLink("Add Contact", "AddContact", "Contact", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
-@Html.ActionLink("New GroupChat", "AddGroupChat", "Chat", null, new { @class = "btn btn-primary btn-lg", id = "top-button" })
-
-<hr />
+<section class="top-button">
+    @Html.ActionLink("New GroupChat", "AddGroupChat", "Chat", null, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Add Contact", "AddContact", "Contact", null, new { @class = "btn btn-primary btn-lg" })
+</section>
 
 <h2>Contacts to chat</h2>
+
+<hr />
 
 <section id="Contact">
     @if (Model.Count() == 0)
@@ -21,7 +23,6 @@
         foreach (var item in Model)
         {
             @Html.ActionLink(item.NickName, "AddChat", new { contactIndex = item.Index }, new { @class = "ContactListButton" })
-            <p></p>
         }
     }
 
