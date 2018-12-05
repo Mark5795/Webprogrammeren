@@ -23,22 +23,35 @@
                     }
                 }
             </section>
-        }
+            <section class="dropdown">
+                <button class="btn btn-primary btn-lg" id="options-button">Options</button>
+                <section class="dropdown-content">
+                    <section class="btn btn-default" id="dropdown-links">
+                        @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+                    </section>
+                    <section class="btn btn-default" id="dropdown-links">
+                        @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+                    </section>
+                </section>
 
-        <section class="dropdown">
-            <button class="btn btn-primary btn-lg" id="options-button">Options</button>
-            <section class="dropdown-content">
-                <section class="btn btn-default" id="dropdown-links">
-                    @Html.ActionLink("Edit Chat Name", "EditChat", new { index = Model.Index })
-                </section>
-                <section class="btn btn-default" id="dropdown-links">
-                    @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
-                </section>
+                <h2>@ViewBag.Nickname</h2>
+
             </section>
+        }
+        else
+        {
+            <section class="dropdown">
+                <button class="btn btn-primary btn-lg" id="options-button">Options</button>
+                <section class="dropdown-content">
+                    <section class="btn btn-default" id="dropdown-links">
+                        @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+                    </section>
+                </section>
 
-            <h2>@ViewBag.Nickname</h2>
+                <h2>@ViewBag.Nickname</h2>
 
-        </section>
+            </section>
+        }
     </section>
 
     <section class="grid-item" id="contect-section">

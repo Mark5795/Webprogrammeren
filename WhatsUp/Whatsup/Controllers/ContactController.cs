@@ -21,6 +21,7 @@ namespace Whatsup.Controllers
         private IUserRepository userRepository = new UserRepository();
         private IContactRepository contactRepository = new ContactRepository();
 
+        [HttpGet]
         public ActionResult Contact()
         {
             IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
@@ -35,6 +36,7 @@ namespace Whatsup.Controllers
             return View(contactViewModel);
         }
 
+        [HttpGet]
         public ActionResult AddContact()
         {
             return View();
@@ -90,7 +92,6 @@ namespace Whatsup.Controllers
             }
             return View(model);
         }
-
 
         [HttpGet]
         public ActionResult DeleteContact(int Index)

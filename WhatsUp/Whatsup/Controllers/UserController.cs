@@ -20,6 +20,7 @@ namespace Whatsup.Views
         private IChatRepository chatRepository = new ChatRepository();
 
         // GET: User
+        [HttpGet]
         public ActionResult Index()
         {
             return View();
@@ -95,11 +96,15 @@ namespace Whatsup.Views
             }
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult RegisterSuccesful()
         {
             return View();
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult ProfileUser()
         {
             ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
@@ -108,6 +113,8 @@ namespace Whatsup.Views
             return View(profileUserViewModel);
         }
 
+        [Authorize]
+        [HttpGet]
         public ActionResult LogOut()
         {
             return View();
@@ -123,6 +130,8 @@ namespace Whatsup.Views
         }
 
         // GET: User/Edit
+        [Authorize]
+        [HttpGet]
         public ActionResult EditUser()
         {
             ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
@@ -150,6 +159,8 @@ namespace Whatsup.Views
         }
 
         // GET: User/Delete
+        [Authorize]
+        [HttpGet]
         public ActionResult DeleteUser()
         {
             chatRepository.DeleteAllChatsForMember(GetUser().Id);
