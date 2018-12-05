@@ -19,14 +19,12 @@ namespace Whatsup.Views
         private IUserRepository userRepository = new UserRepository();
         private IChatRepository chatRepository = new ChatRepository();
 
-        // GET: User
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
-        // Login: User
         [HttpGet]
         public ActionResult Login()
         {
@@ -34,7 +32,8 @@ namespace Whatsup.Views
         }
 
         [HttpPost]
-        public ActionResult Login(LoginUserViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "Email,Password")] LoginUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -60,16 +59,12 @@ namespace Whatsup.Views
                 return View(model);
         }
 
-        // Register: User
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
 
-        // POST: User/Register
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register([Bind(Include = "Email,UserName,Password")] AddUserViewModel model)
@@ -82,25 +77,16 @@ namespace Whatsup.Views
                     return View(model);
                 }
             }
-
             try
             {
                 User user = new User(model.Username, model.Email, model.PasswordHash, model.Salt, model.DateCreated);
                 userRepository.AddUser(user);
                 return RedirectToAction("Login", "User");
             }
-            catch (Exception e)
+            catch
             {
-                //ModelState.AddModelError("Password", e.ToString());
                 return View(model);
             }
-        }
-
-        [Authorize]
-        [HttpGet]
-        public ActionResult RegisterSuccesful()
-        {
-            return View();
         }
 
         [Authorize]
@@ -129,7 +115,6 @@ namespace Whatsup.Views
             return RedirectToAction("Index", "Home");
         }
 
-        // GET: User/Edit
         [Authorize]
         [HttpGet]
         public ActionResult EditUser()
@@ -143,9 +128,6 @@ namespace Whatsup.Views
             return View(profileUserViewModel);
         }
 
-        // POST: User/Edit
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditUser([Bind(Include = "Email,UserName")] ProfileUserViewModel model)
@@ -155,22 +137,22 @@ namespace Whatsup.Views
                 userRepository.EditUser(model);
                 return RedirectToAction("ProfileUser", "User");
             }
-            return RedirectToAction("ProfileUser", "User");
+            return View(model);
         }
 
-        // GET: User/Delete
         [Authorize]
         [HttpGet]
         public ActionResult DeleteUser()
         {
-            chatRepository.DeleteAllChatsForMember(GetUser().Id);
+            chatRepository.DeleteAllChatsForParticipant(GetUser().Id);
             User user = userRepository.GetUserById(GetUser().Id);
             LoginUserViewModel loginUserViewModel = new LoginUserViewModel(user);
             return View(loginUserViewModel);
         }
 
         [HttpPost]
-        public ActionResult DeleteUser(LoginUserViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteUser([Bind(Include = "password")] LoginUserViewModel model)
         {
             if (ModelState.IsValid)
             {

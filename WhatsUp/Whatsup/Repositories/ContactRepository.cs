@@ -18,6 +18,19 @@ namespace Whatsup.Repositories
             return db.Users.Single(a => a.Id == OwnerAccountId).Contacts.ToList()[Index];
         }
 
+        public bool CheckContactExist(int OwnerAccountId, int Index)
+        {
+            List<Contact> ContactList = db.Users.Single(a => a.Id == OwnerAccountId).Contacts.ToList();
+            if (Index <= ContactList.Count - 1)
+            {
+                if (ContactList[Index] != null)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public Contact GetContactFromContactAccountId(int ContactAccountId)
         {
             return db.Contact.SingleOrDefault(a => a.ContactAccountId == ContactAccountId);
@@ -50,7 +63,9 @@ namespace Whatsup.Repositories
             List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == OwnerAccountId).Contacts.ToList();
 
             for (int i = 0; i < contacts.Count; i++)
+            {
                 contactViewModels.Add(new ContactViewModel(contacts[i], i));
+            }           
 
             return contactViewModels;
         }
@@ -61,7 +76,9 @@ namespace Whatsup.Repositories
             List<Contact> contacts = db.Users.SingleOrDefault(a => a.Id == ownerId).Contacts.ToList();
 
             for (int i = 0; i < contacts.Count; i++)
+            {
                 chooseContactViewModels.Add(new ChooseContactViewModel(contacts[i], i));
+            }                
 
             return chooseContactViewModels;
         }

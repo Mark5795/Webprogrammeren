@@ -21,8 +21,8 @@ namespace Whatsup.Controllers
             if (GetUser() != null)
             {
                 //to get the right chatnames
-                chatRepository.GetChatMemberContactName(GetUser().Id);
-                IEnumerable<ChatListViewModel> chatList = chatRepository.GetChatListViewModelsByMember(GetUser().Id);
+                chatRepository.GetChatParticipantContactName(GetUser().Id);
+                IEnumerable<ChatListViewModel> chatList = chatRepository.GetChatListViewModelsByParticipant(GetUser().Id);
                 return View(chatList);
             }
             return View();
@@ -30,8 +30,6 @@ namespace Whatsup.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 

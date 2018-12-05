@@ -27,7 +27,7 @@
                 <button class="btn btn-primary btn-lg" id="options-button">Options</button>
                 <section class="dropdown-content">
                     <section class="btn btn-default" id="dropdown-links">
-                        @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
+                        @Html.ActionLink("Change Chat Name", "EditChat", new { index = Model.Index })
                     </section>
                     <section class="btn btn-default" id="dropdown-links">
                         @Html.ActionLink("Delete Chat", "DeleteChat", new { index = Model.Index })
@@ -76,6 +76,7 @@
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
+
                 @Html.HiddenFor(model => model.Index)
                 @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control", @id = "input-message", @placeholder = "Type a message", autofocus = "" } })
                 @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })

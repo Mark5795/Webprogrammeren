@@ -25,26 +25,26 @@ namespace Whatsup.Controllers
                 List<Message> messages = new List<Message>();
                 messages = chat.Messages.ToList();
 
-                ChatViewModel model = new ChatViewModel(GetUser().Id, index, chatRepository.GetChatMemberContactNames(GetUser().Id,
+                ChatViewModel model = new ChatViewModel(GetUser().Id, index, chatRepository.GetChatParticipantContactNames(GetUser().Id,
                     chatRepository.GetChatByContactIndex(GetUser().Id, index).Id), messages, chat.Group ? chat.Name : chat.Name);
                 return View(model);
             }
             else
             {
-                ViewBag.ErrorMessage = "That chat doesn't exist";
-                return RedirectToAction("List");
+                return RedirectToAction("Index", "Home");
             }
         }
 
         [HttpPost]
-        public ActionResult Chat(ChatViewModel model, int Index)
+        [ValidateAntiForgeryToken]
+        public ActionResult Chat([Bind(Include = "Content")] ChatViewModel model, int Index)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && model.Content != null)
             {
                 chatRepository.AddMessage(GetUser().Id, model);
                 return RedirectToAction("Chat", new { index = model.Index});
             }
-            return View();
+            return RedirectToAction("Chat", new { index = model.Index });
         }
 
 
@@ -58,17 +58,27 @@ namespace Whatsup.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddGroupChat(AddGroupViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddGroupChat([Bind(Include = "Name")] AddGroupViewModel model)
         {
-            List<int> addedContacts = new List<int>();
-            foreach (ChooseContactViewModel item in model.Contacts)
+            if (model.Name != null)
             {
-                if (item.Chosen)
+                List<int> addedContacts = new List<int>();
+                foreach (ChooseContactViewModel item in model.Contacts)
                 {
-                    addedContacts.Add(item.Index);
+                    if (item.Chosen)
+                    {
+                        addedContacts.Add(item.Index);
+                    }
                 }
+                if (addedContacts.Count == 0)
+                {
+                    ViewBag.Error = "Please select a contact!";
+                    return View(model);
+                }
+                return CreateGroupChat(addedContacts, model.Name);
             }
-            return CreateGroupChat(addedContacts, model.Name);
+            return View(model);
         }
 
         [HttpGet]

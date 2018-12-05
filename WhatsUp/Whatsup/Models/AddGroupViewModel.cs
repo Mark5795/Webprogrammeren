@@ -9,6 +9,8 @@ namespace Whatsup.Models
     public class AddGroupViewModel
     {
         public IList<ChooseContactViewModel> Contacts { get; set; }
+
+        [Required]
         public string Name { get; set; }
 
         public AddGroupViewModel() { }

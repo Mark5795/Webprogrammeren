@@ -31,9 +31,13 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult ContactProfile(int Index)
         {
-            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
-            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            return View(contactViewModel);
+            if (contactRepository.CheckContactExist(GetUser().Id, Index))
+            {
+                Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+                ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+                return View(contactViewModel);
+            }
+            return RedirectToAction("Contact", "Contact");
         }
 
         [HttpGet]
@@ -43,7 +47,8 @@ namespace Whatsup.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddContact(ContactViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddContact([Bind(Include = "Email,NickName")] ContactViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -69,13 +74,18 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult EditContact(int Index)
         {
-            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
-            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            return View(contactViewModel);
+            if (contactRepository.CheckContactExist(GetUser().Id, Index))
+            {
+                Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+                ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+                return View(contactViewModel);
+            }
+            return RedirectToAction("Contact", "Contact");
         }
 
         [HttpPost]
-        public ActionResult EditContact(ContactViewModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult EditContact([Bind(Include = "Email,NickName")] ContactViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -96,17 +106,21 @@ namespace Whatsup.Controllers
         [HttpGet]
         public ActionResult DeleteContact(int Index)
         {
-            Contact contact = contactRepository.GetContact(GetUser().Id, Index);
-            ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
-            ViewBag.Email = contactViewModel.Email;
-            return View(contactViewModel);
+
+            if (contactRepository.CheckContactExist(GetUser().Id, Index))
+            {
+                Contact contact = contactRepository.GetContact(GetUser().Id, Index);
+                ContactViewModel contactViewModel = new ContactViewModel(contact, Index);
+                ViewBag.Email = contactViewModel.Email;
+                return View(contactViewModel);
+            }
+            return RedirectToAction("Contact", "Contact");
         }
 
         [HttpPost]
         public ActionResult DeleteContact(ContactViewModel model, int Index)
         {
             contactRepository.DeleteContact(GetUser().Id, Index);
-            ModelState.AddModelError("Email", "Contact is deleted");
             return RedirectToAction("Contact", "Contact");
         }
 

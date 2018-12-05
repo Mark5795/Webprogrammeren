@@ -68,11 +68,11 @@ namespace Whatsup.Repositories
             return user;
         }
 
-        public void AddMessage(int memberId, ChatViewModel model)
+        public void AddMessage(int participantId, ChatViewModel model)
         {
-            Chat chat = GetChatByContactIndex(memberId, model.Index);
-            List<Chat> chatList = GetChatsByMember(memberId);
-            Message message = new Message(memberId, chat.Id, model);
+            Chat chat = GetChatByContactIndex(participantId, model.Index);
+            List<Chat> chatList = GetChatsByParticipant(participantId);
+            Message message = new Message(participantId, chat.Id, model);
 
             chat.Messages.Add(message);
             db.SaveChanges();
@@ -90,8 +90,8 @@ namespace Whatsup.Repositories
 
         public int GetChatIndexByContactOwnerId(int contactOwnerId, int contactIndex)
         {
-            bool member1 = false, member2 = false;
-            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            bool participant1 = false, participant2 = false;
+            List<Chat> chatList = GetChatsByParticipant(contactOwnerId);
             User contact = GetContactUserByIndex(contactOwnerId, contactIndex);
 
             for (int i = 0; i < chatList.Count; i++)
@@ -101,30 +101,33 @@ namespace Whatsup.Repositories
                     foreach (User user in chatList[i].Participants)
                     {
                         if (user.Id == contactOwnerId)
-                            member1 = true;
+                        {
+                            participant1 = true;
+                        }                            
                         else if (user.Id == contact.Id)
-                            member2 = true;
+                        {
+                            participant2 = true;
+                        }                            
                     }
 
-                    if (member1 && member2)
+                    if (participant1 && participant2)
                     {
                         return i;
                     }
                     else
                     {
-                        member1 = false;
-                        member2 = false;
+                        participant1 = false;
+                        participant2 = false;
                     }
                 }
             }
-
             throw new InvalidOperationException("No chat index could be found");
         }
 
         public bool CheckIfChatExists(int contactOwnerId, int contactIndex)
         {
-            bool member1 = false, member2 = false;
-            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            bool participant1 = false, participant2 = false;
+            List<Chat> chatList = GetChatsByParticipant(contactOwnerId);
             User contact = GetContactUserByIndex(contactOwnerId, contactIndex);
 
             for (int i = 0; i < chatList.Count; i++)
@@ -134,37 +137,43 @@ namespace Whatsup.Repositories
                     foreach (User user in chatList[i].Participants)
                     {
                         if (user.Id == contactOwnerId)
-                            member1 = true;
+                        {
+                            participant1 = true;
+                        }
                         else if (user.Id == contact.Id)
-                            member2 = true;
+                        {
+                            participant2 = true;
+                        }
                     }
 
-                    if (member1 && member2)
+                    if (participant1 && participant2)
                     {
                         return true;
                     }
                     else
                     {
-                        member1 = false;
-                        member2 = false;
+                        participant1 = false;
+                        participant2 = false;
                     }
                 }
             }
-
             return false;
         }
 
         public bool CheckChatExist(int contactOwnerId, int contactIndex)
         {
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == contactOwnerId).Chats.ToList();
-            if (chatList != null)
+            if (contactIndex <= chatList.Count - 1)
             {
-                return true;
+                if (chatList[contactIndex] != null)
+                {
+                    return true;
+                }
             }
             return false;
         }
 
-        private List<Chat> GetChatsByMember(int id)
+        private List<Chat> GetChatsByParticipant(int id)
         {
             return db.Users.SingleOrDefault(a => a.Id == id).Chats.ToList();
         }
@@ -175,7 +184,9 @@ namespace Whatsup.Repositories
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == Id).Chats.ToList();
 
             for (int i = 0; i < chatList.Count; i++)
+            {
                 chatListViewModels.Add(new ChatListViewModel(chatList[i], i));
+            }               
 
             return chatListViewModels;
         }
@@ -186,32 +197,36 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public IDictionary<int, string> GetChatMemberContactNames(int userId, int chatId)
+        public IDictionary<int, string> GetChatParticipantContactNames(int userId, int chatId)
         {
-            Dictionary<int, string> memberNames = new Dictionary<int, string>();
-            List<User> chatMembers = db.Chat.SingleOrDefault(c => c.Id == chatId).Participants.ToList();
+            Dictionary<int, string> participantNames = new Dictionary<int, string>();
+            List<User> chatParticipants = db.Chat.SingleOrDefault(c => c.Id == chatId).Participants.ToList();
             List<Contact> contacts = db.Contact.Where(c => c.OwnerAccountId == userId).ToList();
 
-            foreach (User member in chatMembers)
+            foreach (User participant in chatParticipants)
             {
-                if (userId == member.Id)
+                if (userId == participant.Id)
                 {
-                    memberNames.Add(member.Id, "you");
+                    participantNames.Add(participant.Id, "you");
                 }
-                else if (contacts.Any(c => c.ContactAccountId == member.Id))
-                    memberNames.Add(member.Id, contacts.SingleOrDefault(c => c.ContactAccountId == member.Id).NickName);
+                else if (contacts.Any(c => c.ContactAccountId == participant.Id))
+                {
+                    participantNames.Add(participant.Id, contacts.SingleOrDefault(c => c.ContactAccountId == participant.Id).NickName);
+                }                    
                 else
-                    memberNames.Add(member.Id, member.Email);
+                {
+                    participantNames.Add(participant.Id, participant.Email);
+                }                    
             }
 
-            return memberNames;
+            return participantNames;
         }
 
-        public void GetChatMemberContactName(int contactOwnerId)
+        public void GetChatParticipantContactName(int contactOwnerId)
         {
             try
             {
-                foreach (Chat chat in GetChatsByMember(contactOwnerId))
+                foreach (Chat chat in GetChatsByParticipant(contactOwnerId))
                 {
                     if (chat.Participants.Count() == 2)
                     {
@@ -230,7 +245,7 @@ namespace Whatsup.Repositories
             catch { }
         }
 
-        public IEnumerable<ChatListViewModel> GetChatListViewModelsByMember(int id)
+        public IEnumerable<ChatListViewModel> GetChatListViewModelsByParticipant(int id)
         {
             List<ChatListViewModel> chats = new List<ChatListViewModel>();
             List<Chat> chatList = db.Users.SingleOrDefault(a => a.Id == id).Chats.ToList();
@@ -250,9 +265,9 @@ namespace Whatsup.Repositories
             db.SaveChanges();
         }
 
-        public void DeleteAllChatsForMember(int contactOwnerId)
+        public void DeleteAllChatsForParticipant(int contactOwnerId)
         {
-            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            List<Chat> chatList = GetChatsByParticipant(contactOwnerId);
             for (int i = 0; i < chatList.Count; i++)
             {
                 db.Chat.Remove(chatList[i]);

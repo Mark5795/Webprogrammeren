@@ -12,6 +12,7 @@ namespace Whatsup.Models
     {
         public string Name { get; set; }
         public int Index { get; set; }
+
         public string Content { get; set; }
         public List<MessageViewModel> Reader { get; set; }
         public IDictionary<int, string> Usernames { get; set; }

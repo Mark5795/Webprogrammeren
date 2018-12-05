@@ -231,7 +231,6 @@
     <Content Include="Views\User\DeleteUser.cshtml" />
     <Content Include="Views\User\EditUser.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\User\RegisterSuccesful.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\LogOut.cshtml" />
     <Content Include="Views\User\ProfileUser.cshtml" />

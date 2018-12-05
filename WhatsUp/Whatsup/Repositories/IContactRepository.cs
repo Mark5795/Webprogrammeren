@@ -10,8 +10,8 @@ namespace Whatsup.Repositories
     public interface IContactRepository
     {
         Contact GetContact(int OwnerAccountId, int Index);
+        bool CheckContactExist(int OwnerAccountId, int Index);
         Contact GetContactFromContactAccountId(int ContactAccountId);
-        //ContactViewModel GetContactUserViewModel();
         void AddContact(int OwnerId, Contact contact);
         void EditContact(int OwnerAccountId, ContactViewModel model);
         void DeleteContact(int ContactAccountId, int Index);
