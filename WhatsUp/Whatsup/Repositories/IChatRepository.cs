@@ -16,9 +16,9 @@ namespace Whatsup.Repositories
         bool CheckChatExist(int contactOwnerId, int contactIndex);
         bool CheckIfChatExists(int contactOwnerId, int contactIndex);
         ChatListViewModel AddChat(int creatorId, int contactIndex, string name);
+        void ChangeNameGroupChat(AddGroupViewModel model, int index);
         ChatListViewModel AddGroupChat(int creatorId, List<int> addedContacts, string name);
         IEnumerable<ChatListViewModel> GetAllChats(int CreatorId);
-        void GroupchatName(int CreatorId, AddGroupViewModel model);
         IDictionary<int, string> GetChatParticipantContactNames(int userId, int chatId);
         IEnumerable<ChatListViewModel> GetChatListViewModelsByParticipant(int id);
         void GetChatParticipantContactName(int contactOwnerId);

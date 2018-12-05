@@ -60,6 +60,13 @@ namespace Whatsup.Repositories
             return new ChatListViewModel(chat, db.Users.SingleOrDefault(a => a.Id == creatorId).Chats.Count - 1);
         }
 
+        public void ChangeNameGroupChat(AddGroupViewModel model, int index)
+        {
+            Chat editGroupChat = GetChatByContactIndex(GetLoggedInUser(), index);
+            editGroupChat.Name = model.Name;
+            db.SaveChanges();
+        }
+
         private User GetContactUserByIndex(int ownerId, int index)
         {
             int contactId = db.Users.SingleOrDefault(a => a.Id == ownerId).Contacts.ToList()[index].ContactAccountId;
@@ -191,12 +198,6 @@ namespace Whatsup.Repositories
             return chatListViewModels;
         }
 
-        public void GroupchatName(int CreatorId, AddGroupViewModel model)
-        {
-            //db.Users.Single(a => a.Id == CreatorId).Chats.Add(model);
-            db.SaveChanges();
-        }
-
         public IDictionary<int, string> GetChatParticipantContactNames(int userId, int chatId)
         {
             Dictionary<int, string> participantNames = new Dictionary<int, string>();
@@ -274,5 +275,7 @@ namespace Whatsup.Repositories
             }
             db.SaveChanges();
         }
+
+        private int GetLoggedInUser() => db.Users.Where(i => i.Email == System.Web.HttpContext.Current.User.Identity.Name).FirstOrDefault().Id;
     }
 }

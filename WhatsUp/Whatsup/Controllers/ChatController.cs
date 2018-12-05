@@ -37,7 +37,7 @@ namespace Whatsup.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Chat([Bind(Include = "Content")] ChatViewModel model, int Index)
+        public ActionResult Chat([Bind(Include = "Content, Index")] ChatViewModel model, int Index)
         {
             if (ModelState.IsValid && model.Content != null)
             {
@@ -59,7 +59,7 @@ namespace Whatsup.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddGroupChat([Bind(Include = "Name")] AddGroupViewModel model)
+        public ActionResult AddGroupChat([Bind(Include = "Name,Contacts")] AddGroupViewModel model)
         {
             if (model.Name != null)
             {
@@ -86,6 +86,24 @@ namespace Whatsup.Controllers
         {
             IEnumerable<ContactViewModel> contactList = contactRepository.GetAllContacts(GetUser().Id);
             return View(contactList);
+        }
+
+        [HttpGet]
+        public ActionResult EditChat()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditChat([Bind(Include = "Name")] AddGroupViewModel model, int Index)
+        {
+            if (model.Name != null)
+            {
+                chatRepository.ChangeNameGroupChat(model, Index);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
         }
 
         [HttpGet]
