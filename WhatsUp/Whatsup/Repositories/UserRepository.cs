@@ -100,7 +100,6 @@ namespace Whatsup.Repositories
         public void DeleteUser(int UserId)
         {
                 User user = db.Users.Single(a => a.Id == UserId);
-                Chat chat = db.Chat.(a => a.Id == UserId);
                 db.Users.Remove(user);
                 db.SaveChanges();
         }

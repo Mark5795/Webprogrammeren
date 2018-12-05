@@ -24,5 +24,6 @@ namespace Whatsup.Repositories
         IEnumerable<ChatListViewModel> GetChatListViewModelsByMember(int id);
         void GetChatMemberContactName(int contactOwnerId);
         void DeleteChat(string Name, int Id);
+        void DeleteAllChatsForMember(int contactOwnerId);
     }
 }

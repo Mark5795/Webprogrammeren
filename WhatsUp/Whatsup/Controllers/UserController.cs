@@ -16,8 +16,8 @@ namespace Whatsup.Views
 {
     public class UserController : Controller
     {
-        private WhatsupContext db = new WhatsupContext();
         private IUserRepository userRepository = new UserRepository();
+        private IChatRepository chatRepository = new ChatRepository();
 
         // GET: User
         public ActionResult Index()
@@ -152,6 +152,7 @@ namespace Whatsup.Views
         // GET: User/Delete
         public ActionResult DeleteUser()
         {
+            chatRepository.DeleteAllChatsForMember(GetUser().Id);
             User user = userRepository.GetUserById(GetUser().Id);
             LoginUserViewModel loginUserViewModel = new LoginUserViewModel(user);
             return View(loginUserViewModel);

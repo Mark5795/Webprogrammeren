@@ -249,5 +249,15 @@ namespace Whatsup.Repositories
             db.Chat.Remove(chat);
             db.SaveChanges();
         }
+
+        public void DeleteAllChatsForMember(int contactOwnerId)
+        {
+            List<Chat> chatList = GetChatsByMember(contactOwnerId);
+            for (int i = 0; i < chatList.Count; i++)
+            {
+                db.Chat.Remove(chatList[i]);
+            }
+            db.SaveChanges();
+        }
     }
 }
