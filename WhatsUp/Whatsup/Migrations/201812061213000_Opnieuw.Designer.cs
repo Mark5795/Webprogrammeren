@@ -13,7 +13,7 @@ namespace Whatsup.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201812041912058_Opnieuw"; }
+            get { return "201812061213000_Opnieuw"; }
         }
         
         string IMigrationMetadata.Source

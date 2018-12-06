@@ -128,7 +128,7 @@ namespace Whatsup.Repositories
                     }
                 }
             }
-            throw new InvalidOperationException("No chat index could be found");
+            throw new InvalidOperationException("Chat index could not be found");
         }
 
         public bool CheckIfChatExists(int contactOwnerId, int contactIndex)

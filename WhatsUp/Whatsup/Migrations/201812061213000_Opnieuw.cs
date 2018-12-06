@@ -74,7 +74,7 @@ namespace Whatsup.Migrations
                     })
                 .PrimaryKey(t => new { t.ChatId, t.ParticipantsId })
                 .ForeignKey("dbo.Chat", t => t.ChatId, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.ParticipantsId, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.ParticipantsId, cascadeDelete: false)
                 .Index(t => t.ChatId)
                 .Index(t => t.ParticipantsId);
             

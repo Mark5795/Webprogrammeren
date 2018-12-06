@@ -12,10 +12,12 @@ namespace Whatsup.Models
         public int Index { get; set; }
 
         [Required]
+        [Display(Name = "Name")]
         public string NickName { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        [Display(Name = "Email Address")]
         public string Email { get; set; }
 
         public ContactViewModel() { }

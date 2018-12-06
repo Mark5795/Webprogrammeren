@@ -28,7 +28,15 @@ namespace Whatsup.Views
         [HttpGet]
         public ActionResult Login()
         {
-            return View();
+            try
+            {
+                ViewBag.Message = TempData["shortMessage"].ToString();
+                return View();
+            }
+            catch
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -49,6 +57,11 @@ namespace Whatsup.Views
 
                     return RedirectToAction("Index", "Home");
                 }
+                else if (!userRepository.AlreadyRegistered(model.Email))
+                {
+                    ModelState.AddModelError("Email", "Email is incorrect");
+                    return View(model);
+                }
                 else
                 {
                     ModelState.AddModelError("Password", "Password is incorrect");
@@ -67,26 +80,28 @@ namespace Whatsup.Views
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register([Bind(Include = "Email,UserName,Password")] AddUserViewModel model)
+        public ActionResult Register([Bind(Include = "Email,UserName,Password, ConfirmPassword")] AddUserViewModel model)
         {
             if (ModelState.IsValid)
             {
                 if (userRepository.AlreadyRegistered(model.Email))
                 {
-                    ModelState.AddModelError("Email", "This e-mail is already used.");
+                    ModelState.AddModelError("Email", "This Email is already in use.");
+                    return View(model);
+                }
+                try
+                {
+                    User user = new User(model.Username, model.Email, model.PasswordHash, model.Salt, model.DateCreated);
+                    userRepository.AddUser(user);
+                    TempData["shortMessage"] = "Registration successful, please log in.";
+                    return RedirectToAction("Login", "User");
+                }
+                catch
+                {
                     return View(model);
                 }
             }
-            try
-            {
-                User user = new User(model.Username, model.Email, model.PasswordHash, model.Salt, model.DateCreated);
-                userRepository.AddUser(user);
-                return RedirectToAction("Login", "User");
-            }
-            catch
-            {
-                return View(model);
-            }
+            return View(model);
         }
 
         [Authorize]
@@ -120,12 +135,8 @@ namespace Whatsup.Views
         public ActionResult EditUser()
         {
             ProfileUserViewModel profileUserViewModel = userRepository.GetProfileUserViewModel();
-
-            ViewBag.Username = profileUserViewModel.Username;
-            ViewBag.Email = profileUserViewModel.Email;
-            ViewBag.DateCreated = profileUserViewModel.DateCreated;
-
             return View(profileUserViewModel);
+
         }
 
         [HttpPost]
@@ -134,6 +145,14 @@ namespace Whatsup.Views
         {
             if (ModelState.IsValid)
             {
+                User user = userRepository.GetUserById(GetUser().Id);
+                if (user.Email != model.Email)
+                {
+                    userRepository.EditUser(model);
+                    LogOutUser();
+                    TempData["shortMessage"] = "Edit successful, please log in again.";
+                    return RedirectToAction("Login", "User");
+                }
                 userRepository.EditUser(model);
                 return RedirectToAction("ProfileUser", "User");
             }
