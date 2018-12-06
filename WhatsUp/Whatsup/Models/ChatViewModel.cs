@@ -28,7 +28,7 @@ namespace Whatsup.Models
             {
                 AddUserNamesToMessageViewModels(userId, usernames, messageList, ref messages);
             }
-            catch (ArgumentNullException e) { } // Empty chat
+            catch { }
 
             Index = index;
             Reader = messages;
