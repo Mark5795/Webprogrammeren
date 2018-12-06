@@ -11,15 +11,15 @@
         @if (Model.Usernames.Count > 2)
         {
             <section class="usernames">
-                @foreach (var Item in Model.Usernames.Reverse())
+                @foreach (var item in Model.Usernames.Reverse())
                 {
-                    if (Item.Value == "you")
+                    if (item.Value == "you")
                     {
-                        @Html.Label(Item.Value, new { @class = "username" })
+                        @Html.Label(item.Value, new { @class = "username" })
                     }
                     else
                     {
-                        @Html.Label(Item.Value + ",", new { @class = "username" })
+                        @Html.Label("", item.Value + ",", new { @class = "username" })
                     }
                 }
             </section>
@@ -57,18 +57,20 @@
     <section class="grid-item" id="contect-section">
         @for (int i = 0; i < Model.Reader.Count; i++)
         {
-        <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
-            <section class="content">
-                <p>@Model.Reader[i].Content</p>
-                <p class="content-time">@Model.Reader[i].SentOn</p>
-            </section>
-            @if (Model.Usernames.Count > 2)
-            {
-                <section class="info">
-                    @Html.Raw(Model.Reader[i].SenderName)
+            <section class="message @if(Model.Reader[i].IsSender) { @Html.Raw("user"); } else { @Html.Raw("notuser"); }">
+                @if (Model.Usernames.Count > 2)
+                {
+                    <section class="info">
+                        @Html.Raw(Model.Reader[i].SenderName)
+                    </section>
+                }
+
+                <section class="content">
+                    <p>@Model.Reader[i].Content</p>
+                    <p class="content-time">@Model.Reader[i].SentOn</p>
                 </section>
-            }
-        </section>
+
+            </section>
         }
     </section>
 

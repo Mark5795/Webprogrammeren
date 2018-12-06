@@ -158,13 +158,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hash.cs" />
-    <Compile Include="Migrations\201812041912058_Opnieuw.cs" />
-    <Compile Include="Migrations\201812041912058_Opnieuw.Designer.cs">
-      <DependentUpon>201812041912058_Opnieuw.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812051401550_Opnieuw1.cs" />
-    <Compile Include="Migrations\201812051401550_Opnieuw1.Designer.cs">
-      <DependentUpon>201812051401550_Opnieuw1.cs</DependentUpon>
+    <Compile Include="Migrations\201812061213000_Opnieuw.cs" />
+    <Compile Include="Migrations\201812061213000_Opnieuw.Designer.cs">
+      <DependentUpon>201812061213000_Opnieuw.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddGroupViewModel.cs" />
@@ -264,11 +260,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812041912058_Opnieuw.resx">
-      <DependentUpon>201812041912058_Opnieuw.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812051401550_Opnieuw1.resx">
-      <DependentUpon>201812051401550_Opnieuw1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812061213000_Opnieuw.resx">
+      <DependentUpon>201812061213000_Opnieuw.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
